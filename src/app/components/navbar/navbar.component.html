@@ -1,1 +1,38 @@
-<p>navbar works!</p>
+<ng-template #content let-offcanvas class="let-offcanvas">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 bg-dark text-white min-vh-100">
+        <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-5 d-none d-sm-inline">TodoPelis</span>
+        </a>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+            <li class="nav-item">
+                <a class="nav-link align-middle px-0 text-white">
+                    <i class="bi bi-gear-wide fs-4"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link px-0 text-white">
+                    <i class="bi bi-calendar-event fs-4"></i> <span class="ms-1 d-none d-sm-inline">Películas</span>
+                </a>
+            </li>
+
+        </ul>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-0 align-items-center" id="menu-footer">
+            <li class="nav-item mt-auto">
+                <a href="http://localhost:9000/" class="nav-link px-0 text-white">
+                    <i class="bi bi-arrow-left fs-4"></i> <span class="ms-1 d-none d-sm-inline">Volver</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+    </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, saepe nemo. Mollitia animi quo magnam iure placeat
+        veniam eveniet voluptatem assumenda, expedita, eum voluptates quibusdam aspernatur aperiam natus! Officia,
+        nesciunt? </p>
+</ng-template>
+
+
+
+<button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="openNoKeyboard(content)">
+    Menu
+</button>

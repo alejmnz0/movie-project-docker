@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  constructor(private modalService: NgbOffcanvas) { }
+
+  openNoKeyboard(template: any) {
+    this.modalService.open(template, {
+      scroll: true
+    });
+  }
 }

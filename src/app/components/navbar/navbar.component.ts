@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -8,12 +8,12 @@ import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  isCollapsed = true;
 
-  constructor(private modalService: NgbOffcanvas) { }
+  constructor(private collapseService: NgbCollapse) { }
 
-  openNoKeyboard(template: any) {
-    this.modalService.open(template, {
-      scroll: true
-    });
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
   }
+
 }

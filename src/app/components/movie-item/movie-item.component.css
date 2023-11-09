@@ -16,3 +16,16 @@ h1 {
 mat-icon {
     color: #ffffff15;
 }
+
+mat-card-header {
+    position: relative;
+}
+
+img{
+    position: relative;
+    z-index: 1;
+}
+
+circle-progress{
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}

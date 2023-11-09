@@ -5,6 +5,7 @@ import { Movie, PopularMoviesListResponse } from '../models/movie-list.interface
 import { MovieResponse } from '../models/movie.interface';
 import { Video, VideoListResponse } from '../models/video-movie.interface';
 import { ImageListResponse } from '../models/image-movie.interface';
+import { CreditsListResponse } from '../models/credits-movie.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -27,5 +28,9 @@ export class MovieService {
 
     getImagesByMovie(id: number): Observable<ImageListResponse> {
         return this.http.get<ImageListResponse>('https://api.themoviedb.org/3/movie/' + id + '/images?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4')
+    }
+
+    getActorsByMovie(id: number): Observable<CreditsListResponse> {
+        return this.http.get<CreditsListResponse>('https://api.themoviedb.org/3/movie/' + id + '/credits?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4')
     }
 }

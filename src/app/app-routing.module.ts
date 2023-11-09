@@ -9,6 +9,7 @@ import { PopularProgramsComponent } from './ui/popular-programs/popular-programs
 import { TodayProgramsComponent } from './ui/today-programs/today-programs.component';
 import { BestRatedProgramsComponent } from './ui/best-rated-programs/best-rated-programs.component';
 import { DetailsMovieComponent } from './ui/details-movie/details-movie.component';
+import { DetailsActorComponent } from './ui/details-actor/details-actor.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'programas/emision-hoy', component: TodayProgramsComponent },
     { path: 'programas/mejor-valorados', component: BestRatedProgramsComponent },
     { path: 'pelicula/:id', component: DetailsMovieComponent },
+    { path: 'actor/:id', component: DetailsActorComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

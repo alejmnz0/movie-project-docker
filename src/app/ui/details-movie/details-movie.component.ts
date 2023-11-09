@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Cast, Department } from 'src/app/models/credits-movie.interface';
 import { Genre, GenreListResponse } from 'src/app/models/genre-list.interface';
 import { Backdrop } from 'src/app/models/image-movie.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
@@ -22,6 +23,7 @@ export class DetailsMovieComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   videoList: Video[] = [];
   imageList: Backdrop[] = [];
+  actorList: Cast[] = [];
 
   constructor(private movieService: MovieService, private sanitazer: DomSanitizer) {
     this.movieId = Number(this.route.snapshot.params['id']);
@@ -36,6 +38,9 @@ export class DetailsMovieComponent implements OnInit {
     })
     this.movieService.getImagesByMovie(this.movieId).subscribe(resp => {
       this.imageList = resp.backdrops;
+    })
+    this.movieService.getActorsByMovie(this.movieId).subscribe(resp => {
+      this.actorList = resp.cast
     })
   }
 
@@ -75,5 +80,8 @@ export class DetailsMovieComponent implements OnInit {
     return this.imageList.length;
   }
 
+  getActorImage(actor: Cast) {
+    return "https://image.tmdb.org/t/p/w500/" + actor.profile_path
+  }
 
 }

@@ -1,5 +1,4 @@
 import { Component, TemplateRef } from '@angular/core';
-import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -8,12 +7,6 @@ import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  isCollapsed = true;
-
-  constructor(private collapseService: NgbCollapse) { }
-
-  toggleCollapse() {
-    this.isCollapsed = !this.isCollapsed;
-  }
+  public isCollapsed = false;
 
 }

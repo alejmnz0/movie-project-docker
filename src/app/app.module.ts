@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NgbCollapse, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieHorizontalListComponent } from './components/movie-horizontal-list/movie-horizontal-list.component';
 import { ProgramsHorizontalListComponent } from './components/programs-horizontal-list/programs-horizontal-list.component';
@@ -65,7 +65,7 @@ import { PersonalListComponent } from './ui/personal-list/personal-list.componen
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,
-    NgbCollapse
+    NgbCollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

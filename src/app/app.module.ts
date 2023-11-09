@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieHorizontalListComponent } from './components/movie-horizontal-list/movie-horizontal-list.component';
 import { ProgramsHorizontalListComponent } from './components/programs-horizontal-list/programs-horizontal-list.component';
@@ -33,7 +33,13 @@ import { PersonalListComponent } from './ui/personal-list/personal-list.componen
 import { MaterialImportModule } from './modules/material-import.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
 
+import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +68,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     DetailsActorComponent,
     DetailsProgramComponent,
     ProfileComponent,
-    PersonalListComponent
+    PersonalListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +84,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       outerStrokeColor: "#78C000",
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
-    })
+    }),
+    NgbCollapseModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

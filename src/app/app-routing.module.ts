@@ -18,7 +18,7 @@ const routes: Routes = [
     { path: 'programas/popular', component: PopularProgramsComponent },
     { path: 'programas/emision-hoy', component: TodayProgramsComponent },
     { path: 'programas/mejor-valorados', component: BestRatedProgramsComponent },
-    { path: 'actor/:id', component: DetailsMovieComponent },
+    { path: 'pelicula/:id', component: DetailsMovieComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

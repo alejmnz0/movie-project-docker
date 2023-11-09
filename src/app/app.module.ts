@@ -30,6 +30,13 @@ import { DetailsActorComponent } from './ui/details-actor/details-actor.componen
 import { DetailsProgramComponent } from './ui/details-program/details-program.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { PersonalListComponent } from './ui/personal-list/personal-list.component';
+import { MaterialImportModule } from './modules/material-import.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
+
 import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -68,6 +75,16 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,
+    MaterialImportModule,
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
     NgbCollapseModule,
     RouterModule,
     AppRoutingModule

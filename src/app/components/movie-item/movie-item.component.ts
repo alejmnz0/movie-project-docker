@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Movie } from 'src/app/models/movie-list.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
+  @Input() movie!: Movie;
 
+  getPorcentaje(numero: number) {
+    return numero * 10
+  }
 }

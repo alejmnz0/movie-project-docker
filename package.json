@@ -23,11 +23,11 @@
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
+    "ng-circle-progress": "^1.7.1",
     "bootstrap-icons": "^1.11.1",
     "mdb-ui-kit": "^6.4.2",
     "ngx-bootstrap": "^11.0.2",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
@@ -42,6 +42,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "tslib": "^2.6.2",
     "typescript": "~5.1.3"
   }
 }

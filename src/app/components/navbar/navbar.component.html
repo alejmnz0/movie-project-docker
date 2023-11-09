@@ -1,56 +1,37 @@
 <!--Main Navigation-->
 <header>
     <!-- Sidebar -->
-    <nav #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" id="sidebar" class="collapse d-lg-block sidebar bg-white"
-        [horizontal]="true">
+    <nav #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed" id="sidebar" class="collapse d-lg-block sidebar bg-dark"
+        [horizontal]=" true">
         <div class="position-sticky">
             <div class="list-group list-group-flush mx-3 mt-4">
-                <div ngbAccordion #accordion="ngbAccordion">
-                    <div ngbAccordionItem="first" #first="ngbAccordionItem" [collapsed]="false">
-                        <div ngbAccordionHeader class="accordion-button custom-header justify-content-between">
-                            <button ngbAccordionToggle class="btn btn-link p-0">Toggle first</button>
-                        </div>
-                        <div ngbAccordionCollapse>
-                            <div ngbAccordionBody>
-                                <ng-template>
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                    richardson ad squid. 3 wolf moon
-                                    officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                                    laborum eiusmod. Brunch 3 wolf
-                                    moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
-                                    shoreditch et. Nihil anim
-                                    keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-                                    proident. Ad vegan excepteur
-                                    butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
-                                    synth nesciunt you probably
-                                    haven't heard of them accusamus labore sustainable VHS.
-                                </ng-template>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Inicio</span>
+                <a href="#"
+                    class="list-group-item list-group-item-action py-2 ripple border-1 rounded bg-dark text-white mb-1">
+                    <i class="bi bi-house"></i> <span> Inicio</span>
                 </a>
-                <div ngbAccordion #accordion="ngbAccordion">
+                <div ngbAccordion #accordion="ngbAccordion" style="margin-bottom: 5px;">
                     <div ngbAccordionItem="first" #first="ngbAccordionItem">
                         <div ngbAccordionHeader class="accordion-button custom-header justify-content-between p-0">
-                            <a ngbAccordionToggle href="#" class="list-group-item list-group-item-action py-2 ripple"
+                            <a ngbAccordionToggle href="#"
+                                class="list-group-item list-group-item-action py-2 ripple bg-dark text-white mb-1"
                                 aria-current="true">
-                                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Películas</span></a>
+                                <i class="bi bi-camera-reels"></i><span> Películas</span></a>
                         </div>
 
                         <div ngbAccordionCollapse>
-                            <div ngbAccordionBody>
+                            <div ngbAccordionBody style="padding: 0;" class="bg-dark text-white">
                                 <ng-template>
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><!--active-->
-                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Películas</span>
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Popular</span>
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><!--active-->
-                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Películas</span>
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>En cartelera hoy</span>
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><!--active-->
-                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Películas</span>
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Más valoradas</span>
                                     </a>
                                 </ng-template>
                             </div>
@@ -60,37 +41,45 @@
                 <div ngbAccordion #accordion="ngbAccordion">
                     <div ngbAccordionItem="first" #first="ngbAccordionItem">
                         <div ngbAccordionHeader class="accordion-button custom-header justify-content-between p-0">
-                            <a ngbAccordionToggle href="#" class="list-group-item list-group-item-action py-2 ripple"
+                            <a ngbAccordionToggle href="#"
+                                class="list-group-item list-group-item-action py-2 ripple bg-dark text-white mb-1"
                                 aria-current="true">
-                                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Programas</span></a>
+                                <i class="bi bi-film"></i><span> Programas</span></a>
                         </div>
 
                         <div ngbAccordionCollapse>
-                            <div ngbAccordionBody>
+                            <div ngbAccordionBody style="padding: 0;">
                                 <ng-template>
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><!--active-->
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
                                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Películas</span>
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><!--active-->
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
                                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Películas</span>
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><!--active-->
-                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Películas</span>
+                                    <a href="#"
+                                        class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                        <i class="fas fa-chart-area fa-fw me-3"></i><span
+                                            class="submenuItem">Películas</span>
                                     </a>
                                 </ng-template>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-                        class="fas fa-chart-line fa-fw me-3"></i><span>Mis listas</span></a>
+                <hr class="text-white">
+                <div class="row">
+                    <h5 class="px-2 d-flex justify-content-between w-100 text-white">Mis listas<button
+                            class="btn btn-danger py-1 rounded-circle">+</button></h5>
+                </div>
             </div>
         </div>
     </nav>
     <!-- Sidebar -->
 
     <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-dark fixed-top p-0">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -103,86 +92,18 @@
             <a class="navbar-brand" href="#">
                 <img src="../../../assets/img/logo.png" height="50" alt="" loading="lazy" />
             </a>
-            <!-- Search form -->
-            <form class="d-none d-md-flex input-group w-auto my-auto">
-                <input autocomplete="off" type="search" class="form-control rounded"
-                    placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px" />
-                <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-            </form>
+
+            <h2 class="pt-2 text-danger" style="font-weight: 700;">TodoPelis</h2>
 
             <!-- Right links -->
             <ul class="navbar-nav ms-auto d-flex flex-row">
-                <!-- Notification dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Some news</a></li>
-                        <li><a class="dropdown-item" href="#">Another news</a></li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-
-                <!-- Icon dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="united kingdom flag m-0"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="united kingdom flag"></i>English
-                                <i class="fa fa-check text-success ms-2"></i></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider" />
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="poland flag"></i>Polski</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="china flag"></i>中文</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="japan flag"></i>日本語</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="germany flag"></i>Deutsch</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="france flag"></i>Français</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="spain flag"></i>Español</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="russia flag"></i>Русский</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="portugal flag"></i>Português</a>
-                        </li>
-                    </ul>
-                </li>
 
                 <!-- Avatar -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
-                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link d-flex align-items-center" href="#">
                         <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle"
-                            height="22" alt="" loading="lazy" />
+                            height="35" alt="" loading="lazy" />
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">My profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>
@@ -190,24 +111,3 @@
     </nav>
     <!-- Navbar -->
 </header>
-<!--Main Navigation-->
-
-<!--<a href="#demo3" class="list-group-item list-group-item-success" ngbAccordionToggle>Item 3
-    <i class="fa fa-caret-down"></i></a>
-<div class="collapse" id="demo3">
-    <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i
-            class="fa fa-caret-down"></i></a>
-    <div class="collapse list-group-submenu" id="SubMenu1">
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
-        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i
-                class="fa fa-caret-down"></i></a>
-        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
-            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
-            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
-        </div>
-        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
-    </div>
-    <a href="javascript:;" class="list-group-item">Subitem 2</a>
-    <a href="javascript:;" class="list-group-item">Subitem 3</a>
-</div>-->

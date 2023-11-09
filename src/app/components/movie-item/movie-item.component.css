@@ -1,0 +1,18 @@
+.example-card {
+    width: 15rem;
+}
+
+mat-card-content {
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+    height: 8.5rem;
+}
+
+h1 {
+    margin-top: 80px;
+    color: #E1E1E1;
+}
+
+mat-icon {
+    color: #ffffff15;
+}

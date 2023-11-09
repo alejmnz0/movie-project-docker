@@ -37,9 +37,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
 
-import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,

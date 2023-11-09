@@ -30,7 +30,9 @@ import { DetailsActorComponent } from './ui/details-actor/details-actor.componen
 import { DetailsProgramComponent } from './ui/details-program/details-program.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { PersonalListComponent } from './ui/personal-list/personal-list.component';
-
+import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,13 +61,16 @@ import { PersonalListComponent } from './ui/personal-list/personal-list.componen
     DetailsActorComponent,
     DetailsProgramComponent,
     ProfileComponent,
-    PersonalListComponent
+    PersonalListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

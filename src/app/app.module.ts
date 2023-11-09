@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieHorizontalListComponent } from './components/movie-horizontal-list/movie-horizontal-list.component';
 import { ProgramsHorizontalListComponent } from './components/programs-horizontal-list/programs-horizontal-list.component';
@@ -30,7 +30,9 @@ import { DetailsActorComponent } from './ui/details-actor/details-actor.componen
 import { DetailsProgramComponent } from './ui/details-program/details-program.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { PersonalListComponent } from './ui/personal-list/personal-list.component';
-
+import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,12 +61,16 @@ import { PersonalListComponent } from './ui/personal-list/personal-list.componen
     DetailsActorComponent,
     DetailsProgramComponent,
     ProfileComponent,
-    PersonalListComponent
+    PersonalListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbCollapseModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

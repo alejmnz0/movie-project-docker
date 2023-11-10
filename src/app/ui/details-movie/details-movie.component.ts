@@ -84,4 +84,8 @@ export class DetailsMovieComponent implements OnInit {
     return "https://image.tmdb.org/t/p/w500/" + actor.profile_path
   }
 
+  getPorcentaje(numero: number) {
+    return numero * 10
+  }
+
 }

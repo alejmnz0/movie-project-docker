@@ -34,9 +34,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MaterialImportModule } from './modules/material-import.module';
 
-import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,

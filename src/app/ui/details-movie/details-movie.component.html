@@ -2,17 +2,23 @@
     <div class="bg-image banner p-5 shadow-1-strong rounded mb-5 text-white border-1"
         [style.backgroundImage]="'url(' + getBannerUrl() + ')'">
         <!--<div class="banner-overlay"></div>-->
-        <div class="row">
+        <div class="row descripcion rounded p-3">
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
                 <img class="img-fluid movieImage rounded" [src]="getImageItem()" alt="{{selectedMovie.original_title}}">
             </div>
 
-            <div class="col-md-6 col-xl-7 col-lg-7 py-2 rounded descripcion">
-                <h1>{{selectedMovie.original_title}} ({{getYear()}})</h1>
+            <div class="col-md-6 col-xl-8 col-lg-7 py-2">
+                <h1>{{selectedMovie.original_title}} ({{getYear()}}) <circle-progress class="mb-2 ml-2 circleSmall"
+                        [percent]="getPorcentaje(selectedMovie.vote_average)" [radius]="20" [outerStrokeWidth]="4"
+                        [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'"
+                        [animation]="true" [animationDuration]="300" [showSubtitle]="false" [backgroundOpacity]="0.5"
+                        [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'"
+                        [backgroundPadding]="0"></circle-progress></h1>
                 <ul class="list-inline">
                     <li *ngFor="let item of selectedMovie.genres">
                         <button class="btn btn-danger">{{item.name}}</button>
                     </li>
+
                 </ul>
                 <div class="mt-2 py-2 px-3">
                     <p class="my-2">
@@ -28,23 +34,19 @@
             </div>
 
             <!-- Nueva columna a la derecha -->
-            <div class="col-xl-2 col-lg-2 d-none d-md-block">
-                <circle-progress [percent]="getPorcentaje(selectedMovie.vote_average)" [radius]="20"
-                    [outerStrokeWidth]="4" [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'"
+            <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 d-none d-md-block">
+                <circle-progress class="mb-2 optionsFullsize" [percent]="getPorcentaje(selectedMovie.vote_average)"
+                    [radius]="20" [outerStrokeWidth]="4" [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'"
                     [innerStrokeColor]="'#000000'" [animation]="true" [animationDuration]="300" [showSubtitle]="false"
                     [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'"
                     [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
 
-                <mat-card-actions class="col-2 p-0 align-self-start">
-                    <div class="example-disabled p-0">
-                        <button mat-icon-button>
-                            <mat-icon>star</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                            <mat-icon>favorite</mat-icon>
-                        </button>
-                    </div>
-                </mat-card-actions>
+                <button mat-icon-button>
+                    <mat-icon>star</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon>favorite</mat-icon>
+                </button>
 
                 <button mat-icon-button>
                     <mat-icon class="save">bookmark</mat-icon>

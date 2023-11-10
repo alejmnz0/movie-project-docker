@@ -42,3 +42,21 @@ ul {
 .movieImage {
     box-shadow: 5px 10px 8px #0c0c0c;
 }
+
+
+@media (max-width: 1000px) {
+    .optionsFullsize {
+        visibility: hidden;
+    }
+
+    .circleSmall {
+        visibility: visible;
+    }
+
+}
+
+@media (min-width: 1000px) {
+    .circleSmall {
+        visibility: hidden;
+    }
+}

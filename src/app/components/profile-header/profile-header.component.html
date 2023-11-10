@@ -9,11 +9,27 @@
 
             <div class="col-md-6 col-xl-7 col-lg-7 py-2 rounded descripcion">
                 <h1>Pepe</h1>
-            </div>
-
-            <!-- Nueva columna a la derecha -->
-            <div class="col-xl-2 col-lg-2 d-none d-md-block">
-                <!-- Guardar, favoritos y rating -->
+                <h4>Miembro desde que se unio</h4>
+                <div class="row">
+                    <div class="col-6 d-flex align-items-center justify-content-center">
+                        <circle-progress [percent]="100" [radius]="80" [outerStrokeWidth]="10" [innerStrokeWidth]="0"
+                            [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'" [animation]="true"
+                            [animationDuration]="600" [showSubtitle]="false" [backgroundOpacity]="0.5"
+                            [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'"
+                            [backgroundPadding]="0" [titleFontSize]="'60px'" [unitsFontSize]="'40px'" class="mx-auto">
+                        </circle-progress>
+                        <h5> Valoracion Media Peliculas</h5>
+                    </div>
+                    <div class="col-6 d-flex align-items-center justify-content-center">
+                        <circle-progress [percent]="100" [radius]="80" [outerStrokeWidth]="10" [innerStrokeWidth]="0"
+                            [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'" [animation]="true"
+                            [animationDuration]="600" [showSubtitle]="false" [backgroundOpacity]="0.5"
+                            [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'"
+                            [backgroundPadding]="0" [titleFontSize]="'60px'" [unitsFontSize]="'40px'">
+                        </circle-progress>
+                        <h5> Valoracion Media Peliculas</h5>
+                    </div>
+                </div>
             </div>
 
 

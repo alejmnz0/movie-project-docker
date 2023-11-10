@@ -1,1 +1,80 @@
-<p>details-movie works!</p>
+<div class="container bg-dark p-0 rounded text-white mb-5">
+    <div class="bg-image banner p-5 shadow-1-strong rounded mb-5 text-white border-1"
+        [style.backgroundImage]="'url(' + getBannerUrl() + ')'">
+        <!--<div class="banner-overlay"></div>-->
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
+                <img class="img-fluid" [src]="getImageItem()" alt="{{selectedMovie.original_title}}">
+            </div>
+
+            <div class="col-md-6 col-xl-7 col-lg-7 py-2 rounded descripcion">
+                <h1>{{selectedMovie.original_title}} ({{getYear()}})</h1>
+                <ul class="list-inline">
+                    <li *ngFor="let item of selectedMovie.genres">
+                        <button class="btn btn-danger">{{item.name}}</button>
+                    </li>
+                </ul>
+                <div class="mt-2 py-2 px-3">
+                    <p class="my-2">
+                        {{selectedMovie.overview}}
+                    </p>
+                    <p>
+                        <i class="bi bi-clock"></i> Duración: {{selectedMovie.runtime}} minutos
+                    </p>
+                    <p>
+                        <i class="bi bi-calendar-event"></i> Fecha de salida: {{selectedMovie.release_date}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nueva columna a la derecha -->
+            <div class="col-xl-2 col-lg-2 d-none d-md-block">
+                <!-- Guardar, favoritos y rating -->
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container main px-5 pb-5">
+        <div class="row">
+
+            <div class=" col-md-6 col-xl-9 col-lg-8">
+                <h2>Videos ({{countVideos()}})</h2>
+                <ul class="list-group list-group-horizontal position-relative overflow-auto">
+                    <div *ngFor="let video of videoList">
+                        <iframe width="560" height="315" [src]="getVideoUrl(video)" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </ul>
+                <h2>Imagenes ({{countImages()}})</h2>
+                <ul class="list-group list-group-horizontal position-relative overflow-auto">
+                    <div *ngFor="let image of imageList">
+                        <img width="560" height="315" [src]="getImagesMovieUrl(image)" [alt]="">
+                    </div>
+                </ul>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
+                <div class="panel panel-primary" id="result_panel">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Actores</h2>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <button [routerLink]="['/actor', actor.id]"
+                                class="btn btn-danger justify-content list-group-item p-0 my-1 rounded"
+                                *ngFor="let actor of actorList">
+                                <div class="d-flex align-items-center">
+                                    <img [src]="getActorImage(actor)" class="mx-2" alt="" height="50">
+                                    <span style="font-size: 1.2em;"><strong>{{actor.original_name}}</strong></span>
+                                </div>
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

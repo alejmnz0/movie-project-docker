@@ -38,3 +38,7 @@ ul {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
+
+.movieImage {
+    box-shadow: 5px 10px 8px #0c0c0c;
+}

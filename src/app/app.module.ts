@@ -36,6 +36,7 @@ import { MaterialImportModule } from './modules/material-import.module';
 import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { AppRoutingModule } from './app-routing.module';
     DetailsProgramComponent,
     ProfileComponent,
     PersonalListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProfileHeaderComponent
   ],
   imports: [
     BrowserModule,

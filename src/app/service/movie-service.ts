@@ -33,4 +33,8 @@ export class MovieService {
     getActorsByMovie(id: number): Observable<CreditsListResponse> {
         return this.http.get<CreditsListResponse>('https://api.themoviedb.org/3/movie/' + id + '/credits?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4')
     }
+
+    getPopularMoviesByPage(page: number): Observable<PopularMoviesListResponse> {
+        return this.http.get<PopularMoviesListResponse>("https://api.themoviedb.org/3/movie/popular?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&page=" + page);
+    }
 }

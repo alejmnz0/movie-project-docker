@@ -33,7 +33,7 @@ ul {
 }
 
 .list-group {
-    max-height: 500px;
+    max-height: 725px;
     margin-bottom: 10px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;

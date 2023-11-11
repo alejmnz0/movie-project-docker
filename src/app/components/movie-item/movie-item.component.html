@@ -13,7 +13,7 @@
 
     <a [routerLink]="['/pelicula', movie.id]" class="w-100">
       <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
-        alt="Photo of a Shiba Inu" width="100%" class="rounded-top">
+        [alt]="movie.original_title" width="100%" class="rounded-top">
     </a>
   </mat-card-header>
   <mat-card-content class="p-0 rounded-bottom pl-0 d-flex justify-content-center align-items-center">

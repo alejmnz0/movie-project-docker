@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { Movie, PopularMoviesListResponse } from '../models/movie-list.interface';
+import { BillboarMovieListResponse, Movie, PopularMoviesListResponse } from '../models/movie-list.interface';
 import { MovieResponse } from '../models/movie.interface';
 import { Video, VideoListResponse } from '../models/video-movie.interface';
 import { ImageListResponse } from '../models/image-movie.interface';
@@ -19,7 +19,7 @@ export class MovieService {
     }
 
     getMovieById(id: Number): Observable<MovieResponse> {
-        return this.http.get<MovieResponse>('https://api.themoviedb.org/3/movie/' + id + '?api_key=78d6414b91baf8d0ca5de73fecb5b290');
+        return this.http.get<MovieResponse>('https://api.themoviedb.org/3/movie/' + id + '?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es');
     }
 
     getVideosByMovie(id: number): Observable<VideoListResponse> {
@@ -36,5 +36,9 @@ export class MovieService {
 
     getPopularMoviesByPage(page: number): Observable<PopularMoviesListResponse> {
         return this.http.get<PopularMoviesListResponse>("https://api.themoviedb.org/3/movie/popular?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&page=" + page);
+    }
+
+    getBillboardMoviesByPage(page: number): Observable<BillboarMovieListResponse> {
+        return this.http.get<BillboarMovieListResponse>("https://api.themoviedb.org/3/movie/now_playing?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&page=" + page);
     }
 }

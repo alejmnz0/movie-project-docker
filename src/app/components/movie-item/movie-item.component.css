@@ -1,5 +1,6 @@
 .example-card {
     width: 15rem;
+    background-color: transparent !important;
 }
 
 mat-card-content {
@@ -41,6 +42,7 @@ circle-progress {
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 2rem;
+    box-shadow: 1px 2px 5px #0c0c0c;
 }
 
 .save {

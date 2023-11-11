@@ -42,6 +42,7 @@ export class DetailsMovieComponent implements OnInit {
     this.movieService.getActorsByMovie(this.movieId).subscribe(resp => {
       this.actorList = resp.cast
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getImageItem() {
@@ -82,6 +83,10 @@ export class DetailsMovieComponent implements OnInit {
 
   getActorImage(actor: Cast) {
     return "https://image.tmdb.org/t/p/w500/" + actor.profile_path
+  }
+
+  getPorcentaje(numero: number) {
+    return numero * 10
   }
 
 }

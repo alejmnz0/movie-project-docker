@@ -1,5 +1,6 @@
 .example-card {
     width: 15rem;
+    background-color: transparent !important;
 }
 
 mat-card-content {

@@ -23,6 +23,7 @@ export class PopularMoviesComponent implements OnInit {
   loadNewPage() {
     this.movieService.getPopularMoviesByPage(this.page).subscribe(resp => {
       this.movieList = resp.results;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     })
   }
 

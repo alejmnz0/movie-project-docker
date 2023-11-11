@@ -1,6 +1,8 @@
 <h1 class="text-white">
     Películas populares
 </h1>
-<app-movies-vertical-list [movieList]="movieList"></app-movies-vertical-list>
-<ngb-pagination [maxSize]="5" [boundaryLinks]="true" [collectionSize]="count" [(page)]="page" [pageSize]="20"
-    (pageChange)="loadNewPage()" aria-label="Default pagination"></ngb-pagination>
+<app-movies-vertical-list class="ml-2" [movieList]="movieList"></app-movies-vertical-list>
+<div class="mt-2" style="width: 100%;">
+    <ngb-pagination class="custom-pagination" [maxSize]="2" [boundaryLinks]="true" [collectionSize]="count"
+        [(page)]="page" [pageSize]="20" (pageChange)="loadNewPage()" aria-label="Default pagination"></ngb-pagination>
+</div>

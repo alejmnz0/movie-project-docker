@@ -42,6 +42,7 @@ export class DetailsMovieComponent implements OnInit {
     this.movieService.getActorsByMovie(this.movieId).subscribe(resp => {
       this.actorList = resp.cast
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   getImageItem() {

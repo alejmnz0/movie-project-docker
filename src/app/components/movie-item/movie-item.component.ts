@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { Program } from 'src/app/models/program.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -7,7 +8,7 @@ import { Movie } from 'src/app/models/movie-list.interface';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
-  @Input() movie!: Movie;
+  @Input() movie: any;
   longitudMaxima : number = 23;
 
   getPorcentaje(numero: number) {
@@ -22,5 +23,9 @@ export class MovieItemComponent {
         return titulo;
     }
     
+  }
+
+  comprobarSiEsPeli(): boolean{
+    return (this.movie.title.size > 0)
   }
 }

@@ -11,16 +11,33 @@
       </button>
     </div>
 
-    <a [routerLink]="['/pelicula', movie.id]" class="w-100">
-      <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
-        [alt]="movie.original_title" width="100%" class="rounded-top">
-    </a>
+    <div *ngIf="comprobarSiEsPeli;else programa" class="w-100">
+      <a [routerLink]="['/pelicula', movie.id]" class="w-100">
+        <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
+          [alt]="movie.original_title" width="100%" class="rounded-top" onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
+      </a>
+    </div>
+    <ng-template #programa>
+      <a [routerLink]="['/programa', movie.id]" class="w-100">
+        <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
+          [alt]="movie.original_title" width="100%" class="rounded-top" onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
+      </a>
+    </ng-template>
+
   </mat-card-header>
   <mat-card-content class="p-0 rounded-bottom pl-0 d-flex justify-content-center align-items-center">
     <div class="row p-4 pt-0 pb-0 mt-1">
-      <a class="col-10 p-0 m-0 align-self-center" [routerLink]="['/pelicula', movie.id]">
-        <h4>{{acortarTitulo(movie.title)}}</h4>
-      </a>
+      <div class="col-10 p-0 m-0 align-self-center" *ngIf="comprobarSiEsPeli;else programaTitle">
+        <a  [routerLink]="['/pelicula', movie.id]">
+        <h4>{{acortarTitulo(movie.title||movie.name)}}</h4>
+        </a>
+      </div>
+      <ng-template #programaTitle>
+        <a  [routerLink]="['/programa', movie.id]">
+          <h4>{{acortarTitulo(movie.title||movie.name)}}</h4>
+          </a>
+      </ng-template>
+      
       <mat-card-actions class="col-2 p-0 align-self-start">
         <div class="example-disabled p-0">
           <button mat-icon-button>

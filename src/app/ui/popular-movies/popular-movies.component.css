@@ -1,0 +1,34 @@
+::ng-deep .custom-pagination {
+    background-color: white;
+    /* Fondo blanco */
+    margin-bottom: 20px;
+}
+
+::ng-deep .custom-pagination .page-link {
+    color: black;
+    /* Texto negro para los enlaces */
+}
+
+::ng-deep .custom-pagination .page-item.active .page-link {
+    background-color: rgb(54, 54, 54);
+    /* Fondo negro para la página activa */
+    border-color: rgb(54, 54, 54);
+    /* Borde negro para la página activa */
+    color: white;
+    /* Texto blanco para la página activa */
+}
+
+::ng-deep .custom-pagination .page-item:hover .page-link {
+    background-color: rgb(161, 160, 160);
+    /* Fondo negro al pasar el ratón sobre la página */
+    border-color: rgb(161, 160, 160);
+    /* Borde negro al pasar el ratón sobre la página */
+    color: white;
+    /* Texto blanco al pasar el ratón sobre la página */
+}
+
+@media only screen and (max-width: 600px) {
+    ::ng-deep .custom-pagination .page-link {
+        font-size: 0.5em;
+    }
+}

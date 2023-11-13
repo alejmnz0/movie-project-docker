@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
   selector: 'app-movies-vertical-list',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class MoviesVerticalListComponent {
 
+  @Input() objectList: any;
 }

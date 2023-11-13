@@ -21,6 +21,7 @@ const routes: Routes = [
     { path: 'programas/emision-hoy', component: TodayProgramsComponent },
     { path: 'programas/mejor-valorados', component: BestRatedProgramsComponent },
     { path: 'pelicula/:id', component: DetailsMovieComponent },
+    { path: 'programa/:id', component: DetailsMovieComponent },
     { path: 'actor/:id', component: DetailsActorComponent },
     { path: 'perfil', component: ProfileComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },

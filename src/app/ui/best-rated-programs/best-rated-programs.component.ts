@@ -11,7 +11,7 @@ export class BestRatedProgramsComponent {
 
   programList: Program[] = [];
 
-  count = 1000;
+  count = 0;
   page = 1;
 
   constructor(private programService: ProgramService) { }
@@ -23,7 +23,9 @@ export class BestRatedProgramsComponent {
   loadNewPage() {
     this.programService.getRatedProgramList(this.page).subscribe(resp => {
       this.programList = resp.results;
+      this.count = resp.total_results
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

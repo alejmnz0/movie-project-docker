@@ -23,7 +23,9 @@ export class TodayProgramsComponent {
   loadNewPage() {
     this.programService.getTodayProgramList(this.page).subscribe(resp => {
       this.programList = resp.results;
+      this.count = resp.total_results
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

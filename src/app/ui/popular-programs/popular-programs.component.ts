@@ -24,5 +24,6 @@ export class PopularProgramsComponent {
     this.programService.getPopularProgramList(this.page).subscribe(resp => {
       this.programList = resp.results;
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

@@ -9,7 +9,7 @@ import { ProgramService } from 'src/app/service/program.service';
 })
 export class PopularProgramsComponent {
 
-  movieList: Program[] = [];
+  programList: Program[] = [];
 
   count = 10000;
   page = 1;
@@ -22,7 +22,7 @@ export class PopularProgramsComponent {
 
   loadNewPage() {
     this.programService.getPopularProgramList(this.page).subscribe(resp => {
-      this.movieList = resp.results;
+      this.programList = resp.results;
     })
   }
 }

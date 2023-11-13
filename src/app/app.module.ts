@@ -14,7 +14,6 @@ import { WatchlistsNavbarComponent } from './components/watchlists-navbar/watchl
 import { VideosListHorizontalComponent } from './components/videos-list-horizontal/videos-list-horizontal.component';
 import { ImagesListHorizontalComponent } from './components/images-list-horizontal/images-list-horizontal.component';
 import { LastSeasonProgramComponent } from './components/last-season-program/last-season-program.component';
-import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
 import { FilterProgramsComponent } from './components/filter-programs/filter-programs.component';
 import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { ProgramItemComponent } from './components/program-item/program-item.component';
@@ -37,6 +36,9 @@ import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.compon
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
+import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
+import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
+import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,6 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
     VideosListHorizontalComponent,
     ImagesListHorizontalComponent,
     LastSeasonProgramComponent,
-    FilterMoviesComponent,
     FilterProgramsComponent,
     MovieItemComponent,
     ProgramItemComponent,
@@ -69,6 +70,9 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
     PersonalListComponent,
     PageNotFoundComponent,
     ProfileHeaderComponent
+    FilterMoviesComponent,
+    MovieItemSecondaryComponent,
+    GenreMovieListComponent
   ],
   imports: [
     BrowserModule,

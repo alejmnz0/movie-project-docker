@@ -1,0 +1,14 @@
+<div *ngIf="!loaded" class="d-flex justify-content-center align-items-center vh-100">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<div *ngIf="loaded">
+    <h1 class="text-white">{{genre.name}}</h1>
+    <app-movie-item-secondary *ngFor="let movie of movieList" [movie]="movie"></app-movie-item-secondary>
+    <div class="mt-2 d-flex justify-content-center align-items-center" style="width: 100%;">
+        <ngb-pagination class="custom-pagination" [maxSize]="2" [boundaryLinks]="true" [collectionSize]="count"
+            [(page)]="page" [pageSize]="20" (pageChange)="loadNewPage()"
+            aria-label="Default pagination"></ngb-pagination>
+    </div>
+</div>

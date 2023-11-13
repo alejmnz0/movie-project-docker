@@ -16,7 +16,7 @@
                         [backgroundPadding]="0"></circle-progress></h1>
                 <ul class="list-inline">
                     <li *ngFor="let item of selectedMovie.genres">
-                        <button class="btn btn-danger">{{item.name}}</button>
+                        <button class="btn btn-danger" [routerLink]="['/genre', item.id]">{{item.name}}</button>
                     </li>
 
                 </ul>
@@ -33,7 +33,6 @@
                 </div>
             </div>
 
-            <!-- Nueva columna a la derecha -->
             <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 d-none d-md-block">
                 <circle-progress class="mb-2 optionsFullsize" [percent]="getPorcentaje(selectedMovie.vote_average)"
                     [radius]="20" [outerStrokeWidth]="4" [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'"

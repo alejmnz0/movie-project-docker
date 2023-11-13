@@ -16,7 +16,7 @@
                         [backgroundPadding]="0"></circle-progress></h1>
                 <ul class="list-inline">
                     <li *ngFor="let item of selectedMovie.genres">
-                        <button class="btn btn-danger">{{item.name}}</button>
+                        <button class="btn btn-danger" [routerLink]="['/genre', item.id]">{{item.name}}</button>
                     </li>
 
                 </ul>

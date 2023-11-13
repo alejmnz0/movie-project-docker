@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { BillboarMovieListResponse, ComingMoviesListResponse, Movie, PopularMoviesListResponse } from '../models/movie-list.interface';
+import { BillboarMovieListResponse, ComingMoviesListResponse, Movie, MovieCreditsResponse, PopularMoviesListResponse } from '../models/movie-list.interface';
 import { MovieResponse } from '../models/movie.interface';
-import { Video, VideoListResponse } from '../models/video-movie.interface';
+import { VideoListResponse } from '../models/video-movie.interface';
 import { ImageListResponse } from '../models/image-movie.interface';
 import { CreditsListResponse } from '../models/credits-movie.interface';
 
@@ -44,5 +44,9 @@ export class MovieService {
 
     getComingMoviesByPage(page: number): Observable<ComingMoviesListResponse> {
         return this.http.get<ComingMoviesListResponse>("https://api.themoviedb.org/3/movie/upcoming?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&language=es&page=" + page);
+    }
+
+    getMoviesByActor(id: number): Observable<MovieCreditsResponse> {
+        return this.http.get<MovieCreditsResponse>('https://api.themoviedb.org/3/person/' + id + '/movie_credits?api_key=78d6414b91baf8d0ca5de73fecb5b290&languaje=es')
     }
 }

@@ -36,6 +36,8 @@ import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.compon
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
+import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
+import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { FilterMoviesComponent } from './components/filter-movies/filter-movies.
     ProfileComponent,
     PersonalListComponent,
     PageNotFoundComponent,
-    FilterMoviesComponent
+    FilterMoviesComponent,
+    MovieItemSecondaryComponent,
+    GenreMovieListComponent
   ],
   imports: [
     BrowserModule,

@@ -49,4 +49,8 @@ export class MovieService {
     getMoviesByActor(id: number): Observable<MovieCreditsResponse> {
         return this.http.get<MovieCreditsResponse>('https://api.themoviedb.org/3/person/' + id + '/movie_credits?api_key=78d6414b91baf8d0ca5de73fecb5b290&languaje=es')
     }
+
+    getMoviesByGenreAndPage(id: number, page: number): Observable<PopularMoviesListResponse> {
+        return this.http.get<PopularMoviesListResponse>('https://api.themoviedb.org/3/discover/movie?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&language=es&with_genres=' + id + '&page=' + page)
+    }
 }

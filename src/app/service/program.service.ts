@@ -17,4 +17,8 @@ export class ProgramService {
   getTodayProgramList(page: number): Observable<ProgramListResponse> {
     return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/airing_today?api_key=78d6414b91baf8d0ca5de73fecb5b290&page=' + page);
   }
+
+  getRatedProgramList(page: number): Observable<ProgramListResponse> {
+    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/top_rated?api_key=78d6414b91baf8d0ca5de73fecb5b290&page=' + page);
+  }
 }

@@ -14,7 +14,6 @@ import { WatchlistsNavbarComponent } from './components/watchlists-navbar/watchl
 import { VideosListHorizontalComponent } from './components/videos-list-horizontal/videos-list-horizontal.component';
 import { ImagesListHorizontalComponent } from './components/images-list-horizontal/images-list-horizontal.component';
 import { LastSeasonProgramComponent } from './components/last-season-program/last-season-program.component';
-import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
 import { FilterProgramsComponent } from './components/filter-programs/filter-programs.component';
 import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { ProgramItemComponent } from './components/program-item/program-item.component';
@@ -50,7 +49,6 @@ import { AppRoutingModule } from './app-routing.module';
     VideosListHorizontalComponent,
     ImagesListHorizontalComponent,
     LastSeasonProgramComponent,
-    FilterMoviesComponent,
     FilterProgramsComponent,
     MovieItemComponent,
     ProgramItemComponent,

@@ -1,1 +1,30 @@
-<p>details-actor works!</p>
+<div class="container general p-0 rounded text-white mb-5">
+    <div class="bg-dark banner p-0 shadow-1-strong rounded mb-5 text-white border-1">
+        <!--<div class="banner-overlay"></div>-->
+        <div class="row rounded p-0">
+            <div class="col-xl-2 col-lg-3 col-md-6 mb-4 mb-md-0">
+                <img class="img-fluid movieImage w-100" [src]="getActorImage()" alt="{{selectedActor.name}}">
+            </div>
+
+            <div class="col-md-6 col-xl-10 col-lg-9 py-2">
+                <h1 class="mx-2">{{selectedActor.name}}</h1>
+                <div class="mx-3">
+                    <p><strong>Fecha de Nacimiento:</strong><br>{{selectedActor.birthday}}</p>
+                    <p><strong>Lugar de Nacimiento:</strong><br>{{selectedActor.place_of_birth}}</p>
+                    <p><strong>Género</strong><br>{{getGender()}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mx-4">
+        <h2>Biografía</h2>
+        <p>{{selectedActor.biography}}</p>
+    </div>
+
+    <div class="mx-4">
+        <h2>Peliculas</h2>
+        <app-movie-horizontal-list [movieList]="movieList"></app-movie-horizontal-list>
+    </div>
+</div>

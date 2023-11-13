@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -9,13 +9,5 @@ import { MovieService } from 'src/app/service/movie-service';
 })
 export class MovieHorizontalListComponent {
 
-  movieList: Movie[] = []
-
-  constructor(private movieService: MovieService) { }
-
-  ngOnInit(): void {
-    this.movieService.getPopularMoviesList().subscribe(resp => {
-      this.movieList = resp.results;
-    })
-  }
+  @Input() movieList: any;
 }

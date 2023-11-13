@@ -8,8 +8,5 @@ import { MovieService } from 'src/app/service/movie-service';
 })
 export class MoviesVerticalListComponent {
 
-  @Input() movieList: any;
-
-
-
+  @Input() objectList: any;
 }

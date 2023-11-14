@@ -1,3 +1,11 @@
-<h1 class="text-white mx-2">Populares</h1>
-<br>
-<app-movie-horizontal-list [movieList]="moviePopularList"></app-movie-horizontal-list>
+<div *ngIf="mostrarAlert" class="alert alert-dismissible fade show text-white" role=" alert">
+    <h1>Bienvenido a <span class="text-danger">TodoPelis</span></h1>
+    <p class="bienvenida">¡Bienvenido a nuestra plataforma de entretenimiento! Descubre, valora y crea listas
+        personalizadas de películas,
+        series y programas. ¡Sumérgete en un universo de entretenimiento sin límites!</p>
+    <button type="button" class="btn-close" (click)=" cerrarAlert()" aria-label="Close"></button>
+</div>
+<h2 class="text-white mx-3">Películas más populares</h2>
+<app-movies-horizontal-numbered-list [list]="moviePopularList"></app-movies-horizontal-numbered-list>
+<h2 class="text-white mx-3 mt-3">Programas más populares</h2>
+<app-movies-horizontal-numbered-list [list]="seriePopularList"></app-movies-horizontal-numbered-list>

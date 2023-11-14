@@ -1,0 +1,15 @@
+.alert {
+    background-color: rgba(83, 83, 81, 0.986);
+}
+
+.bienvenida {
+    font-size: 1.1em;
+    line-height: 30px;
+}
+
+@media only screen and (max-width: 800px) {
+    .bienvenida {
+        font-size: 0.8em;
+        line-height: 15px;
+    }
+}

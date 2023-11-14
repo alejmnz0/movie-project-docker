@@ -1,0 +1,4 @@
+<ul class="list-group p-3 list-group-horizontal position-relative overflow-auto">
+    <app-numbered-item *ngFor="let movie of list; let i = index" [movie]="movie" [index]="i"
+        class="mx-2 h-100"></app-numbered-item>
+</ul>

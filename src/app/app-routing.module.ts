@@ -12,6 +12,7 @@ import { DetailsMovieComponent } from './ui/details-movie/details-movie.componen
 import { DetailsActorComponent } from './ui/details-actor/details-actor.component';
 import { ProfileComponent } from './ui/profile/profile.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
+import { AuthApprovedComponent } from './components/auth-approved/auth-approved.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: 'actor/:id', component: DetailsActorComponent },
     { path: 'perfil', component: ProfileComponent },
     { path: 'genre/:id', component: GenreMovieListComponent },
+    { path: 'approved', component: AuthApprovedComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

@@ -38,6 +38,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
+import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
+import { AuthApprovedComponent } from './components/auth-approved/auth-approved.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { MovieItemSecondaryComponent } from './components/movie-item-secondary/m
     PageNotFoundComponent,
     FilterMoviesComponent,
     ProfileHeaderComponent,
-    MovieItemSecondaryComponent
+    MovieItemSecondaryComponent,
+    GenreMovieListComponent,
+    AuthApprovedComponent
   ],
   imports: [
     BrowserModule,

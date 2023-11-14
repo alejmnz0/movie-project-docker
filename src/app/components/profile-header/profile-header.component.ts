@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-header.component.css']
 })
 export class ProfileHeaderComponent {
-
+  avatarUrl = localStorage.getItem('AVATAR_PATH');
 }

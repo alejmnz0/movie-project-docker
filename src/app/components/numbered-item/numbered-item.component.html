@@ -1,6 +1,10 @@
-<div class="image-container d-flex">
+<a [routerLink]="['/pelicula', movie.id]" class="image-container d-flex">
+    <circle-progress [percent]="getPorcentaje(movie.vote_average)" [radius]="20" [outerStrokeWidth]="2"
+        [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'" [animation]="true"
+        [animationDuration]="300" [showSubtitle]="false" [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'"
+        [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
     <div class="image-number text-danger p-0"><span><i>{{index+1}}</i></span></div>
     <div class="rounded">
         <img [src]="getImage()" [alt]="movie.original_title">
     </div>
-</div>
+</a>

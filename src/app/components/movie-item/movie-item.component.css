@@ -1,5 +1,5 @@
 .example-card {
-    width: 15rem;
+    width: 13rem;
     background-color: transparent !important;
 }
 
@@ -42,7 +42,7 @@ circle-progress {
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 2rem;
-    box-shadow: 2.5px 5px 4px #0c0c0c;
+    box-shadow: 2.5px 2px 2px #0c0c0c;
 }
 
 .save {
@@ -52,4 +52,33 @@ circle-progress {
 a {
     text-decoration: none;
     color: white;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 990px) {
+    .example-card {
+        width: 9rem;
+    }
+
+    circle-progress {
+        font-size: 0.8em;
+        left: 65%;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    mat-icon {
+        font-size: 20px;
+    }
+
+    .save {
+        font-size: 15px;
+    }
+
+    #saveList {}
 }

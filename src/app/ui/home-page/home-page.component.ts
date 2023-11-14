@@ -14,7 +14,9 @@ export class HomePageComponent implements OnInit {
 
   moviePopularList: Movie[] = []
   seriePopularList: Program[] = []
+  suspenseMovieList: Movie[] = []
   mostrarAlert: boolean = true;
+  suspenseId = 53;
 
   cerrarAlert(): void {
     this.mostrarAlert = false;
@@ -29,7 +31,11 @@ export class HomePageComponent implements OnInit {
     this.programService.getPopularProgramList(1).subscribe(resp => {
       this.seriePopularList = resp.results.slice(0, 10);
     })
+    this.movieService.getMoviesByGenreAndPage(this.suspenseId, 1).subscribe(resp => {
+      this.suspenseMovieList = resp.results;
+    })
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
 
 }

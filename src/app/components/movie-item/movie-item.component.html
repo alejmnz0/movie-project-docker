@@ -1,6 +1,6 @@
 <mat-card class="example-card">
   <mat-card-header class="p-0">
-    <circle-progress [percent]="getPorcentaje(movie.vote_average)" [radius]="20" [outerStrokeWidth]="4"
+    <circle-progress [percent]="getPorcentaje(movie.vote_average)" [radius]="20" [outerStrokeWidth]="2"
       [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'" [animation]="true"
       [animationDuration]="300" [showSubtitle]="false" [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'"
       [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
@@ -14,13 +14,15 @@
     <div *ngIf="comprobarSiEsPeli;else programa" class="w-100">
       <a [routerLink]="['/pelicula', movie.id]" class="w-100">
         <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
-          [alt]="movie.original_title" width="100%" class="rounded-top" onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
+          [alt]="movie.original_title" width="100%" class="rounded-top"
+          onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
       </a>
     </div>
     <ng-template #programa>
       <a [routerLink]="['/programa', movie.id]" class="w-100">
         <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{movie.poster_path}}"
-          [alt]="movie.original_title" width="100%" class="rounded-top" onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
+          [alt]="movie.original_title" width="100%" class="rounded-top"
+          onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
       </a>
     </ng-template>
 
@@ -28,16 +30,16 @@
   <mat-card-content class="p-0 rounded-bottom pl-0 d-flex justify-content-center align-items-center">
     <div class="row p-4 pt-0 pb-0 mt-1">
       <div class="col-10 p-0 m-0 align-self-center" *ngIf="comprobarSiEsPeli;else programaTitle">
-        <a  [routerLink]="['/pelicula', movie.id]">
-        <h4>{{acortarTitulo(movie.title||movie.name)}}</h4>
+        <a [routerLink]="['/pelicula', movie.id]">
+          <h4>{{acortarTitulo(movie.title||movie.name)}}</h4>
         </a>
       </div>
       <ng-template #programaTitle>
-        <a  [routerLink]="['/programa', movie.id]">
+        <a [routerLink]="['/programa', movie.id]">
           <h4>{{acortarTitulo(movie.title||movie.name)}}</h4>
-          </a>
+        </a>
       </ng-template>
-      
+
       <mat-card-actions class="col-2 p-0 align-self-start">
         <div class="example-disabled p-0">
           <button mat-icon-button>

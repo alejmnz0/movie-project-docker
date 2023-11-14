@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieHorizontalListComponent } from './components/movie-horizontal-list/movie-horizontal-list.component';
 import { ProgramsHorizontalListComponent } from './components/programs-horizontal-list/programs-horizontal-list.component';
@@ -38,6 +38,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
 import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
+import { NumberedItemComponent } from './components/numbered-item/numbered-item.component';
+import { MoviesHorizontalNumberedListComponent } from './components/movies-horizontal-numbered-list/movies-horizontal-numbered-list.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.
     PageNotFoundComponent,
     FilterMoviesComponent,
     MovieItemSecondaryComponent,
-    GenreMovieListComponent
+    GenreMovieListComponent,
+    NumberedItemComponent,
+    MoviesHorizontalNumberedListComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +92,8 @@ import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.
     }),
     NgbCollapseModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

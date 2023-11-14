@@ -8,17 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class ProgramService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getPopularProgramList(page: number): Observable<ProgramListResponse> {
-    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/popular?api_key=78d6414b91baf8d0ca5de73fecb5b290&page=' + page);
+    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/popular?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es&page=' + page);
   }
 
   getTodayProgramList(page: number): Observable<ProgramListResponse> {
-    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/airing_today?api_key=78d6414b91baf8d0ca5de73fecb5b290&page=' + page);
+    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/airing_today?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es&page=' + page);
   }
 
   getRatedProgramList(page: number): Observable<ProgramListResponse> {
-    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/top_rated?api_key=78d6414b91baf8d0ca5de73fecb5b290&page=' + page);
+    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/top_rated?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es&page=' + page);
   }
 }

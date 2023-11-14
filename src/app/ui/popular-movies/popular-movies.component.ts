@@ -31,7 +31,7 @@ export class PopularMoviesComponent implements OnInit {
   loadPageForPopularMovies() {
     this.movieService.getPopularMoviesByPage(this.page).subscribe((resp) => {
       this.movieList = resp.results;
-      this.count = 10000;
+      this.count = resp.total_results;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }

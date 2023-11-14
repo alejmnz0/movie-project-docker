@@ -15,5 +15,4 @@ export class AccountService {
     let sessionId = localStorage.getItem('SESSION_ID');
     return this.http.get<AccountResponse>(`${environment.apiBaseUrl}/account?session_id=${sessionId}&api_key=78d6414b91baf8d0ca5de73fecb5b290`)
   }
-
 }

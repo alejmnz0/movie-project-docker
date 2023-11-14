@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./auth-approved.component.css']
 })
 export class AuthApprovedComponent implements OnInit {
-  loaded = false;
   constructor(private authService: AuthService, private accountService: AccountService, private router: Router) { }
   account!: AccountResponse;
   ngOnInit(): void {
@@ -19,14 +18,11 @@ export class AuthApprovedComponent implements OnInit {
     this.authService.createSession(token!).subscribe(resp => {
       localStorage.setItem('SESSION_ID', resp.session_id);
       this.accountService.getAccountDetails().subscribe(resp => {
-        debugger;
         this.account = resp;
         localStorage.setItem('AVATAR_PATH', ('https://www.themoviedb.org/t/p/w50_and_h50_face' + resp.avatar.tmdb.avatar_path));
         localStorage.setItem('USERNAME', resp.username);
-        this.loaded = true;
-        this.router.navigate(['/home']);
+        localStorage.setItem('ACCOUNT_ID', resp.id.toString());
       });
-
     });
   }
 

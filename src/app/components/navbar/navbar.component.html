@@ -102,20 +102,22 @@
             <ul class="navbar-nav ms-auto d-flex flex-row">
 
                 <!-- Avatar -->
-                <li class="nav-item dropdown" *ngIf="!ComprobarLogin();else elseNav">
-                    <a [routerLink]="['/perfil']" class="w-100">
-                        <img src="{{avatarUrl}}" class="rounded-circle mx-2" height="35" alt="" loading="lazy" />
+                <li class="nav-item dropdown" *ngIf="ComprobarLogin();else elseNav">
+                    <a [routerLink]="['/approved']" class="w-100">
+                        <img src="https://cdn4.iconfinder.com/data/icons/bold-circular-app-web-icons/1153/circle_user_bold-512.png"
+                            class="rounded-circle" height="35" alt="" loading="lazy" (click)="doLogin()" />
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <p class="text-light mb-0 d-flex justify-content-center align-items-center">
-                        {{acortarnombre(username)}}</p>
-                </li>
+                
                 <ng-template #elseNav>
                     <li class="nav-item dropdown">
-                        <a [routerLink]="['/approved']" class="w-100">
-                            <img src="https://cdn4.iconfinder.com/data/icons/bold-circular-app-web-icons/1153/circle_user_bold-512.png"
-                                class="rounded-circle" height="35" alt="" loading="lazy" (click)="doLogin()" />
+                        <a [routerLink]="['/perfil']" class="w-100">
+                            <img src="{{avatarUrl}}" class="rounded-circle mx-2" height="35" alt="" loading="lazy" />
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown mt-1">
+                        <a [routerLink]="['/home']" class="w-100 text-danger" (click)="logOut()">
+                            <mat-icon fontIcon="logout"></mat-icon>
                         </a>
                     </li>
                 </ng-template>

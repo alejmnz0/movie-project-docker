@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-programs-vertical-list',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./programs-vertical-list.component.css']
 })
 export class ProgramsVerticalListComponent {
+  @Input() objectList: any;
 
 }

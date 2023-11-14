@@ -11,6 +11,7 @@ import { BestRatedProgramsComponent } from './ui/best-rated-programs/best-rated-
 import { DetailsMovieComponent } from './ui/details-movie/details-movie.component';
 import { DetailsActorComponent } from './ui/details-actor/details-actor.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
+import { DetailsProgramComponent } from './ui/details-program/details-program.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -21,7 +22,7 @@ const routes: Routes = [
     { path: 'programas/emision-hoy', component: TodayProgramsComponent },
     { path: 'programas/mejor-valorados', component: BestRatedProgramsComponent },
     { path: 'pelicula/:id', component: DetailsMovieComponent },
-    { path: 'programa/:id', component: DetailsMovieComponent },
+    { path: 'programa/:id', component: DetailsProgramComponent },
     { path: 'actor/:id', component: DetailsActorComponent },
     { path: 'genre/:id', component: GenreMovieListComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },

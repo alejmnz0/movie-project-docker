@@ -1,0 +1,91 @@
+.banner {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+ul {
+    list-style-type: none;
+}
+
+.list-inline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-inline li {
+    display: inline-block;
+    margin-right: 5px;
+    /* Puedes ajustar este margen según tus preferencias */
+}
+
+.descripcion {
+    background-color: rgba(0, 0, 0, 0.418);
+}
+
+.btn {
+    font-size: 0.7em;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.list-group {
+    max-height: 725px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.movieImage {
+    box-shadow: 5px 10px 8px #0c0c0c;
+}
+
+
+@media (max-width: 1000px) {
+    .optionsFullsize {
+        visibility: hidden;
+    }
+
+    .circleSmall {
+        visibility: visible;
+    }
+
+}
+
+@media (min-width: 1000px) {
+    .circleSmall {
+        visibility: hidden;
+    }
+}
+
+.list-group-horizontal {
+    white-space: nowrap;
+    /* Evita que los elementos se envuelvan a la siguiente línea */
+    overflow-x: auto;
+    /* Hace que aparezca el scrollbar solo cuando sea necesario */
+}
+
+.list-group-horizontal::-webkit-scrollbar {
+    height: 8px;
+    /* Altura del scrollbar */
+}
+
+.list-group-horizontal::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    /* Color del scrollbar */
+    border-radius: 4px;
+    /* Bordes redondeados del scrollbar */
+}
+
+.linkTodas {
+    text-decoration: none;
+    color: grey;
+}
+
+.verTodas {
+    font-size: 0.7em;
+    cursor: pointer;
+}

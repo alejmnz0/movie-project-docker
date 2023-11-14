@@ -19,7 +19,7 @@ export class FilterMoviesComponent implements OnInit {
   constructor(private genreService: GenreService) { }
 
   ngOnInit(): void {
-    this.genreService.getGenreList().subscribe(resp => {
+    this.genreService.getGenreMovieList().subscribe(resp => {
       this.genreList = resp.genres;
     })
   }

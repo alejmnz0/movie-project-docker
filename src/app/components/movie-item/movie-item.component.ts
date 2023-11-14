@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
-import { Program } from 'src/app/models/program.interface';
+import { Program } from 'src/app/models/program-list.interface';
 
 @Component({
   selector: 'app-movie-item',

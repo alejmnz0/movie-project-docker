@@ -1,1 +1,163 @@
-<p>details-program works!</p>
+<div class="container bg-dark p-0 rounded text-white mb-5">
+    <div class="bg-image banner p-5 shadow-1-strong rounded mb-5 text-white border-1"
+        [style.backgroundImage]="'url(' + getBannerUrl() + ')'">
+        <!--<div class="banner-overlay"></div>-->
+        <div class="row descripcion rounded p-3">
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
+                <img class="img-fluid movieImage rounded" [src]="getImageItem()" alt="{{selectedProgram.name}}">
+            </div>
+
+            <div class="col-md-6 col-xl-8 col-lg-7 py-2">
+                <h1>{{selectedProgram.name}} ({{getYear()}}) <circle-progress class="mb-2 ml-2 circleSmall"
+                        [percent]="getPorcentaje(selectedProgram.vote_average)" [radius]="20" [outerStrokeWidth]="4"
+                        [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'"
+                        [animation]="true" [animationDuration]="300" [showSubtitle]="false" [backgroundOpacity]="0.5"
+                        [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'"
+                        [backgroundPadding]="0"></circle-progress></h1>
+                <ul class="list-inline">
+                    <li *ngFor="let item of selectedProgram.genres">
+                        <button class="btn btn-danger" [routerLink]="['/genre', item.id]">{{item.name}}</button>
+                    </li>
+
+                </ul>
+                <div class="mt-2 py-2 px-3">
+                    <p class="my-2">
+                        {{selectedProgram.overview}}
+                    </p>
+                    <p *ngIf="getNumeroTemporadas()>1">
+                        <i class="bi bi-clock"></i> {{getNumeroTemporadas()}} temporadas
+                    </p>
+                    <p *ngIf="getNumeroTemporadas()<=1">
+                        <i class="bi bi-clock"></i> {{getNumeroTemporadas()}} temporada
+                    </p>
+                    <p>
+                        <i class="bi bi-calendar-event"></i> Fecha de salida: {{selectedProgram.first_air_date}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-xl-1 col-lg-1 col-md-12 col-sm-12 d-none d-md-block">
+                <circle-progress class="mb-2 optionsFullsize" [percent]="getPorcentaje(selectedProgram.vote_average)"
+                    [radius]="20" [outerStrokeWidth]="4" [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'"
+                    [innerStrokeColor]="'#000000'" [animation]="true" [animationDuration]="300" [showSubtitle]="false"
+                    [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'"
+                    [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
+
+                <button mat-icon-button>
+                    <mat-icon>star</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon>favorite</mat-icon>
+                </button>
+
+                <button mat-icon-button>
+                    <mat-icon class="save">bookmark</mat-icon>
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container main px-5 pb-5">
+        <div class="row">
+
+            <div class=" col-md-6 col-xl-9 col-lg-8">
+                <h2>Temporada actual <small class="pt-3 verTodas" style="float: right;"><a class="btn"
+                            (click)="open(modalSeasons)" class="linkTodas">Ver
+                            todas</a></small>
+                </h2>
+                <a>
+                    <div class="card mb-3 shadow-lg" style="width: 100%;">
+                        <div class="row g-0">
+                            <div class="col-xs-12 col-sm-2">
+                                <img [src]="getSeasonImage(lastSeason)" [alt]="lastSeason.name"
+                                    class="img-fluid imgMovie rounded-start" />
+                            </div>
+                            <div class="col-xs-12 col-sm-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{lastSeason.name}} - <small
+                                            class="text-muted">{{lastSeason.episode_count}} episodios</small></h5>
+                                    <p class="card-text">
+                                        {{lastSeason.overview}}
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted">{{lastSeason.air_date}}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <h2>Videos ({{countVideos()}})</h2>
+                <ul class="list-group list-group-horizontal position-relative overflow-auto">
+                    <div *ngFor="let video of videoList">
+                        <iframe width="560" height="315" [src]="getVideoUrl(video)" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </ul>
+                <h2>Imagenes ({{countImages()}})</h2>
+                <ul class="list-group list-group-horizontal position-relative overflow-auto">
+                    <div *ngFor="let image of imageList">
+                        <img width="560" height="315" [src]="getImagesMovieUrl(image)" [alt]="">
+                    </div>
+                </ul>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
+                <div class="panel panel-primary" id="result_panel">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Reparto</h2>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <button [routerLink]="['/actor', actor.id]"
+                                class="btn btn-danger justify-content list-group-item p-0 my-1 rounded"
+                                *ngFor="let actor of actorList">
+                                <div class="d-flex align-items-center">
+                                    <img [src]="getActorImage(actor)" class="mx-2" alt="" height="50">
+                                    <span style="font-size: 1.2em;"><strong>{{actor.original_name}}</strong></span>
+                                </div>
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #modalSeasons let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Todas las temporadas</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3" *ngFor="let season of seasons">
+                <div class="border rounded p-1">
+                    <div class="card mb-3 shadow-lg" style="width: 100%;">
+                        <div class="row g-0">
+                            <div class="col-xs-12 col-sm-2">
+                                <img [src]="getSeasonImage(season)" [alt]="season.name"
+                                    class="img-fluid imgMovie rounded-start" />
+                            </div>
+                            <div class="col-xs-12 col-sm-10">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{season.name}} - <small
+                                            class="text-muted">{{season.episode_count}} episodios</small></h5>
+                                    <p class="card-text">
+                                        {{season.overview}}
+                                    </p>
+                                    <p class="card-text">
+                                        <small class="text-muted">{{season.air_date}}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>

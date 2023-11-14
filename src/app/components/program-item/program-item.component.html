@@ -1,1 +1,45 @@
-<p>program-item works!</p>
+<mat-card class="example-card">
+    <mat-card-header class="p-0">
+        <circle-progress [percent]="getPorcentaje(program.vote_average)" [radius]="20" [outerStrokeWidth]="2"
+            [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'" [animation]="true"
+            [animationDuration]="300" [showSubtitle]="false" [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'"
+            [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
+
+        <div id="saveList">
+            <button mat-icon-button>
+                <mat-icon class="save">bookmark</mat-icon>
+            </button>
+        </div>
+
+        <div class="w-100">
+            <a [routerLink]="['/programa', program.id]" class="w-100">
+                <img mat-card-image src="https://www.themoviedb.org/t/p/w220_and_h330_face{{program.poster_path}}"
+                    [alt]="program.name" width="100%" class="rounded-top"
+                    onerror="this.src='https://img.freepik.com/foto-gratis/disparo-vertical-camino-que-conduce-cascada-cielo-nublado-azul_181624-52369.jpg'">
+            </a>
+        </div>
+
+    </mat-card-header>
+    <mat-card-content class="p-0 rounded-bottom pl-0 d-flex justify-content-center align-items-center">
+        <div class="row p-4 pt-0 pb-0 mt-1">
+            <div class="col-10 p-0 m-0 align-self-center">
+                <a [routerLink]="['/pelicula', program.id]">
+                    <h4>{{acortarTitulo(program.title||program.name)}}</h4>
+                </a>
+            </div>
+
+            <mat-card-actions class="col-2 p-0 align-self-start">
+                <div class="example-disabled p-0">
+                    <button mat-icon-button>
+                        <mat-icon>star</mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+            </mat-card-actions>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>

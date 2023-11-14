@@ -1,0 +1,84 @@
+.example-card {
+    width: 13rem;
+    background-color: transparent !important;
+}
+
+mat-card-content {
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+    height: 6.3rem;
+}
+
+h1 {
+    margin-top: 80px;
+    color: #E1E1E1;
+}
+
+mat-icon {
+    color: #ffffff15;
+}
+
+mat-card-header {
+    position: relative;
+}
+
+img {
+    position: relative;
+    z-index: 1;
+}
+
+circle-progress {
+    position: absolute;
+    top: 3%;
+    left: 75%;
+    z-index: 2;
+}
+
+#saveList {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    transform: translate(20%, 20%);
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 2rem;
+    box-shadow: 2.5px 2px 2px #0c0c0c;
+}
+
+.save {
+    color: rgba(27, 27, 27);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 990px) {
+    .example-card {
+        width: 9rem;
+    }
+
+    circle-progress {
+        font-size: 0.8em;
+        left: 65%;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    mat-icon {
+        font-size: 20px;
+    }
+
+    .save {
+        font-size: 15px;
+    }
+
+    #saveList {}
+}

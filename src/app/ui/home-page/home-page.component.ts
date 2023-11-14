@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
-import { Program } from 'src/app/models/program.interface';
+import { Program } from 'src/app/models/program-list.interface';
 import { MovieService } from 'src/app/service/movie-service';
 import { ProgramService } from 'src/app/service/program.service';
 

@@ -1,5 +1,5 @@
 .example-card {
-    width: 15rem;
+    width: 13rem;
     background-color: transparent !important;
 }
 
@@ -52,4 +52,33 @@ circle-progress {
 a {
     text-decoration: none;
     color: white;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 990px) {
+    .example-card {
+        width: 9rem;
+    }
+
+    circle-progress {
+        font-size: 0.8em;
+        left: 65%;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    mat-icon {
+        font-size: 20px;
+    }
+
+    .save {
+        font-size: 15px;
+    }
+
+    #saveList {}
 }

@@ -31,7 +31,11 @@ export class ComingSoonMoviesComponent implements OnInit {
   loadPageForComingMovies() {
     this.movieService.getComingMoviesByPage(this.page).subscribe((resp) => {
       this.movieList = resp.results;
-      this.count = resp.total_results;
+      if (resp.total_results > 1000) {
+        this.count = 10000;
+      } else {
+        this.count = resp.total_results;
+      }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
@@ -39,7 +43,7 @@ export class ComingSoonMoviesComponent implements OnInit {
   loadPageForGenre() {
     this.movieService.getMoviesByGenreAndPage(this.selectedGenreId!, this.page).subscribe((resp) => {
       this.movieList = resp.results;
-      if (resp.total_results >= 10000) {
+      if (resp.total_results > 10000) {
         this.count = 10000;
       } else {
         this.count = resp.total_results;

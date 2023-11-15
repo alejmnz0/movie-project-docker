@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MovieHorizontalListComponent } from './components/movie-horizontal-list/movie-horizontal-list.component';
 import { ProgramsHorizontalListComponent } from './components/programs-horizontal-list/programs-horizontal-list.component';
@@ -40,6 +40,10 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
 import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
 import { AuthApprovedComponent } from './components/auth-approved/auth-approved.component';
+import { NumberedItemComponent } from './components/numbered-item-movie/numbered-item.component';
+import { MoviesHorizontalNumberedListComponent } from './components/movies-horizontal-numbered-list/movies-horizontal-numbered-list.component';
+import { NumberedItemSerieComponent } from './components/numbered-item-serie/numbered-item-serie.component';
+import { SerieHorizontalNumberedListComponent } from './components/serie-horizontal-numbered-list/serie-horizontal-numbered-list.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +79,11 @@ import { AuthApprovedComponent } from './components/auth-approved/auth-approved.
     MovieItemSecondaryComponent,
     GenreMovieListComponent,
     AuthApprovedComponent
+    NumberedItemSerieComponent,
+    MoviesHorizontalNumberedListComponent,
+    NumberedItemComponent,
+    SerieHorizontalNumberedListComponent,
+    NumberedItemSerieComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +101,8 @@ import { AuthApprovedComponent } from './components/auth-approved/auth-approved.
     }),
     NgbCollapseModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

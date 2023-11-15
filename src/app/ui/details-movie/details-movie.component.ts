@@ -50,7 +50,7 @@ export class DetailsMovieComponent implements OnInit {
   }
 
   getBannerUrl() {
-    return "https://image.tmdb.org/t/p/original/" + this.selectedMovie.poster_path
+    return "https://image.tmdb.org/t/p/original/" + this.selectedMovie.backdrop_path
   }
 
   getYear(): string {

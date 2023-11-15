@@ -60,3 +60,22 @@ ul {
         visibility: hidden;
     }
 }
+
+.list-group-horizontal {
+    white-space: nowrap;
+    /* Evita que los elementos se envuelvan a la siguiente línea */
+    overflow-x: auto;
+    /* Hace que aparezca el scrollbar solo cuando sea necesario */
+}
+
+.list-group-horizontal::-webkit-scrollbar {
+    height: 8px;
+    /* Altura del scrollbar */
+}
+
+.list-group-horizontal::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    /* Color del scrollbar */
+    border-radius: 4px;
+    /* Bordes redondeados del scrollbar */
+}

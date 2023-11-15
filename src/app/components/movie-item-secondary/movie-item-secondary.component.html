@@ -2,7 +2,8 @@
     <div class="card mb-3 shadow-lg" style="width: 100%;">
         <div class="row g-0">
             <div class="col-xs-12 col-sm-2">
-                <img [src]="getMovieImage()" [alt]="movie.original_title" class="img-fluid imgMovie rounded-start" />
+                <img [src]="getMovieImage()" [alt]="movie.original_title" class="img-fluid imgMovie rounded-start"
+                    onerror="this.src='../assets/img/not-found-image.png'" />
             </div>
             <div class="col-xs-12 col-sm-10">
                 <div class="card-body">

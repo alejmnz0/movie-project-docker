@@ -1,0 +1,4 @@
+<ul class="list-group p-3 list-group-horizontal position-relative overflow-auto">
+    <app-numbered-item-serie *ngFor="let program of programList; let i = index" [program]="program" [index]="i"
+        class="mx-2 h-100"></app-numbered-item-serie>
+</ul>

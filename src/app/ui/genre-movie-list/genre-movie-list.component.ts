@@ -30,7 +30,7 @@ export class GenreMovieListComponent implements OnInit {
   }
 
   loadNewPage() {
-    this.genreService.getGenreList().subscribe(resp => {
+    this.genreService.getGenreMovieList().subscribe(resp => {
       this.genreList = resp.genres;
       this.genreList.forEach(resp => {
         if (resp.id === this.genreId) {

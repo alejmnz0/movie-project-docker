@@ -45,6 +45,9 @@ import { MoviesHorizontalNumberedListComponent } from './components/movies-horiz
 import { NumberedItemSerieComponent } from './components/numbered-item-serie/numbered-item-serie.component';
 import { SerieHorizontalNumberedListComponent } from './components/serie-horizontal-numbered-list/serie-horizontal-numbered-list.component';
 import { FavoriteMoviesProfileComponent } from './components/favorite-movies-profile/favorite-movies-profile.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FavoriteProgramsProfileComponent } from './components/favorite-programs-profile/favorite-programs-profile.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +88,8 @@ import { FavoriteMoviesProfileComponent } from './components/favorite-movies-pro
     NumberedItemComponent,
     SerieHorizontalNumberedListComponent,
     NumberedItemSerieComponent,
-    FavoriteMoviesProfileComponent
+    FavoriteMoviesProfileComponent,
+    FavoriteProgramsProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,7 @@ import { FavoriteMoviesProfileComponent } from './components/favorite-movies-pro
     NgbCollapseModule,
     RouterModule,
     AppRoutingModule,
-    NgbAlertModule
+    NgbAlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

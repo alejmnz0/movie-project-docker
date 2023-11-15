@@ -78,7 +78,7 @@ import { SerieHorizontalNumberedListComponent } from './components/serie-horizon
     ProfileHeaderComponent,
     MovieItemSecondaryComponent,
     GenreMovieListComponent,
-    AuthApprovedComponent
+    AuthApprovedComponent,
     NumberedItemSerieComponent,
     MoviesHorizontalNumberedListComponent,
     NumberedItemComponent,

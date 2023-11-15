@@ -10,7 +10,9 @@ import { TodayProgramsComponent } from './ui/today-programs/today-programs.compo
 import { BestRatedProgramsComponent } from './ui/best-rated-programs/best-rated-programs.component';
 import { DetailsMovieComponent } from './ui/details-movie/details-movie.component';
 import { DetailsActorComponent } from './ui/details-actor/details-actor.component';
+import { ProfileComponent } from './ui/profile/profile.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
+import { AuthApprovedComponent } from './components/auth-approved/auth-approved.component';
 import { DetailsProgramComponent } from './ui/details-program/details-program.component';
 
 const routes: Routes = [
@@ -24,7 +26,9 @@ const routes: Routes = [
     { path: 'pelicula/:id', component: DetailsMovieComponent },
     { path: 'programa/:id', component: DetailsProgramComponent },
     { path: 'actor/:id', component: DetailsActorComponent },
+    { path: 'perfil', component: ProfileComponent },
     { path: 'genre/:id', component: GenreMovieListComponent },
+    { path: 'approved', component: AuthApprovedComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

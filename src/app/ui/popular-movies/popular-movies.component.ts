@@ -31,7 +31,7 @@ export class PopularMoviesComponent implements OnInit {
   loadPageForPopularMovies() {
     this.movieService.getPopularMoviesByPage(this.page).subscribe((resp) => {
       this.movieList = resp.results;
-      if (resp.total_results > 1000) {
+      if (resp.total_results > 10000) {
         this.count = 10000;
       } else {
         this.count = resp.total_results;

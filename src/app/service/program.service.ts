@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProgramListResponse } from '../models/program-list.interface';
 import { Observable } from 'rxjs';
+import { environment } from '../enviroments/enviroment';
 import { ProgramResponse } from '../models/program.interface';
 import { VideoListResponse } from '../models/video-movie.interface';
 import { ImageListResponse } from '../models/image-movie.interface';
@@ -15,15 +16,15 @@ export class ProgramService {
   constructor(private http: HttpClient) { }
 
   getPopularProgramList(page: number): Observable<ProgramListResponse> {
-    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/popular?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es&page=' + page);
+    return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}/tv/popular?${environment.apiKey}&language=es&page=${page}`);
   }
 
   getTodayProgramList(page: number): Observable<ProgramListResponse> {
-    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/airing_today?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es&page=' + page);
+    return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}/tv/airing_today?${environment.apiKey}&language=es&page=${page}`);
   }
 
   getRatedProgramList(page: number): Observable<ProgramListResponse> {
-    return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/tv/top_rated?api_key=78d6414b91baf8d0ca5de73fecb5b290&language=es&page=' + page);
+    return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}/tv/top_rated?${environment.apiKey}&language=es&page=${page}`);
   }
 
   getProgramById(id: Number): Observable<ProgramResponse> {

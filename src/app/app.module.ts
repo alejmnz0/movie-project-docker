@@ -36,8 +36,10 @@ import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.compon
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
+import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
+import { AuthApprovedComponent } from './components/auth-approved/auth-approved.component';
 import { NumberedItemComponent } from './components/numbered-item-movie/numbered-item.component';
 import { MoviesHorizontalNumberedListComponent } from './components/movies-horizontal-numbered-list/movies-horizontal-numbered-list.component';
 import { NumberedItemSerieComponent } from './components/numbered-item-serie/numbered-item-serie.component';
@@ -73,8 +75,10 @@ import { SerieHorizontalNumberedListComponent } from './components/serie-horizon
     PersonalListComponent,
     PageNotFoundComponent,
     FilterMoviesComponent,
+    ProfileHeaderComponent,
     MovieItemSecondaryComponent,
     GenreMovieListComponent,
+    AuthApprovedComponent,
     NumberedItemSerieComponent,
     MoviesHorizontalNumberedListComponent,
     NumberedItemComponent,

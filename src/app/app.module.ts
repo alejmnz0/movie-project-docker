@@ -38,8 +38,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FilterMoviesComponent } from './components/filter-movies/filter-movies.component';
 import { MovieItemSecondaryComponent } from './components/movie-item-secondary/movie-item-secondary.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
-import { NumberedItemComponent } from './components/numbered-item/numbered-item.component';
+import { NumberedItemComponent } from './components/numbered-item-movie/numbered-item.component';
 import { MoviesHorizontalNumberedListComponent } from './components/movies-horizontal-numbered-list/movies-horizontal-numbered-list.component';
+import { NumberedItemSerieComponent } from './components/numbered-item-serie/numbered-item-serie.component';
+import { SerieHorizontalNumberedListComponent } from './components/serie-horizontal-numbered-list/serie-horizontal-numbered-list.component';
 
 @NgModule({
   declarations: [
@@ -73,8 +75,11 @@ import { MoviesHorizontalNumberedListComponent } from './components/movies-horiz
     FilterMoviesComponent,
     MovieItemSecondaryComponent,
     GenreMovieListComponent,
+    NumberedItemSerieComponent,
+    MoviesHorizontalNumberedListComponent,
     NumberedItemComponent,
-    MoviesHorizontalNumberedListComponent
+    SerieHorizontalNumberedListComponent,
+    NumberedItemSerieComponent
   ],
   imports: [
     BrowserModule,

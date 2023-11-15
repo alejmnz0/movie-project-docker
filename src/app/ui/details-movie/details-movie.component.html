@@ -4,7 +4,8 @@
         <!--<div class="banner-overlay"></div>-->
         <div class="row descripcion rounded p-3">
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
-                <img class="img-fluid movieImage rounded" [src]="getImageItem()" alt="{{selectedMovie.original_title}}">
+                <img class="img-fluid movieImage rounded" [src]="getImageItem()" alt="{{selectedMovie.original_title}}"
+                    onerror="this.src='../assets/img/not-found-image.png'">
             </div>
 
             <div class="col-md-6 col-xl-8 col-lg-7 py-2">
@@ -61,6 +62,7 @@
 
             <div class=" col-md-6 col-xl-9 col-lg-8">
                 <h2>Videos ({{countVideos()}})</h2>
+                <p style="color: ghostwhite;" *ngIf="countVideos()===0">No hay videos disponibles</p>
                 <ul class="list-group list-group-horizontal position-relative overflow-auto">
                     <div *ngFor="let video of videoList">
                         <iframe width="560" height="315" [src]="getVideoUrl(video)" title="YouTube video player"
@@ -70,6 +72,7 @@
                     </div>
                 </ul>
                 <h2>Imagenes ({{countImages()}})</h2>
+                <p style="color: ghostwhite;" *ngIf="countImages()===0">No hay imágenes disponibles</p>
                 <ul class="list-group list-group-horizontal position-relative overflow-auto">
                     <div *ngFor="let image of imageList">
                         <img width="560" height="315" [src]="getImagesMovieUrl(image)" [alt]="">
@@ -79,10 +82,12 @@
             <div class="col-xl-3 col-lg-4 col-md-6 mb-4 mb-md-0">
                 <div class="panel panel-primary" id="result_panel">
                     <div class="panel-heading">
-                        <h2 class="panel-title">Actores</h2>
+                        <h2 class="panel-title">Reparto</h2>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
+                            <p style="color: ghostwhite;" *ngIf="actorList.length === 0">No hay detalles sobre actores
+                            </p>
                             <button [routerLink]="['/actor', actor.id]"
                                 class="btn btn-danger justify-content list-group-item p-0 my-1 rounded"
                                 *ngFor="let actor of actorList">

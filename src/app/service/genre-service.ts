@@ -10,7 +10,11 @@ export class GenreService {
 
     constructor(private http: HttpClient) { }
 
-    getGenreList(): Observable<GenreListResponse> {
+    getGenreMovieList(): Observable<GenreListResponse> {
         return this.http.get<GenreListResponse>('https://api.themoviedb.org/3/genre/movie/list?api_key=67e90c6f74bc6faf6aebc08470495925&language=es');
+    }
+
+    getGenreProgramList(): Observable<GenreListResponse> {
+        return this.http.get<GenreListResponse>('https://api.themoviedb.org/3/genre/tv/list?api_key=67e90c6f74bc6faf6aebc08470495925&language=es');
     }
 }

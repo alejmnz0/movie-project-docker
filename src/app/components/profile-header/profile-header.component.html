@@ -7,17 +7,17 @@
             </div>
 
             <div class="col-md-6 col-xl-7 col-lg-7 py-2 rounded descripcion">
-                <h1>{{username}}</h1>
-                <h4>Miembro desde que se unio</h4>
-                <div class="row">
-                    <div class="col-6 d-flex align-items-center justify-content-center">
-                        <circle-progress [percent]="porcentaje" [radius]="80" [outerStrokeWidth]="10" [innerStrokeWidth]="0"
-                            [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'" [animation]="true"
-                            [animationDuration]="600" [showSubtitle]="false" [backgroundOpacity]="0.5"
-                            [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'"
-                            [backgroundPadding]="0" [titleFontSize]="'60px'" [unitsFontSize]="'40px'" class="mx-auto">
+                <h1 class="d-flex justify-content-center align-items-center">{{username}}</h1>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-6  d-flex align-items-center justify-content-center">
+                        <circle-progress [percent]="getMediaRatedMovies()" [radius]="80" [outerStrokeWidth]="10"
+                            [innerStrokeWidth]="0" [outerStrokeColor]="'#7EE819'" [innerStrokeColor]="'#000000'"
+                            [animation]="true" [animationDuration]="600" [showSubtitle]="false"
+                            [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'"
+                            [backgroundColor]="'#000000'" [backgroundPadding]="0" [titleFontSize]="'60px'"
+                            [unitsFontSize]="'40px'" class="mx-auto">
                         </circle-progress>
-                        <h5> Valoracion Media Peliculas</h5>
+                        <h5> Valoracion Media Series</h5>
                     </div>
                     <div class="col-6 d-flex align-items-center justify-content-center">
                         <circle-progress [percent]="100" [radius]="80" [outerStrokeWidth]="10" [innerStrokeWidth]="0"

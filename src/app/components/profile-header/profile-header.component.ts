@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { RatedMovie } from 'src/app/models/rated-movies.interface';
 import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
@@ -7,28 +8,29 @@ import { MovieService } from 'src/app/service/movie-service';
   templateUrl: './profile-header.component.html',
   styleUrls: ['./profile-header.component.css']
 })
-export class ProfileHeaderComponent {
+export class ProfileHeaderComponent implements OnInit {
 
-  constructor (private moviesService: MovieService) {}
   avatarUrl = localStorage.getItem('AVATAR_PATH');
   username = localStorage.getItem('USERNAME');
-  movieRatedList: Movie[] = [];
-  porcentaje= this.getMediaRatedMovies();
+  movieRatedList: RatedMovie[] = [];
+
+  constructor(private moviesService: MovieService) { }
 
   ngOnInit(): void {
-    this.moviesService.getRatedMovies().subscribe(resp =>{
+    this.moviesService.getRatedMovies().subscribe(resp => {
       this.movieRatedList = resp.results;
     });
+    this.getMediaRatedMovies();
   }
+
 
   getMediaRatedMovies(): number {
     let votos: number = 0;
     let cantPelis: number = 0;
-    console.log('hola')
-    this.movieRatedList.forEach(movie =>{
-      votos=+(movie.vote_average*10);
+    this.movieRatedList.forEach(movie => {
+      votos += (movie.vote_average * 10);
       cantPelis++
     });
-    return votos/cantPelis;
+    return votos / cantPelis;
   }
 }

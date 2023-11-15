@@ -59,7 +59,7 @@ export class DetailsProgramComponent {
   }
 
   getBannerUrl() {
-    return "https://image.tmdb.org/t/p/original/" + this.selectedProgram.poster_path
+    return "https://image.tmdb.org/t/p/original/" + this.selectedProgram.backdrop_path
   }
 
   getYear(): string {

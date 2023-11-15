@@ -89,3 +89,19 @@ ul {
     font-size: 0.7em;
     cursor: pointer;
 }
+
+.custom-scroll {
+    max-height: 725px;
+    overflow-y: auto;
+    border-radius: 8px;
+    overflow-x: hidden;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #6c757d;
+    border-radius: 4px;
+}

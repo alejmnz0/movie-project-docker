@@ -1,3 +1,4 @@
 <ul class="list-group list-group-horizontal p-3 position-relative overflow-auto">
-    <app-program-item *ngFor="let program of programList" [program]="program" class="mx-2"></app-program-item>
+    <app-program-item *ngFor="let program of programList" [program]="program" [isFav]="isFav(program.id)"
+        class="mx-2"></app-program-item>
 </ul>

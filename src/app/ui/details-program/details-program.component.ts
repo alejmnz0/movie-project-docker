@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Cast } from 'src/app/models/credits-movie.interface';
 import { Backdrop } from 'src/app/models/image-movie.interface';
+import { Program } from 'src/app/models/program-list.interface';
 import { Genre, ProgramResponse, Season } from 'src/app/models/program.interface';
 import { Video } from 'src/app/models/video-movie.interface';
-import { MovieService } from 'src/app/service/movie-service';
+import { AccountService } from 'src/app/service/account.service';
 import { ProgramService } from 'src/app/service/program.service';
 
 @Component({
@@ -24,8 +25,11 @@ export class DetailsProgramComponent {
   actorList: Cast[] = [];
   seasons: Season[] = [];
   lastSeason!: Season;
+  favourite = false;
+  favouritePrograms: Program[] = [];
+  pages: number = 0;
 
-  constructor(private programService: ProgramService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
+  constructor(private programService: ProgramService, private accountService: AccountService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
     this.programId = Number(this.route.snapshot.params['id']);
   }
 
@@ -35,6 +39,8 @@ export class DetailsProgramComponent {
       this.seasons = resp.seasons;
       this.lastSeason = this.seasons[this.seasons.length - 1]
     })
+    this.getTotalPages();
+    this.isFavourite();
     this.programService.getVideosByMovie(this.programId).subscribe(resp => {
       this.videoList = resp.results;
     })
@@ -45,6 +51,45 @@ export class DetailsProgramComponent {
       this.actorList = resp.cast
     })
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  toggleFavourite(): void {
+    if (this.favourite) {
+      this.accountService.removeProgramFromFavourites(this.selectedProgram).subscribe(resp => {
+        this.favourite = false;
+      });
+    } else {
+      this.accountService.addProgramToFavourites(this.selectedProgram).subscribe(resp => {
+        this.favourite = true;
+      });
+    }
+  }
+
+  getTotalPages() {
+    this.accountService.getFavoritePrograms().subscribe(resp => {
+      this.pages = resp.total_pages;
+    })
+  }
+
+
+  isFavourite() {
+    if (this.pages <= 1) {
+      this.accountService.getFavoritePrograms().subscribe(resp => {
+        this.favouritePrograms = resp.results;
+        const foundMovie = this.favouritePrograms.find(currentProgram => currentProgram.id === this.selectedProgram.id);
+        this.favourite = foundMovie !== undefined;
+      });
+    }
+    if (this.pages > 1) {
+      debugger;
+      for (let i = 1; i <= this.pages; i++) {
+        this.accountService.getFavoriteProgramsByPage(i).subscribe(resp => {
+          this.favouritePrograms = this.favouritePrograms.concat(resp.results);
+          const foundMovie = this.favouritePrograms.find(currentProgram => currentProgram.id === this.selectedProgram.id);
+          this.favourite = foundMovie !== undefined;
+        });
+      }
+    }
   }
 
   getImageItem() {

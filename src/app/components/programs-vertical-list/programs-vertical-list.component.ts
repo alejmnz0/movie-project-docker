@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Program } from 'src/app/models/program-list.interface';
 
 @Component({
   selector: 'app-programs-vertical-list',
@@ -7,5 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ProgramsVerticalListComponent {
   @Input() objectList: any;
+  @Input() favList!: Program[]
 
+  isFav(programId: number) {
+    return this.favList.some(resp => resp.id === programId);
+  }
 }

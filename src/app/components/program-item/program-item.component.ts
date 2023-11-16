@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Program } from 'src/app/models/program-list.interface';
+import { AccountService } from 'src/app/service/account.service';
 
 @Component({
   selector: 'app-program-item',
@@ -9,6 +11,22 @@ export class ProgramItemComponent {
 
   @Input() program: any;
   longitudMaxima: number = 23;
+  favouritePrograms: Program[] = [];
+  @Input() isFav: any;
+
+  constructor(private accountService: AccountService) { }
+
+  toggleFavourite(): void {
+    if (this.isFav) {
+      this.accountService.removeProgramFromFavourites(this.program).subscribe(resp => {
+        this.isFav = false;
+      });
+    } else {
+      this.accountService.addProgramToFavourites(this.program).subscribe(resp => {
+        this.isFav = true;
+      });
+    }
+  }
 
   getPorcentaje(numero: number) {
     return numero * 10
@@ -24,9 +42,6 @@ export class ProgramItemComponent {
 
   }
 
-  comprobarSiEsPeli(): boolean {
-    return (this.program.title.size > 0)
-  }
 
   getImage() {
     return "https://image.tmdb.org/t/p/w500/" + this.program.poster_path

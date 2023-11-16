@@ -33,8 +33,8 @@
                     <button mat-icon-button>
                         <mat-icon>star</mat-icon>
                     </button>
-                    <button mat-icon-button>
-                        <mat-icon>favorite</mat-icon>
+                    <button (click)="toggleFavourite()" mat-icon-button>
+                        <mat-icon [class.favorite]="isFav" [class.notFavorite]="!isFav">favorite</mat-icon>
                     </button>
                 </div>
             </mat-card-actions>

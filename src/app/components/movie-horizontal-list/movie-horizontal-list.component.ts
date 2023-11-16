@@ -9,5 +9,10 @@ import { MovieService } from 'src/app/service/movie-service';
 })
 export class MovieHorizontalListComponent {
 
-  @Input() movieList: any;
+  @Input() movieList!: Movie[];
+  @Input() favList!: Movie[];
+
+  isFav(movieId: number) {
+    return this.favList.some(resp => resp.id === movieId);
+  }
 }

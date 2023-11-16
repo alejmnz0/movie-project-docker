@@ -14,6 +14,8 @@ import { ProfileComponent } from './ui/profile/profile.component';
 import { GenreMovieListComponent } from './ui/genre-movie-list/genre-movie-list.component';
 import { AuthApprovedComponent } from './components/auth-approved/auth-approved.component';
 import { DetailsProgramComponent } from './ui/details-program/details-program.component';
+import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
+import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/page-favourite-programs.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
     { path: 'perfil', component: ProfileComponent },
     { path: 'genre/:id', component: GenreMovieListComponent },
     { path: 'approved', component: AuthApprovedComponent },
+    { path: 'perfil/movies-favourites', component: PageFavouriteMoviesComponent },
+    { path: 'perfil/programs-favourites', component: PageFavouriteProgramsComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

@@ -18,6 +18,14 @@ mat-icon {
     color: #ffffff15;
 }
 
+.favorite {
+    color: red;
+}
+
+.notFavorite {
+    color: #ffffff15;
+}
+
 mat-card-header {
     position: relative;
 }

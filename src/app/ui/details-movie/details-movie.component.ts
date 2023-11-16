@@ -7,7 +7,7 @@ import { Backdrop } from 'src/app/models/image-movie.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieResponse } from 'src/app/models/movie.interface';
 import { Video } from 'src/app/models/video-movie.interface';
-import { GenreService } from 'src/app/service/genre-service';
+import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
@@ -24,8 +24,11 @@ export class DetailsMovieComponent implements OnInit {
   videoList: Video[] = [];
   imageList: Backdrop[] = [];
   actorList: Cast[] = [];
+  pages: number = 0;
+  favouriteMovies: Movie[] = [];
+  favourite = false;
 
-  constructor(private movieService: MovieService, private sanitazer: DomSanitizer) {
+  constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private accountService: AccountService) {
     this.movieId = Number(this.route.snapshot.params['id']);
   }
 
@@ -33,6 +36,8 @@ export class DetailsMovieComponent implements OnInit {
     this.movieService.getMovieById(this.movieId).subscribe(resp => {
       this.selectedMovie = resp;
     })
+    this.getTotalPages();
+    this.isFavourite();
     this.movieService.getVideosByMovie(this.movieId).subscribe(resp => {
       this.videoList = resp.results;
     })
@@ -43,6 +48,44 @@ export class DetailsMovieComponent implements OnInit {
       this.actorList = resp.cast
     })
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  toggleFavourite(): void {
+    if (this.favourite) {
+      this.accountService.removeMovieFromFavourites(this.selectedMovie).subscribe(resp => {
+        this.favourite = false;
+      });
+    } else {
+      this.accountService.addMovieToFavourites(this.selectedMovie).subscribe(resp => {
+        this.favourite = true;
+      });
+    }
+  }
+
+  getTotalPages() {
+    this.accountService.getFavoriteMovies().subscribe(resp => {
+      this.pages = resp.total_pages;
+    })
+  }
+
+  isFavourite() {
+    if (this.pages <= 1) {
+      this.accountService.getFavoriteMovies().subscribe(resp => {
+        this.favouriteMovies = resp.results;
+        const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.selectedMovie.id);
+        this.favourite = foundMovie !== undefined;
+      });
+    }
+    if (this.pages > 1) {
+      debugger;
+      for (let i = 1; i <= this.pages; i++) {
+        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+          this.favouriteMovies = this.favouriteMovies.concat(resp.results);
+          const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.selectedMovie.id);
+          this.favourite = foundMovie !== undefined;
+        });
+      }
+    }
   }
 
   getImageItem() {

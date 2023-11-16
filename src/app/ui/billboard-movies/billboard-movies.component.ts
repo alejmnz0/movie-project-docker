@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
@@ -10,11 +11,13 @@ import { MovieService } from 'src/app/service/movie-service';
 export class BillboardMoviesComponent implements OnInit {
 
   movieList: Movie[] = [];
+  favList: Movie[] = [];
   count = 0;
   page = 1;
   selectedGenreId: number | null = null;
+  pagesFavorites = 0;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.loadNewPage();
@@ -50,6 +53,24 @@ export class BillboardMoviesComponent implements OnInit {
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
+
+  getFavouriteResults() {
+    this.accountService.getFavoriteMovies().subscribe(resp => {
+      this.pagesFavorites = resp.total_pages;
+    });
+    if (this.pagesFavorites <= 1) {
+      this.accountService.getFavoriteMovies().subscribe(resp => {
+        this.favList = resp.results;
+      });
+    }
+    if (this.pagesFavorites > 1) {
+      for (let i = 1; i <= this.pagesFavorites; i++) {
+        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+          this.favList = this.favList.concat(resp.results);
+        })
+      }
+    }
   }
 
   showAllMovies(id: number) {

@@ -44,6 +44,12 @@ import { NumberedItemComponent } from './components/numbered-item-movie/numbered
 import { MoviesHorizontalNumberedListComponent } from './components/movies-horizontal-numbered-list/movies-horizontal-numbered-list.component';
 import { NumberedItemSerieComponent } from './components/numbered-item-serie/numbered-item-serie.component';
 import { SerieHorizontalNumberedListComponent } from './components/serie-horizontal-numbered-list/serie-horizontal-numbered-list.component';
+import { FavoriteMoviesProfileComponent } from './components/favorite-movies-profile/favorite-movies-profile.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FavoriteProgramsProfileComponent } from './components/favorite-programs-profile/favorite-programs-profile.component';
+import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
+import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/page-favourite-programs.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +89,11 @@ import { SerieHorizontalNumberedListComponent } from './components/serie-horizon
     MoviesHorizontalNumberedListComponent,
     NumberedItemComponent,
     SerieHorizontalNumberedListComponent,
-    NumberedItemSerieComponent
+    NumberedItemSerieComponent,
+    FavoriteMoviesProfileComponent,
+    FavoriteProgramsProfileComponent,
+    PageFavouriteMoviesComponent,
+    PageFavouriteProgramsComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +112,7 @@ import { SerieHorizontalNumberedListComponent } from './components/serie-horizon
     NgbCollapseModule,
     RouterModule,
     AppRoutingModule,
-    NgbAlertModule
+    NgbAlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

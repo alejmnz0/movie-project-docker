@@ -47,8 +47,8 @@
                 <button mat-icon-button>
                     <mat-icon>star</mat-icon>
                 </button>
-                <button mat-icon-button>
-                    <mat-icon>favorite</mat-icon>
+                <button (click)="toggleFavourite()" mat-icon-button>
+                    <mat-icon [class.favorite]="favourite" [class.notFavorite]="!favourite">favorite</mat-icon>
                 </button>
 
                 <button mat-icon-button>
@@ -101,7 +101,7 @@
                             allowfullscreen></iframe>
                     </div>
                 </ul>
-                <h2>Imagenes ({{countImages()}})</h2>
+                <h2>Imágenes ({{countImages()}})</h2>
                 <p style="color: ghostwhite;" *ngIf="countImages()===0">No hay imágenes disponibles</p>
                 <ul class="list-group list-group-horizontal position-relative overflow-auto">
                     <div *ngFor="let image of imageList">

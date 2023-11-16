@@ -49,6 +49,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FavoriteProgramsProfileComponent } from './components/favorite-programs-profile/favorite-programs-profile.component';
 import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
+import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/page-favourite-programs.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-fa
     NumberedItemSerieComponent,
     FavoriteMoviesProfileComponent,
     FavoriteProgramsProfileComponent,
-    PageFavouriteMoviesComponent
+    PageFavouriteMoviesComponent,
+    PageFavouriteProgramsComponent
   ],
   imports: [
     BrowserModule,

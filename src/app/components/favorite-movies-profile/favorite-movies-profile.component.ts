@@ -12,14 +12,13 @@ export class FavoriteMoviesProfileComponent implements OnInit {
 
 
   movieList: Movie[] = [];
-  favList: Movie[] = []
 
   constructor(private accountService: AccountService, private movieService: MovieService) { }
 
 
   ngOnInit(): void {
     this.accountService.getFavoriteMovies().subscribe(resp => {
-      this.favList = resp.results;
+      this.movieList = resp.results;
     })
 
   }

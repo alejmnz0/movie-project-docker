@@ -7,36 +7,23 @@ import { AccountService } from 'src/app/service/account.service';
   templateUrl: './program-item.component.html',
   styleUrls: ['./program-item.component.css']
 })
-export class ProgramItemComponent implements OnInit {
+export class ProgramItemComponent {
 
   @Input() program: any;
   longitudMaxima: number = 23;
-  favourite = false;
   favouritePrograms: Program[] = [];
+  @Input() isFav: any;
 
   constructor(private accountService: AccountService) { }
 
-  ngOnInit(): void {
-    this.isFavourite();
-  }
-
-  isFavourite() {
-    this.accountService.getFavoritePrograms().subscribe(resp => {
-      this.favouritePrograms = resp.results;
-      const foundProgram = this.favouritePrograms.find(programSelected => programSelected.id === this.program.id);
-      this.favourite = foundProgram !== undefined;
-    });
-
-  }
-
   toggleFavourite(): void {
-    if (this.favourite) {
+    if (this.isFav) {
       this.accountService.removeProgramFromFavourites(this.program).subscribe(resp => {
-        this.favourite = false;
+        this.isFav = false;
       });
     } else {
       this.accountService.addProgramToFavourites(this.program).subscribe(resp => {
-        this.favourite = true;
+        this.isFav = true;
       });
     }
   }
@@ -55,9 +42,6 @@ export class ProgramItemComponent implements OnInit {
 
   }
 
-  comprobarSiEsPeli(): boolean {
-    return (this.program.title.size > 0)
-  }
 
   getImage() {
     return "https://image.tmdb.org/t/p/w500/" + this.program.poster_path

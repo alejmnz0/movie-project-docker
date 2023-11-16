@@ -8,7 +8,6 @@ import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieResponse } from 'src/app/models/movie.interface';
 import { Video } from 'src/app/models/video-movie.interface';
 import { AccountService } from 'src/app/service/account.service';
-import { GenreService } from 'src/app/service/genre-service';
 import { MovieService } from 'src/app/service/movie-service';
 
 @Component({

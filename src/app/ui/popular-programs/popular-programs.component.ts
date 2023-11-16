@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Program } from 'src/app/models/program-list.interface';
+import { AccountService } from 'src/app/service/account.service';
 import { ProgramService } from 'src/app/service/program.service';
 
 @Component({
@@ -10,12 +11,13 @@ import { ProgramService } from 'src/app/service/program.service';
 export class PopularProgramsComponent {
 
   programList: Program[] = [];
-
+  favList: Program[] = [];
   count = 0;
   page = 1;
   selectedGenreId: number | null = null;
+  pagesFavorites = 0;
 
-  constructor(private programService: ProgramService) { }
+  constructor(private programService: ProgramService, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.loadNewPage();
@@ -30,6 +32,7 @@ export class PopularProgramsComponent {
   }
 
   loadPageForPopularPrograms() {
+    this.getFavouriteResults()
     this.programService.getPopularProgramList(this.page).subscribe((resp) => {
       this.programList = resp.results;
       if (resp.total_results > 1000) {
@@ -42,6 +45,7 @@ export class PopularProgramsComponent {
   }
 
   loadPageForGenre() {
+    this.getFavouriteResults()
     this.programService.getProgramsByGenreAndPage(this.selectedGenreId!, this.page).subscribe((resp) => {
       this.programList = resp.results;
       if (resp.total_results > 10000) {
@@ -51,6 +55,24 @@ export class PopularProgramsComponent {
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
+
+  getFavouriteResults() {
+    this.accountService.getFavoritePrograms().subscribe(resp => {
+      this.pagesFavorites = resp.total_pages;
+    });
+    if (this.pagesFavorites <= 1) {
+      this.accountService.getFavoritePrograms().subscribe(resp => {
+        this.favList = resp.results;
+      });
+    }
+    if (this.pagesFavorites > 1) {
+      for (let i = 1; i <= this.pagesFavorites; i++) {
+        this.accountService.getFavoriteProgramsByPage(i).subscribe(resp => {
+          this.favList = this.favList.concat(resp.results);
+        })
+      }
+    }
   }
 
   showAllPrograms(id: number) {

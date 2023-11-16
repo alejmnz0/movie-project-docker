@@ -105,3 +105,11 @@ ul {
     background-color: #6c757d;
     border-radius: 4px;
 }
+
+.favorite {
+    color: red;
+}
+
+.notFavorite {
+    color: white;
+}

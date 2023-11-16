@@ -1,0 +1,13 @@
+<div *ngIf="programFavoriteList.length>0">
+    <div class="row mt-3">
+        <div class="col-10">
+            <h2 class="text-white">&nbsp;&nbsp;Programas Favoritos</h2>
+        </div>
+        <div *ngIf="programFavoriteList.length===20" class="col-2">
+            <button class="btn btn-light" style=" float: inline-end;" [routerLink]="['programs-favourites']">Ver
+                más</button>
+        </div>
+    </div>
+    <app-programs-horizontal-list [programList]="programFavoriteList"
+        [favList]="programFavoriteList"></app-programs-horizontal-list>
+</div>

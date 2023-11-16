@@ -72,7 +72,7 @@ export class DetailsMovieComponent implements OnInit {
     if (this.pages <= 1) {
       this.accountService.getFavoriteMovies().subscribe(resp => {
         this.favouriteMovies = resp.results;
-        const foundMovie = this.favouriteMovies.find(movieSelected => movieSelected.id === this.selectedMovie.id);
+        const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.selectedMovie.id);
         this.favourite = foundMovie !== undefined;
       });
     }
@@ -81,7 +81,7 @@ export class DetailsMovieComponent implements OnInit {
       for (let i = 1; i <= this.pages; i++) {
         this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
           this.favouriteMovies = this.favouriteMovies.concat(resp.results);
-          const foundMovie = this.favouriteMovies.find(movieSelected => movieSelected.id === this.selectedMovie.id);
+          const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.selectedMovie.id);
           this.favourite = foundMovie !== undefined;
         });
       }

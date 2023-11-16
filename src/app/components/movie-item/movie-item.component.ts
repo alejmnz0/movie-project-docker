@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { Movie } from 'src/app/models/movie-list.interface';
-import { Program } from 'src/app/models/program-list.interface';
+import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
   selector: 'app-movie-item',
@@ -8,8 +9,11 @@ import { Program } from 'src/app/models/program-list.interface';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
+  rate = 0;
   @Input() movie: any;
   longitudMaxima: number = 23;
+
+  constructor(private movieService: MovieService) { }
 
   getPorcentaje(numero: number) {
     return numero * 10
@@ -33,4 +37,9 @@ export class MovieItemComponent {
     return "https://image.tmdb.org/t/p/w500/" + this.movie.poster_path
   }
 
+  leave() {
+    alert(this.rate + " asd " + this.movie.id + " " + localStorage.getItem('SESSION_ID'))
+    this.movieService.rateMovie(this.movie.id, this.rate * 2);
+
+  }
 }

@@ -28,9 +28,16 @@
         </a>
       </div>
 
+      <ng-template #popContent class="p-0 bg-dark">
+        <h1 class="m-0">
+          <ngb-rating [max]="5" [(rate)]="rate" (rateChange)="leave()"></ngb-rating>
+        </h1>
+
+      </ng-template>
+
       <mat-card-actions class="col-2 p-0 align-self-start">
         <div class="example-disabled p-0">
-          <button mat-icon-button ngbPopover="Hola" placement="bottom">
+          <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
             <mat-icon>star</mat-icon>
           </button>
           <button mat-icon-button>

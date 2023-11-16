@@ -59,4 +59,11 @@ export class MovieService {
     getRatedMovies(): Observable<RatedMoviesListResponse> {
         return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
     }
+
+    rateMovie(movieId: number, rate: number) {
+        this.http.post(`https://api.themoviedb.org/3/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+            {
+                value: rate
+            });
+    }
 }

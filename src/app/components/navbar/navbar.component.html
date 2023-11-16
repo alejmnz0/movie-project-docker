@@ -5,31 +5,33 @@
     <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
             <a [routerLink]="['/home']"
-                class="list-group-item list-group-item-action py-2 ripple border-1 rounded bg-dark text-white mb-1">
+                class="list-group-item list-group-item-action py-2 ripple border-1 rounded text-white mb-1">
                 <i class="bi bi-house"></i> <span> Inicio</span>
             </a>
             <div ngbAccordion #accordion="ngbAccordion" style="margin-bottom: 5px;">
                 <div ngbAccordionItem="first" #first="ngbAccordionItem">
-                    <div ngbAccordionHeader class="accordion-button custom-header justify-content-between p-0">
-                        <a ngbAccordionToggle
-                            class="btn list-group-item list-group-item-action py-2 ripple bg-dark text-white mb-1"
-                            aria-current="true">
-                            <i class="bi bi-camera-reels"></i><span> Películas</span></a>
-                    </div>
+                    <a ngbAccordionToggle class="btn list-group-item py-2 ripple text-white border-0"
+                        aria-current=" true">
+                        <div ngbAccordionHeader
+                            class="accordion-button custom-header justify-content-between p-0 text-white">
+
+                            <i class=" bi bi-camera-reels"></i><span class="mx-1"> Películas</span>
+                        </div>
+                    </a>
 
                     <div ngbAccordionCollapse>
                         <div ngbAccordionBody style="padding: 0;" class="bg-dark text-white">
                             <ng-template>
-                                <a [routerLink]="['/peliculas/popular']" class=" list-group-item list-group-item-action py-2 ripple bg-dark
+                                <a [routerLink]="['/peliculas/popular']" class=" list-group-item list-group-item-action py-2 ripple
                                         text-white"><!--active-->
                                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Popular</span>
                                 </a>
                                 <a [routerLink]="['/peliculas/coming-soon']"
-                                    class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                    class="list-group-item list-group-item-action py-2 ripple text-white"><!--active-->
                                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Próximos estrenos</span>
                                 </a>
                                 <a [routerLink]="['/peliculas/en-cartelera']"
-                                    class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                    class="list-group-item list-group-item-action py-2 ripple text-white"><!--active-->
                                     <i class="fas fa-chart-area fa-fw me-3"></i><span>En cartelera</span>
                                 </a>
                             </ng-template>
@@ -39,26 +41,28 @@
             </div>
             <div ngbAccordion #accordion="ngbAccordion">
                 <div ngbAccordionItem="first" #first="ngbAccordionItem">
-                    <div ngbAccordionHeader class="accordion-button custom-header justify-content-between p-0">
-                        <a ngbAccordionToggle
-                            class="btn list-group-item list-group-item-action py-2 ripple bg-dark text-white mb-1"
-                            aria-current="true">
-                            <i class="bi bi-film"></i><span> Programas</span></a>
-                    </div>
+                    <a ngbAccordionToggle class="btn list-group-item py-2 border-0 ripple text-white"
+                        aria-current="true">
+                        <div ngbAccordionHeader
+                            class="accordion-button custom-header justify-content-between p-0 text-white">
+
+                            <i class=" bi bi-film"></i><span class="mx-1"> Programas</span>
+                        </div>
+                    </a>
 
                     <div ngbAccordionCollapse>
                         <div ngbAccordionBody style="padding: 0;">
                             <ng-template>
                                 <a [routerLink]="['programas/popular']"
-                                    class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                    class="list-group-item list-group-item-action py-2 ripple text-white"><!--active-->
                                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Popular</span>
                                 </a>
                                 <a [routerLink]="['programas/emision-hoy']"
-                                    class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                    class="list-group-item list-group-item-action py-2 ripple text-white"><!--active-->
                                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Se emiten hoy</span>
                                 </a>
                                 <a [routerLink]="['programas/mejor-valorados']"
-                                    class="list-group-item list-group-item-action py-2 ripple bg-dark text-white"><!--active-->
+                                    class="list-group-item list-group-item-action py-2 ripple text-white"><!--active-->
                                     <i class="fas fa-chart-area fa-fw me-3"></i><span class="submenuItem">Mejor
                                         valorados</span>
                                 </a>
@@ -108,7 +112,7 @@
                             class="rounded-circle" height="35" alt="" loading="lazy" (click)="doLogin()" />
                     </a>
                 </li>
-                
+
                 <ng-template #elseNav>
                     <li class="nav-item dropdown">
                         <a [routerLink]="['/perfil']" class="w-100">

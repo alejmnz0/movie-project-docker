@@ -22,16 +22,47 @@ export class AccountService {
     return this.http.get<PopularMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite/movies?${environment.apiKey}&language=es&session_id=${localStorage.getItem("SESSION_ID")}`)
   }
 
+  getFavoriteMoviesByPage(page: number): Observable<PopularMoviesListResponse> {
+    return this.http.get<PopularMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite/movies?${environment.apiKey}&language=es&session_id=${localStorage.getItem("SESSION_ID")}&page=${page}`)
+  }
+
   getFavoritePrograms(): Observable<ProgramListResponse> {
     return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite/tv?${environment.apiKey}&language=es&session_id=${localStorage.getItem("SESSION_ID")}`)
   }
 
-  addToFavourites(movie: any): Observable<AddToFavouriteResponse> {
+  addMovieToFavourites(movie: any): Observable<AddToFavouriteResponse> {
     return this.http.post<AddToFavouriteResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite?${environment.apiKey}&session_id=${localStorage.getItem("SESSION_ID")}`,
       {
-        media_type: movie,
+        media_type: "movie",
         media_id: movie.id,
         favorite: true
+      });
+  }
+
+  removeMovieFromFavourites(movie: any): Observable<AddToFavouriteResponse> {
+    return this.http.post<AddToFavouriteResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite?${environment.apiKey}&session_id=${localStorage.getItem("SESSION_ID")}`,
+      {
+        media_type: "movie",
+        media_id: movie.id,
+        favorite: false
+      });
+  }
+
+  addProgramToFavourites(program: any): Observable<AddToFavouriteResponse> {
+    return this.http.post<AddToFavouriteResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite?${environment.apiKey}&session_id=${localStorage.getItem("SESSION_ID")}`,
+      {
+        media_type: "tv",
+        media_id: program.id,
+        favorite: true
+      });
+  }
+
+  removeProgramFromFavourites(program: any): Observable<AddToFavouriteResponse> {
+    return this.http.post<AddToFavouriteResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem("ACCOUNT_ID")}/favorite?${environment.apiKey}&session_id=${localStorage.getItem("SESSION_ID")}`,
+      {
+        media_type: "tv",
+        media_id: program.id,
+        favorite: false
       });
   }
 }

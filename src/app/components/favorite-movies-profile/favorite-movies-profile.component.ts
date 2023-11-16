@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
+import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
   selector: 'app-favorite-movies-profile',
@@ -10,15 +11,17 @@ import { AccountService } from 'src/app/service/account.service';
 export class FavoriteMoviesProfileComponent implements OnInit {
 
 
-  movieFavoriteList: Movie[] = [];
+  movieList: Movie[] = [];
+  favList: Movie[] = []
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private movieService: MovieService) { }
 
 
   ngOnInit(): void {
     this.accountService.getFavoriteMovies().subscribe(resp => {
-      this.movieFavoriteList = resp.results;
+      this.favList = resp.results;
     })
+
   }
 
 

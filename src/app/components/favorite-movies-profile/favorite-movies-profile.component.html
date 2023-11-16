@@ -2,8 +2,8 @@
     <div class="col-10">
         <h2 class="text-white">&nbsp;&nbsp;Películas Favoritas</h2>
     </div>
-    <div class="col-2">
-        <button class="btn btn-light" style=" float: inline-end;">Ver más</button>
+    <div *ngIf="movieList.length===20" class="col-2">
+        <button class="btn btn-light" [routerLink]="['movies-favourites']" style=" float: inline-end;">Ver más</button>
     </div>
 </div>
-<app-movie-horizontal-list [movieList]="movieFavoriteList"></app-movie-horizontal-list>
+<app-movie-horizontal-list [favList]="favList"></app-movie-horizontal-list>

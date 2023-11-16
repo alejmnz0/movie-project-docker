@@ -33,11 +33,8 @@
                     <button mat-icon-button>
                         <mat-icon>star</mat-icon>
                     </button>
-                    <button *ngIf="!favourite" mat-icon-button>
-                        <mat-icon>favorite</mat-icon>
-                    </button>
-                    <button *ngIf="favourite" mat-icon-button>
-                        <mat-icon class="favorite">favorite</mat-icon>
+                    <button (click)="toggleFavourite()" mat-icon-button>
+                        <mat-icon [class.favorite]="favourite" [class.notFavorite]="!favourite">favorite</mat-icon>
                     </button>
                 </div>
             </mat-card-actions>

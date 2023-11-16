@@ -22,6 +22,10 @@ mat-icon {
     color: red;
 }
 
+.notFavorite {
+    color: #ffffff15;
+}
+
 mat-card-header {
     position: relative;
 }

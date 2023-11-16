@@ -29,6 +29,18 @@ export class ProgramItemComponent implements OnInit {
 
   }
 
+  toggleFavourite(): void {
+    if (this.favourite) {
+      this.accountService.removeProgramFromFavourites(this.program).subscribe(resp => {
+        this.favourite = false;
+      });
+    } else {
+      this.accountService.addProgramToFavourites(this.program).subscribe(resp => {
+        this.favourite = true;
+      });
+    }
+  }
+
   getPorcentaje(numero: number) {
     return numero * 10
   }

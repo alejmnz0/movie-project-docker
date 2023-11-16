@@ -11,31 +11,57 @@ import { AccountService } from 'src/app/service/account.service';
 })
 export class MovieItemComponent implements OnInit {
   @Input() movie: any;
+  @Input() isFav: any;
   longitudMaxima: number = 23;
   favouriteMovies: Movie[] = [];
   movieFavorite!: Movie | null;
   favourite = false;
+  pages: number = 0;
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.isFavourite();
+    this.getTotalPages();
+    //this.isFavourite();
   }
 
-  addToFavourite() {
-    this.accountService.addToFavourites(this.movie);
+
+  toggleFavourite(): void {
+    if (this.favourite) {
+      this.accountService.removeMovieFromFavourites(this.movie).subscribe(resp => {
+        this.isFav = false;
+      });
+    } else {
+      this.accountService.addMovieToFavourites(this.movie).subscribe(resp => {
+        this.isFav = true;
+      });
+    }
   }
 
-  isFavourite() {
+  getTotalPages() {
     this.accountService.getFavoriteMovies().subscribe(resp => {
-      this.favouriteMovies = resp.results;
-      const foundMovie = this.favouriteMovies.find(movieSelected => movieSelected.id === this.movie.id);
-      this.favourite = foundMovie !== undefined;
-    });
-
-    this.favourite = true
-
+      this.pages = resp.total_pages;
+    })
   }
+
+  /*isFavourite() {
+    if (this.pages <= 1) {
+      this.accountService.getFavoriteMovies().subscribe(resp => {
+        this.favouriteMovies = resp.results;
+        const foundMovie = this.favouriteMovies.find(movieSelected => movieSelected.id === this.movie.id);
+        this.favourite = foundMovie !== undefined;
+      });
+    }
+    if (this.pages > 1) {
+      for (let i = 1; i <= this.pages; i++) {
+        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+          this.favouriteMovies = this.favouriteMovies.concat(resp.results);
+          const foundMovie = this.favouriteMovies.find(movieSelected => movieSelected.id === this.movie.id);
+          this.favourite = foundMovie !== undefined;
+        });
+      }
+    }
+  }*/
 
   getPorcentaje(numero: number) {
     return numero * 10

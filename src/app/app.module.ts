@@ -48,6 +48,7 @@ import { FavoriteMoviesProfileComponent } from './components/favorite-movies-pro
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FavoriteProgramsProfileComponent } from './components/favorite-programs-profile/favorite-programs-profile.component';
+import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { FavoriteProgramsProfileComponent } from './components/favorite-programs
     SerieHorizontalNumberedListComponent,
     NumberedItemSerieComponent,
     FavoriteMoviesProfileComponent,
-    FavoriteProgramsProfileComponent
+    FavoriteProgramsProfileComponent,
+    PageFavouriteMoviesComponent
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@ export class MovieItemComponent {
       });
     }
   }
-  
+
   getPorcentaje(numero: number) {
     return numero * 10
   }
@@ -54,8 +54,8 @@ export class MovieItemComponent {
   }
 
   leave() {
-    alert(this.rate + " asd " + this.movie.id + " " + localStorage.getItem('SESSION_ID'))
-    this.movieService.rateMovie(this.movie.id, this.rate * 2);
+    this.movieService.rateMovie(this.movie.id, (this.rate * 2)).subscribe(resp => {
+    });
 
   }
 }

@@ -8,6 +8,7 @@ import { ImageListResponse } from '../models/image-movie.interface';
 import { CreditsListResponse } from '../models/credits-movie.interface';
 import { environment } from '../enviroments/enviroment';
 import { RatedMoviesListResponse } from '../models/rated-movies.interface';
+import { StatusCodeResponse } from '../models/status-code.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -60,8 +61,8 @@ export class MovieService {
         return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
     }
 
-    rateMovie(movieId: number, rate: number) {
-        this.http.post(`https://api.themoviedb.org/3/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+    rateMovie(movieId: number, rate: number): Observable<StatusCodeResponse> {
+        return this.http.post<StatusCodeResponse>(`https://api.themoviedb.org/3/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
             {
                 value: rate
             });

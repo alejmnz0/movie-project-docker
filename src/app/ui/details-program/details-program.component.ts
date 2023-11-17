@@ -40,7 +40,6 @@ export class DetailsProgramComponent {
       this.lastSeason = this.seasons[this.seasons.length - 1]
     })
     this.getTotalPages();
-    this.isFavourite();
     this.programService.getVideosByMovie(this.programId).subscribe(resp => {
       this.videoList = resp.results;
     })
@@ -68,6 +67,7 @@ export class DetailsProgramComponent {
   getTotalPages() {
     this.accountService.getFavoritePrograms().subscribe(resp => {
       this.pages = resp.total_pages;
+      this.isFavourite()
     })
   }
 
@@ -79,9 +79,7 @@ export class DetailsProgramComponent {
         const foundMovie = this.favouritePrograms.find(currentProgram => currentProgram.id === this.selectedProgram.id);
         this.favourite = foundMovie !== undefined;
       });
-    }
-    if (this.pages > 1) {
-      debugger;
+    } else {
       for (let i = 1; i <= this.pages; i++) {
         this.accountService.getFavoriteProgramsByPage(i).subscribe(resp => {
           this.favouritePrograms = this.favouritePrograms.concat(resp.results);

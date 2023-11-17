@@ -60,19 +60,18 @@ export class ComingSoonMoviesComponent implements OnInit {
   getFavouriteResults() {
     this.accountService.getFavoriteMovies().subscribe(resp => {
       this.pagesFavorites = resp.total_pages;
-    });
-    if (this.pagesFavorites <= 1) {
-      this.accountService.getFavoriteMovies().subscribe(resp => {
-        this.favList = resp.results;
-      });
-    }
-    if (this.pagesFavorites > 1) {
-      for (let i = 1; i <= this.pagesFavorites; i++) {
-        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
-          this.favList = this.favList.concat(resp.results);
-        })
+      if (this.pagesFavorites <= 1) {
+        this.accountService.getFavoriteMovies().subscribe(resp => {
+          this.favList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesFavorites; i++) {
+          this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+            this.favList = this.favList.concat(resp.results);
+          })
+        }
       }
-    }
+    });
   }
 
   showAllMovies(id: number) {

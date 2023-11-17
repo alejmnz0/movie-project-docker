@@ -37,7 +37,6 @@ export class DetailsMovieComponent implements OnInit {
       this.selectedMovie = resp;
     })
     this.getTotalPages();
-    this.isFavourite();
     this.movieService.getVideosByMovie(this.movieId).subscribe(resp => {
       this.videoList = resp.results;
     })
@@ -48,6 +47,13 @@ export class DetailsMovieComponent implements OnInit {
       this.actorList = resp.cast
     })
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getTotalPages() {
+    this.accountService.getFavoriteMovies().subscribe(resp => {
+      this.pages = resp.total_pages;
+      this.isFavourite();
+    });
   }
 
   toggleFavourite(): void {
@@ -62,12 +68,6 @@ export class DetailsMovieComponent implements OnInit {
     }
   }
 
-  getTotalPages() {
-    this.accountService.getFavoriteMovies().subscribe(resp => {
-      this.pages = resp.total_pages;
-    })
-  }
-
   isFavourite() {
     if (this.pages <= 1) {
       this.accountService.getFavoriteMovies().subscribe(resp => {
@@ -75,9 +75,7 @@ export class DetailsMovieComponent implements OnInit {
         const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.selectedMovie.id);
         this.favourite = foundMovie !== undefined;
       });
-    }
-    if (this.pages > 1) {
-      debugger;
+    } else {
       for (let i = 1; i <= this.pages; i++) {
         this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
           this.favouriteMovies = this.favouriteMovies.concat(resp.results);

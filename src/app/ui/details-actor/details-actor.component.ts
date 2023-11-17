@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ActorResponse } from 'src/app/models/actor.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { AccountService } from 'src/app/service/account.service';
 import { ActorService } from 'src/app/service/actor-service';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -17,8 +18,10 @@ export class DetailsActorComponent implements OnInit {
   selectedActor!: ActorResponse;
   route: ActivatedRoute = inject(ActivatedRoute);
   movieList: Movie[] = [];
+  favList: Movie[] = [];
+  pagesFavorites = 0;
 
-  constructor(private actorService: ActorService, private sanitazer: DomSanitizer, private movieService: MovieService) {
+  constructor(private actorService: ActorService, private accountService: AccountService, private sanitazer: DomSanitizer, private movieService: MovieService) {
     this.actorId = Number(this.route.snapshot.params['id']);
   }
 
@@ -28,7 +31,6 @@ export class DetailsActorComponent implements OnInit {
     })
     this.movieService.getMoviesByActor(this.actorId).subscribe(resp => {
       this.movieList = resp.cast;
-      debugger
     })
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -43,6 +45,23 @@ export class DetailsActorComponent implements OnInit {
     } else {
       return "Masculino"
     }
+  }
+
+  getFavouriteResults() {
+    this.accountService.getFavoriteMovies().subscribe(resp => {
+      this.pagesFavorites = resp.total_pages;
+      if (this.pagesFavorites <= 1) {
+        this.accountService.getFavoriteMovies().subscribe(resp => {
+          this.favList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesFavorites; i++) {
+          this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+            this.favList = this.favList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
 }

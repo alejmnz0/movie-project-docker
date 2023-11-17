@@ -44,19 +44,18 @@ export class HomePageComponent implements OnInit {
   getFavouriteResults() {
     this.accountService.getFavoriteMovies().subscribe(resp => {
       this.pagesFavorites = resp.total_pages;
-    });
-    if (this.pagesFavorites <= 1) {
-      this.accountService.getFavoriteMovies().subscribe(resp => {
-        this.favSuspenseMovieList = resp.results;
-      });
-    }
-    if (this.pagesFavorites > 1) {
-      for (let i = 1; i <= this.pagesFavorites; i++) {
-        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
-          this.favSuspenseMovieList = this.favSuspenseMovieList.concat(resp.results);
-        })
+      if (this.pagesFavorites <= 1) {
+        this.accountService.getFavoriteMovies().subscribe(resp => {
+          this.favSuspenseMovieList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesFavorites; i++) {
+          this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+            this.favSuspenseMovieList = this.favSuspenseMovieList.concat(resp.results);
+          })
+        }
       }
-    }
+    });
   }
 
 

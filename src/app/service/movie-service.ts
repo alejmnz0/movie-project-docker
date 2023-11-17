@@ -7,7 +7,7 @@ import { VideoListResponse } from '../models/video-movie.interface';
 import { ImageListResponse } from '../models/image-movie.interface';
 import { CreditsListResponse } from '../models/credits-movie.interface';
 import { environment } from '../enviroments/enviroment';
-import { RatedMoviesListResponse } from '../models/rated-movies.interface';
+import { RatedMoviesListResponse } from '../models/rated-movie-list.interface';
 import { StatusCodeResponse } from '../models/status-code.interface';
 
 @Injectable({

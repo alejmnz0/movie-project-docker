@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
-import { RatedMovie } from 'src/app/models/rated-movies.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { MovieService } from 'src/app/service/movie-service';
 
 @Component({

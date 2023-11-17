@@ -6,6 +6,7 @@ import { Observable, map } from 'rxjs';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { Program } from 'src/app/models/program-list.interface';
 import { AccountService } from 'src/app/service/account.service';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -16,6 +17,7 @@ export class MovieItemComponent {
   rate = 0;
   @Input() movie: any;
   @Input() isFav: any;
+  @Input() ratedList: RatedMovie;
   longitudMaxima: number = 23;
   favouriteMovies: Movie[] = [];
 

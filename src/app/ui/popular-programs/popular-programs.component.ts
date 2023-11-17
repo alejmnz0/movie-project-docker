@@ -60,19 +60,18 @@ export class PopularProgramsComponent {
   getFavouriteResults() {
     this.accountService.getFavoritePrograms().subscribe(resp => {
       this.pagesFavorites = resp.total_pages;
-    });
-    if (this.pagesFavorites <= 1) {
-      this.accountService.getFavoritePrograms().subscribe(resp => {
-        this.favList = resp.results;
-      });
-    }
-    if (this.pagesFavorites > 1) {
-      for (let i = 1; i <= this.pagesFavorites; i++) {
-        this.accountService.getFavoriteProgramsByPage(i).subscribe(resp => {
-          this.favList = this.favList.concat(resp.results);
-        })
+      if (this.pagesFavorites <= 1) {
+        this.accountService.getFavoritePrograms().subscribe(resp => {
+          this.favList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesFavorites; i++) {
+          this.accountService.getFavoriteProgramsByPage(i).subscribe(resp => {
+            this.favList = this.favList.concat(resp.results);
+          })
+        }
       }
-    }
+    });
   }
 
   showAllPrograms(id: number) {

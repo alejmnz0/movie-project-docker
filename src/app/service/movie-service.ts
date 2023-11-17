@@ -8,6 +8,7 @@ import { ImageListResponse } from '../models/image-movie.interface';
 import { CreditsListResponse } from '../models/credits-movie.interface';
 import { environment } from '../enviroments/enviroment';
 import { RatedMoviesListResponse } from '../models/rated-movies.interface';
+import { SearchMovieListResponse } from '../models/search-movie.interfaz';
 
 @Injectable({
     providedIn: 'root'
@@ -58,5 +59,9 @@ export class MovieService {
 
     getRatedMovies(): Observable<RatedMoviesListResponse> {
         return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
+    }
+
+    searchMovie(query: String): Observable<SearchMovieListResponse> {
+        return this.http.get<SearchMovieListResponse>(`${environment.apiBaseUrl}/search/movie?${environment.apiKey}&?query=${query}&language=es`)
     }
 }

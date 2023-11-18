@@ -19,13 +19,13 @@ export class NavbarComponent {
     this.authService.getRequestToken().subscribe(resp => {
       localStorage.setItem('REQUEST_TOKEN', resp.request_token);
       window.location.href = `https://www.themoviedb.org/authenticate/${localStorage.getItem('REQUEST_TOKEN')}?redirect_to=http://localhost:4200/approved`;
-      
-    })
+
+    });
   }
 
   ComprobarLogin() {
-      this.avatarUrl = localStorage.getItem('AVATAR_PATH');
-      this.username = localStorage.getItem('USERNAME');
+    this.avatarUrl = localStorage.getItem('AVATAR_PATH');
+    this.username = localStorage.getItem('USERNAME');
     return (localStorage.getItem("AVATAR_PATH") == null)
   }
 
@@ -39,7 +39,7 @@ export class NavbarComponent {
 
   }
 
-  logOut(){
+  logOut() {
     localStorage.removeItem("AVATAR_PATH");
     localStorage.removeItem("SESSION_ID");
     localStorage.removeItem("USERNAME");

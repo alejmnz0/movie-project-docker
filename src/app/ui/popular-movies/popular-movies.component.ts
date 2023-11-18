@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, ObservableInput, forkJoin } from 'rxjs';
-import { SearchBarComponent } from 'src/app/components/search-bar/search-bar.component';
-import { Movie, PopularMoviesListResponse, SearchMovieListResponse } from 'src/app/models/movie-list.interface';
+import { Observable, ObservableInput } from 'rxjs';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
+import { Movie, PopularMoviesListResponse} from 'src/app/models/movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -14,6 +14,7 @@ export class PopularMoviesComponent implements OnInit {
 
   movieList: Movie[] = [];
   favList: Movie[] = [];
+  ratedList: RatedMovie[] = [];
   count = 0;
   page = 1;
   pagesFavorites = 0;
@@ -53,8 +54,9 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForPopularMovies() {
-    this.search = false
-    this.getFavouriteResults()
+    this.getRatedList();
+    this.getFavouriteResults();
+    this.search = false;
     this.movieService.getPopularMoviesByPage(this.page).subscribe(resp => {
       this.movieList = resp.results;
       if (resp.total_results > 10000) {
@@ -67,6 +69,7 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForGenre() {
+    this.getRatedList();
     this.search = false
     this.getFavouriteResults();
     this.movieService.getMoviesByGenreAndPage(this.selectedGenreId!, this.page).subscribe(resp => {
@@ -95,6 +98,11 @@ export class PopularMoviesComponent implements OnInit {
         }
       }
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 
   showAllMovies(id: number) {

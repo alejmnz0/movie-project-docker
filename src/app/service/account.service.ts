@@ -6,6 +6,9 @@ import { AccountResponse } from '../models/account.interface';
 import { Movie, PopularMoviesListResponse } from '../models/movie-list.interface';
 import { ProgramListResponse } from '../models/program-list.interface';
 import { AddToFavouriteResponse } from '../models/add-favorite.interface';
+import { RatedMoviesListResponse } from '../models/rated-movie-list.interface';
+import { StatusCodeResponse } from '../models/status-code.interface';
+import { RatedProgramListResponse } from '../models/rated-program-list.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -69,4 +72,29 @@ export class AccountService {
         favorite: false
       });
   }
+
+  getRatedMovies(): Observable<RatedMoviesListResponse> {
+    return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
+}
+
+getRatedPrograms(): Observable<RatedProgramListResponse> {
+  return this.http.get<RatedProgramListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/tv?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
+}
+
+
+
+rateMovie(movieId: number, rate: any): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`https://api.themoviedb.org/3/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+        {
+            value: rate
+        });
+}
+
+rateProgram(tvId: number, rate: any): Observable<StatusCodeResponse> {
+  return this.http.post<StatusCodeResponse>(`https://api.themoviedb.org/3/tv/${tvId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+      {
+          value: rate
+      });
+}
+
 }

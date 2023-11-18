@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Program } from 'src/app/models/program-list.interface';
+import { RatedProgram } from 'src/app/models/rated-program-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { ProgramService } from 'src/app/service/program.service';
 
@@ -12,6 +13,7 @@ export class TodayProgramsComponent {
 
   programList: Program[] = [];
   favList: Program[] = [];
+  ratedList: RatedProgram[] = [];
   count = 0;
   page = 1;
   selectedGenreId: number | null = null;
@@ -49,7 +51,8 @@ export class TodayProgramsComponent {
   }
 
   loadPageForTodayPrograms() {
-    this.getFavouriteResults()
+    this.getRatedList();
+    this.getFavouriteResults();
     this.programService.getTodayProgramList(this.page).subscribe((resp) => {
       this.programList = resp.results;
       if (resp.total_results > 1000) {
@@ -62,7 +65,8 @@ export class TodayProgramsComponent {
   }
 
   loadPageForGenre() {
-    this.getFavouriteResults()
+    this.getRatedList();
+    this.getFavouriteResults();
     this.programService.getProgramsByGenreAndPage(this.selectedGenreId!, this.page).subscribe((resp) => {
       this.programList = resp.results;
       if (resp.total_results > 10000) {
@@ -89,6 +93,11 @@ export class TodayProgramsComponent {
         }
       }
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedPrograms().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 
   showAllPrograms(id: number) {

@@ -7,7 +7,8 @@ import { VideoListResponse } from '../models/video-movie.interface';
 import { ImageListResponse } from '../models/image-movie.interface';
 import { CreditsListResponse } from '../models/credits-movie.interface';
 import { environment } from '../enviroments/enviroment';
-import { RatedMoviesListResponse } from '../models/rated-movies.interface';
+import { RatedMoviesListResponse } from '../models/rated-movie-list.interface';
+import { StatusCodeResponse } from '../models/status-code.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -54,10 +55,6 @@ export class MovieService {
 
     getMoviesByGenreAndPage(id: number, page: number): Observable<PopularMoviesListResponse> {
         return this.http.get<PopularMoviesListResponse>('https://api.themoviedb.org/3/discover/movie?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&language=es&with_genres=' + id + '&page=' + page)
-    }
-
-    getRatedMovies(): Observable<RatedMoviesListResponse> {
-        return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
     }
 
     searchMovieByPage(query: String, page: number): Observable<PopularMoviesListResponse> {

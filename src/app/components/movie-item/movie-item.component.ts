@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input } from '@angular/core';
+import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { MovieService } from 'src/app/service/movie-service';
 import { Observable, map } from 'rxjs';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { Program } from 'src/app/models/program-list.interface';
 import { AccountService } from 'src/app/service/account.service';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 
 @Component({
   selector: 'app-movie-item',
@@ -10,12 +14,14 @@ import { AccountService } from 'src/app/service/account.service';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
+
   @Input() movie: any;
   @Input() isFav: any;
+  @Input() rate!: any;
   longitudMaxima: number = 23;
   favouriteMovies: Movie[] = [];
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private movieService: MovieService) { }
 
 
   toggleFavourite(): void {
@@ -29,7 +35,6 @@ export class MovieItemComponent {
       });
     }
   }
-
 
   getPorcentaje(numero: number) {
     return numero * 10
@@ -50,4 +55,10 @@ export class MovieItemComponent {
     return "https://image.tmdb.org/t/p/w500/" + this.movie.poster_path
   }
 
+  doRate() {
+    this.accountService.rateMovie(this.movie.id, (this.rate * 2)).subscribe(resp => {
+
+    });
+
+  }
 }

@@ -19,7 +19,7 @@ Para ejecutar la aplicación en tu entorno local, sigue estos pasos:
 
 1. **Clona el Repositorio:**
    ```bash
-   git clone https://github.com/tuusuario/todopelis.git
+   git clone https://github.com/alexluque02/movie-project.git
    cd todopelis
    ```
    

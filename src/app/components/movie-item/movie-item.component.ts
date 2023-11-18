@@ -14,7 +14,7 @@ import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
-  
+
   @Input() movie: any;
   @Input() isFav: any;
   @Input() rate!: any;
@@ -57,6 +57,7 @@ export class MovieItemComponent {
 
   doRate() {
     this.accountService.rateMovie(this.movie.id, (this.rate * 2)).subscribe(resp => {
+
     });
 
   }

@@ -10,6 +10,7 @@ import { AccountService } from 'src/app/service/account.service';
 export class ProgramItemComponent {
 
   @Input() program: any;
+  @Input() rate!: any;
   longitudMaxima: number = 23;
   favouritePrograms: Program[] = [];
   @Input() isFav: any;
@@ -46,4 +47,11 @@ export class ProgramItemComponent {
   getImage() {
     return "https://image.tmdb.org/t/p/w500/" + this.program.poster_path
   }
+
+  doRate() {
+    this.accountService.rateProgram(this.program.id, (this.rate * 2)).subscribe(resp => {
+
+    });
+  }
+  
 }

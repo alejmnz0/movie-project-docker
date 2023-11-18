@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { Program } from 'src/app/models/program-list.interface';
+import { RatedProgram } from 'src/app/models/rated-program-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AccountService } from 'src/app/service/account.service';
 export class PageFavouriteProgramsComponent {
   programList: Program[] = [];
   favList: Program[] = [];
+  ratedList: RatedProgram[] = [];
   count = 0;
   page = 1;
 
@@ -21,6 +23,7 @@ export class PageFavouriteProgramsComponent {
   }
 
   loadNewPage() {
+    this.getRatedList();
     let requests = [
       this.accountService.getFavoriteProgramsByPage(this.page),
       this.accountService.getFavoriteProgramsByPage(this.page)
@@ -39,5 +42,10 @@ export class PageFavouriteProgramsComponent {
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedPrograms().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 }

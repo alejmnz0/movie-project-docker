@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, ObservableInput, forkJoin } from 'rxjs';
+import { Observable, ObservableInput } from 'rxjs';
 import { Movie, PopularMoviesListResponse } from 'src/app/models/movie-list.interface';
 import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';

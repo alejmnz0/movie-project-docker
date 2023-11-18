@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, inject } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Cast, Department } from 'src/app/models/credits-movie.interface';
@@ -6,6 +6,7 @@ import { Genre, GenreListResponse } from 'src/app/models/genre-list.interface';
 import { Backdrop } from 'src/app/models/image-movie.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieResponse } from 'src/app/models/movie.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { Video } from 'src/app/models/video-movie.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
@@ -20,6 +21,8 @@ export class DetailsMovieComponent implements OnInit {
   selectedMovie !: MovieResponse;
   genreList: Genre[] = []
   movieId = 0;
+  ratedList: RatedMovie[] = [];
+  rate = this.getRate();
   route: ActivatedRoute = inject(ActivatedRoute);
   videoList: Video[] = [];
   imageList: Backdrop[] = [];
@@ -47,6 +50,13 @@ export class DetailsMovieComponent implements OnInit {
       this.actorList = resp.cast
     })
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getRate(): number{
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
+    let rate = this.ratedList.find(resp => resp.id === this.movieId)?.rating;
+    return rate ? rate / 2 : 0;
   }
 
   getTotalPages() {
@@ -128,6 +138,13 @@ export class DetailsMovieComponent implements OnInit {
 
   getPorcentaje(numero: number) {
     return numero * 10
+  }
+
+  doRate() {
+    this.accountService.rateMovie(this.movieId, (this.rate && this.rate * 2)).subscribe(resp => {
+
+    });
+
   }
 
 }

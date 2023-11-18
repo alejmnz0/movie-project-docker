@@ -1,5 +1,5 @@
 <h1 class="text-white">Mis películas favoritas</h1>
-<app-programs-vertical-list [objectList]="programList" [favList]="favList"></app-programs-vertical-list>
+<app-programs-vertical-list [objectList]="programList" [favList]="favList" [ratedList]="ratedList"></app-programs-vertical-list>
 <div class="mt-2 d-flex justify-content-center align-items-center" style="width: 100%;">
     <ngb-pagination class="custom-pagination" [maxSize]="2" [boundaryLinks]="true" [collectionSize]="count"
         [(page)]="page" [pageSize]="20" (pageChange)="loadNewPage()" aria-label="Default pagination"></ngb-pagination>

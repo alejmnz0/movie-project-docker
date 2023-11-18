@@ -41,9 +41,9 @@
                     [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'"
                     [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
 
-                <button mat-icon-button>
-                    <mat-icon>star</mat-icon>
-                </button>
+                    <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
+                        <mat-icon>star</mat-icon>
+                      </button>
                 <button (click)="toggleFavourite()" mat-icon-button>
                     <mat-icon [class.favorite]="favourite" [class.notFavorite]="!favourite">favorite</mat-icon>
                 </button>
@@ -56,6 +56,13 @@
 
         </div>
     </div>
+
+    <ng-template #popContent class="p-0 bg-dark">
+        <h1 class="m-0">
+          <ngb-rating [max]="5" [(rate)]="rate" (rateChange)="doRate()"></ngb-rating>
+        </h1>
+
+      </ng-template>
 
     <div class="container main px-5 pb-5">
         <div class="row">

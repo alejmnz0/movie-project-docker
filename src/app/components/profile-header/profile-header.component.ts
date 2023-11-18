@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
+import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
 @Component({
@@ -14,10 +15,10 @@ export class ProfileHeaderComponent implements OnInit {
   username = localStorage.getItem('USERNAME');
   movieRatedList: RatedMovie[] = [];
 
-  constructor(private moviesService: MovieService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.moviesService.getRatedMovies().subscribe(resp => {
+    this.accountService.getRatedMovies().subscribe(resp => {
       this.movieRatedList = resp.results;
     });
     this.getMediaRatedMovies();

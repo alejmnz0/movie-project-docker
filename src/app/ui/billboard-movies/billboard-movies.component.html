@@ -2,7 +2,7 @@
     En cartelera hoy
 </h1>
 <app-filter-movies (genreClick)="showMoviesByGenre($event)" (allClick)="showAllMovies($event)"></app-filter-movies>
-<app-movies-vertical-list class="ml-2" [objectList]="movieList" [favList]="favList"></app-movies-vertical-list>
+<app-movies-vertical-list class="ml-2" [objectList]="movieList" [favList]="favList" [ratedList]="ratedList"></app-movies-vertical-list>
 <div class="mt-2 d-flex justify-content-center align-items-center" style="width: 100%;">
     <ngb-pagination class="custom-pagination" [maxSize]="2" [boundaryLinks]="true" [collectionSize]="count"
         [(page)]="page" [pageSize]="20" (pageChange)="loadNewPage()" aria-label="Default pagination"></ngb-pagination>

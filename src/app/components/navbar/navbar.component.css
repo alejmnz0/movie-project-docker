@@ -1,6 +1,7 @@
-body {
-    background-color: #fbfbfb;
+nav, header{
+    background-color: rgb(15, 15, 15);
 }
+
 
 @media (min-width: 991.98px) {
     main {

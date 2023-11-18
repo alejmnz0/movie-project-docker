@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { Program } from 'src/app/models/program-list.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 import { ProgramService } from 'src/app/service/program.service';
@@ -13,10 +14,11 @@ import { ProgramService } from 'src/app/service/program.service';
 })
 export class HomePageComponent implements OnInit {
 
-  moviePopularList: Movie[] = []
-  seriePopularList: Program[] = []
-  suspenseMovieList: Movie[] = []
-  favSuspenseMovieList: Movie[] = []
+  moviePopularList: Movie[] = [];
+  seriePopularList: Program[] = [];
+  suspenseMovieList: Movie[] = [];
+  favSuspenseMovieList: Movie[] = [];
+  ratedList: RatedMovie[] = [];
   mostrarAlert: boolean = true;
   suspenseId = 53;
   pagesFavorites = 0
@@ -28,6 +30,7 @@ export class HomePageComponent implements OnInit {
   constructor(private movieService: MovieService, private accountService: AccountService, private programService: ProgramService) { }
 
   ngOnInit(): void {
+    this.getRatedList();
     this.getFavouriteResults();
     this.movieService.getPopularMoviesList().subscribe(resp => {
       this.moviePopularList = resp.results.slice(0, 10);
@@ -56,6 +59,11 @@ export class HomePageComponent implements OnInit {
         }
       }
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 
 

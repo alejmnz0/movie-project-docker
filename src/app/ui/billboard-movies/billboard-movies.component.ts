@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -12,6 +13,7 @@ export class BillboardMoviesComponent implements OnInit {
 
   movieList: Movie[] = [];
   favList: Movie[] = [];
+  ratedList: RatedMovie[] = [];
   count = 0;
   page = 1;
   selectedGenreId: number | null = null;
@@ -32,6 +34,8 @@ export class BillboardMoviesComponent implements OnInit {
   }
 
   loadPageForBillboardMovies() {
+    this.getRatedList();
+    this.getFavouriteResults();
     this.movieService.getBillboardMoviesByPage(this.page).subscribe((resp) => {
       this.movieList = resp.results;
       if (resp.total_results > 1000) {
@@ -44,6 +48,8 @@ export class BillboardMoviesComponent implements OnInit {
   }
 
   loadPageForGenre() {
+    this.getRatedList();
+    this.getFavouriteResults();
     this.movieService.getMoviesByGenreAndPage(this.selectedGenreId!, this.page).subscribe((resp) => {
       this.movieList = resp.results;
       if (resp.total_results > 10000) {
@@ -70,6 +76,11 @@ export class BillboardMoviesComponent implements OnInit {
         }
       }
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 
   showAllMovies(id: number) {

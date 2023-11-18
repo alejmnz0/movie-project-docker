@@ -56,15 +56,4 @@ export class MovieService {
     getMoviesByGenreAndPage(id: number, page: number): Observable<PopularMoviesListResponse> {
         return this.http.get<PopularMoviesListResponse>('https://api.themoviedb.org/3/discover/movie?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&language=es&with_genres=' + id + '&page=' + page)
     }
-
-    getRatedMovies(): Observable<RatedMoviesListResponse> {
-        return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
-    }
-
-    rateMovie(movieId: number, rate: number): Observable<StatusCodeResponse> {
-        return this.http.post<StatusCodeResponse>(`https://api.themoviedb.org/3/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
-            {
-                value: rate
-            });
-    }
 }

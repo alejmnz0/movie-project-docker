@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -13,6 +14,7 @@ export class PageFavouriteMoviesComponent implements OnInit {
 
   movieList: Movie[] = [];
   favList: Movie[] = [];
+  ratedList: RatedMovie[] = [];
   count = 0;
   page = 1;
 
@@ -23,6 +25,7 @@ export class PageFavouriteMoviesComponent implements OnInit {
   }
 
   loadNewPage() {
+    this.getRatedList();
     let requests = [
       this.accountService.getFavoriteMoviesByPage(this.page),
       this.accountService.getFavoriteMoviesByPage(this.page)
@@ -41,6 +44,11 @@ export class PageFavouriteMoviesComponent implements OnInit {
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 
 

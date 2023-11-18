@@ -30,9 +30,8 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadNewPage() {
-    if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
-      this.loadPageForGenre();
-    } /*else if (this.name !== '') {
+    if (this.name !== '') {
+      this.search = true;
       this.movieService.searchMovieByPage(this.name, this.page).subscribe(resp => {
         this.movieList = resp.results;
         if (resp.total_results > 10000) {
@@ -40,9 +39,15 @@ export class PopularMoviesComponent implements OnInit {
         } else {
           this.count = resp.total_results;
         }
-      })
-    } */else {
-      this.loadPageForPopularMovies();
+      });
+    } else {
+      this.search = false;
+
+      if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
+        this.loadPageForGenre();
+      } else {
+        this.loadPageForPopularMovies();
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -106,26 +111,15 @@ export class PopularMoviesComponent implements OnInit {
     this.loadNewPage();
   }
 
-  /*showSearchedMovies($event: SearchMovieListResponse) {
-    if ($event) {
-      this.search = true;
-      this.movieList = $event.results;
-      if ($event.total_results > 10000) {
-        this.count = 10000;
-      } else {
-        this.count = $event.total_results;
-      }
-    } else {
-      this.search = false;
-      this.loadNewPage();
-    }
-  }*/
-
   loadPageByName(event: any) {
     this.name = event.target.value;
-    if (this.name == '') {
+
+    if (this.name === '') {
+      this.search = false;
+      this.page = 1;
       this.loadNewPage();
     } else {
+      this.search = true;
       this.movieService.searchMovieByPage(event.target.value, this.page).subscribe(resp => {
         this.movieList = resp.results;
         if (resp.total_results > 10000) {
@@ -133,7 +127,7 @@ export class PopularMoviesComponent implements OnInit {
         } else {
           this.count = resp.total_results;
         }
-      })
+      });
     }
   }
 

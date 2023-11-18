@@ -16,6 +16,8 @@ export class BillboardMoviesComponent implements OnInit {
   page = 1;
   selectedGenreId: number | null = null;
   pagesFavorites = 0;
+  name: string = '';
+  search = false;
 
   constructor(private movieService: MovieService, private accountService: AccountService) { }
 
@@ -24,11 +26,26 @@ export class BillboardMoviesComponent implements OnInit {
   }
 
   loadNewPage() {
-    if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
-      this.loadPageForGenre();
+    if (this.name !== '') {
+      this.search = true;
+      this.movieService.searchMovieByPage(this.name, this.page).subscribe(resp => {
+        this.movieList = resp.results;
+        if (resp.total_results > 10000) {
+          this.count = 10000;
+        } else {
+          this.count = resp.total_results;
+        }
+      });
     } else {
-      this.loadPageForBillboardMovies();
+      this.search = false;
+
+      if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
+        this.loadPageForGenre();
+      } else {
+        this.loadPageForBillboardMovies();
+      }
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPageForBillboardMovies() {
@@ -82,6 +99,26 @@ export class BillboardMoviesComponent implements OnInit {
     this.selectedGenreId = id;
     this.page = 1;
     this.loadNewPage();
+  }
+
+  loadPageByName(event: any) {
+    this.name = event.target.value;
+
+    if (this.name === '') {
+      this.search = false;
+      this.page = 1;
+      this.loadNewPage();
+    } else {
+      this.search = true;
+      this.movieService.searchMovieByPage(event.target.value, this.page).subscribe(resp => {
+        this.movieList = resp.results;
+        if (resp.total_results > 10000) {
+          this.count = 10000;
+        } else {
+          this.count = resp.total_results;
+        }
+      });
+    }
   }
 
 

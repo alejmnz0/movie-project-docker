@@ -47,4 +47,8 @@ export class ProgramService {
     return this.http.get<ProgramListResponse>('https://api.themoviedb.org/3/discover/tv?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&language=es&with_genres=' + id + '&page=' + page)
   }
 
+  searchProgramByPage(query: String, page: number): Observable<ProgramListResponse> {
+    return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}/search/tv?${environment.apiKey}&query=${query}&language=es&page=${page}`)
+  }
+
 }

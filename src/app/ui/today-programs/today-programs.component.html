@@ -1,6 +1,10 @@
 <h1 class="text-white">
     Series en emisión
 </h1>
+<div class="form-outline">
+    <input [(ngModel)]="name" (keyup)="loadPageByName($event)" type="search" id="form1" class="form-control"
+        placeholder="Busca entre todos los programas" aria-label="Search" />
+</div>
 <app-filter-programs (genreClick)="showProgramsByGenre($event)"
     (allClick)="showAllPrograms($event)"></app-filter-programs>
 <app-programs-vertical-list class="ml-2" [objectList]="programList" [favList]="favList" [ratedList]="ratedList"></app-programs-vertical-list>

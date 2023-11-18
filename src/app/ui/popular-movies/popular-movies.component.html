@@ -1,6 +1,10 @@
 <h1 class="text-white">
     Películas populares
 </h1>
+<div class="form-outline">
+    <input [(ngModel)]="name" (keyup)="loadPageByName($event)" type="search" id="form1" class="form-control"
+        placeholder="Busca entre todas las películas" aria-label="Search" />
+</div>
 <app-filter-movies (genreClick)="showMoviesByGenre($event)" (allClick)="showAllMovies($event)"></app-filter-movies>
 <app-movies-vertical-list class="ml-2" [objectList]="movieList" [favList]="favList" [ratedList]="ratedList"></app-movies-vertical-list>
 <div class="mt-2 d-flex justify-content-center align-items-center" style="width: 100%;">

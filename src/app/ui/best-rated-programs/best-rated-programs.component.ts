@@ -18,6 +18,8 @@ export class BestRatedProgramsComponent {
   page = 1;
   selectedGenreId: number | null = null;
   pagesFavorites = 0;
+  name: string = '';
+  search = false;
 
   constructor(private programService: ProgramService, private accountService: AccountService) { }
 
@@ -26,11 +28,26 @@ export class BestRatedProgramsComponent {
   }
 
   loadNewPage() {
-    if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
-      this.loadPageForGenre();
+    if (this.name !== '') {
+      this.search = true;
+      this.programService.searchProgramByPage(this.name, this.page).subscribe(resp => {
+        this.programList = resp.results;
+        if (resp.total_results > 10000) {
+          this.count = 10000;
+        } else {
+          this.count = resp.total_results;
+        }
+      });
     } else {
-      this.loadPageForBestRatedPrograms();
+      this.search = false;
+
+      if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
+        this.loadPageForGenre();
+      } else {
+        this.loadPageForBestRatedPrograms();
+      }
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPageForBestRatedPrograms() {
@@ -93,6 +110,26 @@ export class BestRatedProgramsComponent {
     this.selectedGenreId = id;
     this.page = 1;
     this.loadNewPage();
+  }
+
+  loadPageByName(event: any) {
+    this.name = event.target.value;
+
+    if (this.name === '') {
+      this.search = false;
+      this.page = 1;
+      this.loadNewPage();
+    } else {
+      this.search = true;
+      this.programService.searchProgramByPage(event.target.value, this.page).subscribe(resp => {
+        this.programList = resp.results;
+        if (resp.total_results > 10000) {
+          this.count = 10000;
+        } else {
+          this.count = resp.total_results;
+        }
+      });
+    }
   }
 
 }

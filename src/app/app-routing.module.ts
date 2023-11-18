@@ -16,6 +16,7 @@ import { AuthApprovedComponent } from './components/auth-approved/auth-approved.
 import { DetailsProgramComponent } from './ui/details-program/details-program.component';
 import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
 import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/page-favourite-programs.component';
+import { GenreProgramListComponent } from './ui/genre-program-list/genre-program-list.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
     { path: 'programa/:id', component: DetailsProgramComponent },
     { path: 'actor/:id', component: DetailsActorComponent },
     { path: 'perfil', component: ProfileComponent },
-    { path: 'genre/:id', component: GenreMovieListComponent },
+    { path: 'genre/movie/:id', component: GenreMovieListComponent },
+    { path: 'genre/program/:id', component: GenreProgramListComponent },
     { path: 'approved', component: AuthApprovedComponent },
     { path: 'perfil/movies-favourites', component: PageFavouriteMoviesComponent },
     { path: 'perfil/programs-favourites', component: PageFavouriteProgramsComponent },

@@ -1,18 +1,18 @@
-<a [routerLink]="['/pelicula', movie.id]">
+<a [routerLink]="['/programa', program.id]">
     <div class="card mb-3 shadow-lg" style="width: 100%;">
         <div class="row g-0">
             <div class="col-xs-12 col-sm-2">
-                <img [src]="getMovieImage()" [alt]="movie.original_title" class="img-fluid imgMovie rounded-start"
+                <img [src]="getProgramImage()" [alt]="program.name" class="img-fluid imgMovie rounded-start"
                     onerror="this.src='../assets/img/not-found-image.png'" />
             </div>
             <div class="col-xs-12 col-sm-10">
                 <div class="card-body">
-                    <h5 class="card-title">{{movie.original_title}}</h5>
+                    <h5 class="card-title">{{program.name}}</h5>
                     <p class="card-text">
-                        {{movie.overview}}
+                        {{program.overview}}
                     </p>
                     <p class="card-text">
-                        Fecha de lanzamiento: <small class="text-muted">{{movie.release_date}}</small>
+                        Fecha de lanzamiento: <small class="text-muted">{{program.first_air_date}}</small>
                     </p>
                 </div>
             </div>

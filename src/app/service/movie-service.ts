@@ -59,4 +59,8 @@ export class MovieService {
     getRatedMovies(): Observable<RatedMoviesListResponse> {
         return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
     }
+
+    searchMovieByPage(query: String, page: number): Observable<PopularMoviesListResponse> {
+        return this.http.get<PopularMoviesListResponse>(`${environment.apiBaseUrl}/search/movie?${environment.apiKey}&query=${query}&language=es&page=${page}`)
+    }
 }

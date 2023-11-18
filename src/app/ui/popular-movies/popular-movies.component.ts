@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, ObservableInput, forkJoin } from 'rxjs';
-import { Movie, PopularMoviesListResponse } from 'src/app/models/movie-list.interface';
+import { SearchBarComponent } from 'src/app/components/search-bar/search-bar.component';
+import { Movie, PopularMoviesListResponse, SearchMovieListResponse } from 'src/app/models/movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -19,6 +20,8 @@ export class PopularMoviesComponent implements OnInit {
   selectedGenreId: number | null = null;
   request!: ObservableInput<any>;
   requests: Observable<PopularMoviesListResponse>[] = []
+  search = false;
+  name: string = '';
 
   constructor(private movieService: MovieService, private accountService: AccountService) { }
 
@@ -27,14 +30,30 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadNewPage() {
-    if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
-      this.loadPageForGenre();
+    if (this.name !== '') {
+      this.search = true;
+      this.movieService.searchMovieByPage(this.name, this.page).subscribe(resp => {
+        this.movieList = resp.results;
+        if (resp.total_results > 10000) {
+          this.count = 10000;
+        } else {
+          this.count = resp.total_results;
+        }
+      });
     } else {
-      this.loadPageForPopularMovies();
+      this.search = false;
+
+      if (this.selectedGenreId !== null && this.selectedGenreId !== -1) {
+        this.loadPageForGenre();
+      } else {
+        this.loadPageForPopularMovies();
+      }
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   loadPageForPopularMovies() {
+    this.search = false
     this.getFavouriteResults()
     this.movieService.getPopularMoviesByPage(this.page).subscribe(resp => {
       this.movieList = resp.results;
@@ -48,6 +67,7 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForGenre() {
+    this.search = false
     this.getFavouriteResults();
     this.movieService.getMoviesByGenreAndPage(this.selectedGenreId!, this.page).subscribe(resp => {
       this.movieList = resp.results;
@@ -78,16 +98,39 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   showAllMovies(id: number) {
+    this.search = false
     this.selectedGenreId = id;
     this.page = 1;
     this.loadNewPage();
   }
 
   showMoviesByGenre(id: number) {
+    this.search = false
     this.selectedGenreId = id;
     this.page = 1;
     this.loadNewPage();
   }
+
+  loadPageByName(event: any) {
+    this.name = event.target.value;
+
+    if (this.name === '') {
+      this.search = false;
+      this.page = 1;
+      this.loadNewPage();
+    } else {
+      this.search = true;
+      this.movieService.searchMovieByPage(event.target.value, this.page).subscribe(resp => {
+        this.movieList = resp.results;
+        if (resp.total_results > 10000) {
+          this.count = 10000;
+        } else {
+          this.count = resp.total_results;
+        }
+      });
+    }
+  }
+
 
 
 }

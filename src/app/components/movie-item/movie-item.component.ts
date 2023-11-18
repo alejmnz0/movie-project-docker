@@ -14,10 +14,10 @@ import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
   styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
-  rate = 0;
+  
   @Input() movie: any;
   @Input() isFav: any;
-  @Input() ratedList: RatedMovie;
+  @Input() rate!: any;
   longitudMaxima: number = 23;
   favouriteMovies: Movie[] = [];
 
@@ -55,8 +55,8 @@ export class MovieItemComponent {
     return "https://image.tmdb.org/t/p/w500/" + this.movie.poster_path
   }
 
-  leave() {
-    this.movieService.rateMovie(this.movie.id, (this.rate * 2)).subscribe(resp => {
+  doRate() {
+    this.accountService.rateMovie(this.movie.id, (this.rate * 2)).subscribe(resp => {
     });
 
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, ObservableInput, forkJoin } from 'rxjs';
 import { Movie, PopularMoviesListResponse } from 'src/app/models/movie-list.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { MovieService } from 'src/app/service/movie-service';
 
@@ -13,6 +14,7 @@ export class PopularMoviesComponent implements OnInit {
 
   movieList: Movie[] = [];
   favList: Movie[] = [];
+  ratedList: RatedMovie[] = [];
   count = 0;
   page = 1;
   pagesFavorites = 0;
@@ -35,7 +37,8 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForPopularMovies() {
-    this.getFavouriteResults()
+    this.getRatedList();
+    this.getFavouriteResults();
     this.movieService.getPopularMoviesByPage(this.page).subscribe(resp => {
       this.movieList = resp.results;
       if (resp.total_results > 10000) {
@@ -48,6 +51,7 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForGenre() {
+    this.getRatedList();
     this.getFavouriteResults();
     this.movieService.getMoviesByGenreAndPage(this.selectedGenreId!, this.page).subscribe(resp => {
       this.movieList = resp.results;
@@ -75,6 +79,11 @@ export class PopularMoviesComponent implements OnInit {
         }
       }
     });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
   }
 
   showAllMovies(id: number) {

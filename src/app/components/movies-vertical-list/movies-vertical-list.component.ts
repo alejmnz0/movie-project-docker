@@ -14,11 +14,11 @@ export class MoviesVerticalListComponent {
   @Input() favList!: Movie[];
   @Input() ratedList!: RatedMovie[];
 
-  isFav(movieId: number) {
-    return this.favList.some(resp => resp.id === movieId);
+  getRate(movieId: number){
+    return this.ratedList.find(resp => resp.id === movieId)?.rating;
   }
 
-  getRate(movieId: number) {
-    return this.ratedList.some(resp => resp.id === movieId);
+  isFav(movieId: number) {
+    return this.favList.some(resp => resp.id === movieId);
   }
 }

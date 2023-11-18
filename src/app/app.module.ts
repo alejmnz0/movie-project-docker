@@ -96,7 +96,8 @@ import { GenreProgramListComponent } from './ui/genre-program-list/genre-program
     FavoriteMoviesProfileComponent,
     FavoriteProgramsProfileComponent,
     PageFavouriteMoviesComponent,
-    PageFavouriteProgramsComponent
+    PageFavouriteProgramsComponent,
+    ProgramItemSecondaryComponent
   ],
   imports: [
     BrowserModule,

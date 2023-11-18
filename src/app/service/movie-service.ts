@@ -56,4 +56,8 @@ export class MovieService {
     getMoviesByGenreAndPage(id: number, page: number): Observable<PopularMoviesListResponse> {
         return this.http.get<PopularMoviesListResponse>('https://api.themoviedb.org/3/discover/movie?api_key=67e90c6f74bc6faf6aebc08470495925&key=GYOQBfT8UU4&language=es&with_genres=' + id + '&page=' + page)
     }
+
+    searchMovieByPage(query: String, page: number): Observable<PopularMoviesListResponse> {
+        return this.http.get<PopularMoviesListResponse>(`${environment.apiBaseUrl}/search/movie?${environment.apiKey}&query=${query}&language=es&page=${page}`)
+    }
 }

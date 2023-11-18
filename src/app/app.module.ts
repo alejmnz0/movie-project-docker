@@ -51,6 +51,8 @@ import { FavoriteProgramsProfileComponent } from './components/favorite-programs
 import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
 import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/page-favourite-programs.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ProgramItemSecondaryComponent } from './components/program-item-secondary/program-item-secondary.component';
+import { GenreProgramListComponent } from './ui/genre-program-list/genre-program-list.component';
 
 @NgModule({
   declarations: [
@@ -94,8 +96,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     FavoriteMoviesProfileComponent,
     FavoriteProgramsProfileComponent,
     PageFavouriteMoviesComponent,
-    PageFavouriteProgramsComponent,
-    SearchBarComponent
+    PageFavouriteProgramsComponent
   ],
   imports: [
     BrowserModule,

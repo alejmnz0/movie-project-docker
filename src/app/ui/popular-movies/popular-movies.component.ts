@@ -15,9 +15,11 @@ export class PopularMoviesComponent implements OnInit {
   movieList: Movie[] = [];
   favList: Movie[] = [];
   ratedList: RatedMovie[] = [];
+  watchList: Movie[] = [];
   count = 0;
   page = 1;
   pagesFavorites = 0;
+  pagesWatchList = 0;
   selectedGenreId: number | null = null;
   request!: ObservableInput<any>;
   requests: Observable<PopularMoviesListResponse>[] = []
@@ -54,6 +56,7 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForPopularMovies() {
+    this.getWatchList();
     this.getRatedList();
     this.getFavouriteResults();
     this.search = false;
@@ -69,6 +72,7 @@ export class PopularMoviesComponent implements OnInit {
   }
 
   loadPageForGenre() {
+    this.getWatchList();
     this.getRatedList();
     this.search = false
     this.getFavouriteResults();
@@ -103,6 +107,23 @@ export class PopularMoviesComponent implements OnInit {
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getMovieWatchlist().subscribe(resp => {
+      this.pagesWatchList = resp.total_pages;
+      if (this.pagesWatchList <= 1) {
+        this.accountService.getMovieWatchlist().subscribe(resp => {
+          this.watchList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesWatchList; i++) {
+          this.accountService.getMovieWatchlistByPage(i).subscribe(resp => {
+            this.watchList = this.watchList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   showAllMovies(id: number) {

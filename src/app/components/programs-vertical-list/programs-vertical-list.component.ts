@@ -11,6 +11,8 @@ export class ProgramsVerticalListComponent {
   @Input() objectList: any;
   @Input() favList!: Program[];
   @Input() ratedList!: RatedProgram[];
+  @Input() watchList!: Program[];
+
 
   isFav(programId: number) {
     return this.favList.some(resp => resp.id === programId);
@@ -19,5 +21,9 @@ export class ProgramsVerticalListComponent {
   getRate(programId: number) {
     let rate = this.ratedList.find(resp => resp.id === programId)?.rating;
     return rate ? rate / 2 : null;
+  }
+
+  isOnWatchList(programId: number) {
+    return this.watchList.some(resp => resp.id === programId);
   }
 }

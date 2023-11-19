@@ -1,4 +1,4 @@
 <ul class="list-group list-group-horizontal p-3 position-relative overflow-auto">
-    <app-movie-item *ngFor="let movie of movieList" [isFav]="isFav(movie.id)" [rate]="getRate(movie.id)" [movie]="movie"
+    <app-movie-item *ngFor="let movie of movieList" [isFav]="isFav(movie.id)" [rate]="getRate(movie.id)" [isOnWatchList]="isOnWatchList(movie.id)" [movie]="movie"
         class="mx-2"></app-movie-item>
 </ul>

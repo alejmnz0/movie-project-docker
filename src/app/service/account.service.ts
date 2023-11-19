@@ -77,24 +77,75 @@ export class AccountService {
     return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
 }
 
-getRatedPrograms(): Observable<RatedProgramListResponse> {
-  return this.http.get<RatedProgramListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/tv?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
-}
+  getRatedPrograms(): Observable<RatedProgramListResponse> {
+    return this.http.get<RatedProgramListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/tv?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
+  }
 
 
 
-rateMovie(movieId: number, rate: any): Observable<StatusCodeResponse> {
-    return this.http.post<StatusCodeResponse>(`https://api.themoviedb.org/3/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+  rateMovie(movieId: number, rate: any): Observable<StatusCodeResponse> {
+      return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${movieId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+          {
+              value: rate
+          });
+  }
+
+  rateProgram(tvId: number, rate: any): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/tv/${tvId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
         {
             value: rate
         });
-}
+  }
 
-rateProgram(tvId: number, rate: any): Observable<StatusCodeResponse> {
-  return this.http.post<StatusCodeResponse>(`https://api.themoviedb.org/3/tv/${tvId}/rating?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
-      {
-          value: rate
-      });
-}
+  addMovieToWatchlist(id: number): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/watchlist?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+    {
+      "media_type": "movie",
+      "media_id": id,
+      "watchlist": true
+    });
+  }
 
+  removeMovieFromWatchlist(id: number): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/watchlist?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+    {
+      "media_type": "movie",
+      "media_id": id,
+      "watchlist": false
+    });
+  }
+
+  addTvToWatchlist(id: number): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/watchlist?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+    {
+      "media_type": "tv",
+      "media_id": id,
+      "watchlist": true
+    });
+  }
+
+  removeTvFromWatchlist(id: number): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/watchlist?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`,
+    {
+      "media_type": "tv",
+      "media_id": id,
+      "watchlist": false
+    });
+  }
+
+  getMovieWatchlist(): Observable<PopularMoviesListResponse> {
+    return this.http.get<PopularMoviesListResponse>(`${environment.apiBaseUrl}//account/${localStorage.getItem('ACCOUNT_ID')}/watchlist/movies?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`);
+  }
+
+  getMovieWatchlistByPage(page: number): Observable<PopularMoviesListResponse> {
+    return this.http.get<PopularMoviesListResponse>(`${environment.apiBaseUrl}//account/${localStorage.getItem('ACCOUNT_ID')}/watchlist/movies?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}&page=${page}`);
+  }
+
+  getTvWatchlistByPage(page: number): Observable<ProgramListResponse> {
+    return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}//account/${localStorage.getItem('ACCOUNT_ID')}/watchlist/tv?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}&page=${page}`);
+  }
+
+  getTvWatchlist(): Observable<ProgramListResponse> {
+    return this.http.get<ProgramListResponse>(`${environment.apiBaseUrl}//account/${localStorage.getItem('ACCOUNT_ID')}/watchlist/tv?${environment.apiKey}&session_id=${localStorage.getItem('SESSION_ID')}`);
+  }
 }

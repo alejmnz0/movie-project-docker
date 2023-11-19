@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Program } from 'src/app/models/program-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 
@@ -11,11 +12,12 @@ export class ProgramItemComponent {
 
   @Input() program: any;
   @Input() rate!: any;
+  @Input() isOnWatchList: any;
   longitudMaxima: number = 23;
   favouritePrograms: Program[] = [];
   @Input() isFav: any;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private snackBar: MatSnackBar) { }
 
   toggleFavourite(): void {
     if (this.isFav) {
@@ -25,6 +27,22 @@ export class ProgramItemComponent {
     } else {
       this.accountService.addProgramToFavourites(this.program).subscribe(resp => {
         this.isFav = true;
+      });
+    }
+  }
+
+  toggleWatchlist(): void {
+    if (this.isOnWatchList) {
+      debugger
+      this.accountService.removeTvFromWatchlist(this.program.id).subscribe(resp => {
+        this.isOnWatchList = false;
+        this.openSnackBar1();
+      });
+    } else {
+      debugger
+      this.accountService.addTvToWatchlist(this.program.id).subscribe(resp => {
+        this.isOnWatchList = true;
+        this.openSnackBar2();
       });
     }
   }
@@ -52,6 +70,14 @@ export class ProgramItemComponent {
     this.accountService.rateProgram(this.program.id, (this.rate * 2)).subscribe(resp => {
 
     });
+  }
+
+  openSnackBar1() {
+    this.snackBar.open("Se ha eliminado de la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+  }
+
+  openSnackBar2() {
+    this.snackBar.open("Se ha añadido a la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
   }
   
 }

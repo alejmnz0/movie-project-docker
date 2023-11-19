@@ -48,9 +48,11 @@
                     <mat-icon [class.favorite]="favourite" [class.notFavorite]="!favourite">favorite</mat-icon>
                 </button>
 
-                <button mat-icon-button>
-                    <mat-icon class="save">bookmark</mat-icon>
-                </button>
+                <div id="saveList">
+                    <button mat-icon-button (click)="toggleWatchlist()">
+                      <mat-icon [class.saveMarcado]="isOnWatchList" [class.save]="!isOnWatchList">bookmark</mat-icon>
+                    </button>
+                  </div>
             </div>
 
 

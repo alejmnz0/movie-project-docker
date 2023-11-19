@@ -9,6 +9,13 @@ ul {
     list-style-type: none;
 }
 
+.save {
+    color: rgb(255, 255, 255);
+}
+
+.saveMarcado{
+    color: yellow}
+
 .list-inline {
     list-style: none;
     padding: 0;

@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit {
   seriePopularList: Program[] = [];
   suspenseMovieList: Movie[] = [];
   favSuspenseMovieList: Movie[] = [];
+  watchList: Movie[] = [];
   ratedList: RatedMovie[] = [];
   mostrarAlert: boolean = true;
   suspenseId = 53;
@@ -30,6 +31,7 @@ export class HomePageComponent implements OnInit {
   constructor(private movieService: MovieService, private accountService: AccountService, private programService: ProgramService) { }
 
   ngOnInit(): void {
+    this.getWatchList();
     this.getRatedList();
     this.getFavouriteResults();
     this.movieService.getPopularMoviesList().subscribe(resp => {
@@ -64,6 +66,11 @@ export class HomePageComponent implements OnInit {
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getMovieWatchlist().subscribe(resp => {
+      this.watchList = resp.results});
   }
 
 

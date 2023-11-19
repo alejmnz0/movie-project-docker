@@ -11,6 +11,7 @@ export class ProgramsHorizontalListComponent {
   @Input() favList!: Program[];
   @Input() programList!: Program[];
   @Input() ratedList!: RatedProgram[];
+  @Input() watchList!: Program[];
 
   isFav(programId: number) {
     return this.favList.some(resp => resp.id === programId);
@@ -19,5 +20,9 @@ export class ProgramsHorizontalListComponent {
   getRate(movieId: number) {
     let rate = this.ratedList.find(resp => resp.id === movieId)?.rating;
     return rate ? rate / 2 : null;
+  }
+
+  isOnWatchList(programId: number) {
+    return this.watchList.some(resp => resp.id === programId);
   }
 }

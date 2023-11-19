@@ -15,6 +15,7 @@ export class PageFavouriteMoviesComponent implements OnInit {
   movieList: Movie[] = [];
   favList: Movie[] = [];
   ratedList: RatedMovie[] = [];
+  watchList: Movie[] = [];
   count = 0;
   page = 1;
 
@@ -25,6 +26,7 @@ export class PageFavouriteMoviesComponent implements OnInit {
   }
 
   loadNewPage() {
+    this.getWatchList();
     this.getRatedList();
     let requests = [
       this.accountService.getFavoriteMoviesByPage(this.page),
@@ -49,6 +51,11 @@ export class PageFavouriteMoviesComponent implements OnInit {
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getMovieWatchlist().subscribe(resp => {
+      this.watchList = resp.results});
   }
 
 

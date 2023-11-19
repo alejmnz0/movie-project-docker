@@ -38,7 +38,7 @@
       <mat-card-actions class="col-2 p-0 align-self-start">
         <div class="example-disabled p-0">
           <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
-            <mat-icon>star</mat-icon>
+            <mat-icon [class.rated]="rate>0">star</mat-icon>
           </button>
           <button (click)="toggleFavourite()" mat-icon-button>
             <mat-icon [class.favorite]="isFav" [class.notFavorite]="!isFav">favorite</mat-icon>

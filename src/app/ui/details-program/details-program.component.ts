@@ -1,4 +1,5 @@
 import { Component, TemplateRef, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +7,7 @@ import { Cast } from 'src/app/models/credits-movie.interface';
 import { Backdrop } from 'src/app/models/image-movie.interface';
 import { Program } from 'src/app/models/program-list.interface';
 import { Genre, ProgramResponse, Season } from 'src/app/models/program.interface';
+import { RatedProgram } from 'src/app/models/rated-program-list.interface';
 import { Video } from 'src/app/models/video-movie.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { ProgramService } from 'src/app/service/program.service';
@@ -24,12 +26,18 @@ export class DetailsProgramComponent {
   imageList: Backdrop[] = [];
   actorList: Cast[] = [];
   seasons: Season[] = [];
+  watchList: Program[] = [];
+  ratedList: RatedProgram[] = [];
   lastSeason!: Season;
   favourite = false;
   favouritePrograms: Program[] = [];
   pages: number = 0;
+  pagesRated= 0;
+  pagesWatchList= 0;
+  rate= 0;
+  isOnWatchList = false;
 
-  constructor(private programService: ProgramService, private accountService: AccountService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
+  constructor(private programService: ProgramService, private accountService: AccountService, private sanitazer: DomSanitizer, private modalService: NgbModal ,private snackBar: MatSnackBar) {
     this.programId = Number(this.route.snapshot.params['id']);
   }
 
@@ -39,7 +47,9 @@ export class DetailsProgramComponent {
       this.seasons = resp.seasons;
       this.lastSeason = this.seasons[this.seasons.length - 1]
     })
-    this.getTotalPages();
+    this.getTotalPagesFavorite();
+    this.getTotalPagesRated();
+    this.getTotalPagesWatchList();
     this.programService.getVideosByMovie(this.programId).subscribe(resp => {
       this.videoList = resp.results;
     })
@@ -64,11 +74,89 @@ export class DetailsProgramComponent {
     }
   }
 
-  getTotalPages() {
+  getRate(){
+    if (this.pagesRated <= 1) {
+      this.accountService.getRatedPrograms().subscribe(resp => {
+        this.ratedList = resp.results;
+        let valor = this.ratedList.find(currentProgram => currentProgram.id === this.selectedProgram.id)?.rating ?? 0;
+        this.rate = valor/2;
+      });
+    } else {
+      for (let i = 1; i <= this.pagesRated; i++) {
+        this.accountService.getRatedProgramsByPage(i).subscribe(resp => {
+          this.ratedList = this.ratedList.concat(resp.results);
+          let valor = this.ratedList.find(currentProgram => currentProgram.id === this.selectedProgram.id)?.rating ?? 0;
+          this.rate = valor/2;
+        });
+      }
+    }
+  }
+
+  getTotalPagesFavorite() {
     this.accountService.getFavoritePrograms().subscribe(resp => {
       this.pages = resp.total_pages;
-      this.isFavourite()
-    })
+      this.isFavourite();
+    });
+  }
+
+  getTotalPagesRated() {
+    this.accountService.getRatedPrograms().subscribe(resp => {
+      this.pagesRated = resp.total_pages;
+      this.getRate();
+    });
+  }
+
+  getTotalPagesWatchList() {
+    this.accountService.getTvWatchlist().subscribe(resp => {
+      this.pagesWatchList = resp.total_pages;
+      this.isWatchListed();
+    });
+  }
+
+  isWatchListed() {
+    if (this.pagesWatchList <= 1) {
+      this.accountService.getTvWatchlist().subscribe(resp => {
+        this.watchList = resp.results;
+        const foundMovie = this.watchList.find(currentProgram => currentProgram.id === this.selectedProgram.id);
+        this.isOnWatchList = foundMovie !== undefined;
+      });
+    } else {
+      for (let i = 1; i <= this.pagesWatchList; i++) {
+        this.accountService.getTvWatchlistByPage(i).subscribe(resp => {
+          this.watchList = this.watchList.concat(resp.results);
+          const foundMovie = this.watchList.find(currentProgram => currentProgram.id === this.selectedProgram.id);
+          this.isOnWatchList = foundMovie !== undefined;
+        });
+      }
+    }
+  }
+
+  toggleWatchlist(): void {
+    if (this.isOnWatchList) {
+      debugger
+      this.accountService.removeTvFromWatchlist(this.selectedProgram.id).subscribe(resp => {
+        this.isOnWatchList = false;
+        this.openSnackBar1();
+      });
+    } else {
+      this.accountService.removeTvFromWatchlist(this.selectedProgram.id).subscribe(resp => {
+        this.isOnWatchList = true;
+        this.openSnackBar2();
+      });
+    }
+  }
+
+  openSnackBar1() {
+    this.snackBar.open("Se ha eliminado de la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+  }
+
+  openSnackBar2() {
+    this.snackBar.open("Se ha añadido a la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+  }
+
+  doRate() {
+    this.accountService.rateProgram(this.programId, (this.rate * 2)).subscribe(resp => {
+    });
   }
 
 

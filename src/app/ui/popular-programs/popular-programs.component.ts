@@ -16,6 +16,7 @@ export class PopularProgramsComponent {
   ratedList: RatedProgram[] = [];
   watchList: Program[] = [];
   pagesWatchList= 0;
+  pagesRatedList= 0;
   count = 0;
   page = 1;
   selectedGenreId: number | null = null;
@@ -101,7 +102,19 @@ export class PopularProgramsComponent {
 
   getRatedList() {
     this.accountService.getRatedPrograms().subscribe(resp => {
-      this.ratedList = resp.results});
+      this.pagesRatedList = resp.total_pages;
+      if (this.pagesRatedList <= 1) {
+        this.accountService.getRatedPrograms().subscribe(resp => {
+          this.ratedList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesRatedList; i++) {
+          this.accountService.getRatedProgramsByPage(i).subscribe(resp => {
+            this.ratedList = this.ratedList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   getWatchList() {

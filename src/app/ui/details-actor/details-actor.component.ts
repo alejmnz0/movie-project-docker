@@ -21,6 +21,7 @@ export class DetailsActorComponent implements OnInit {
   movieList: Movie[] = [];
   favList: Movie[] = [];
   pagesWatchList= 0;
+  pagesRatedList= 0;
   ratedList: RatedMovie[] = [];
   watchList: Movie[] = [];
   pagesFavorites = 0;
@@ -37,6 +38,9 @@ export class DetailsActorComponent implements OnInit {
       this.movieList = resp.cast;
     })
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.getRatedList();
+    this.getWatchList();
+    this.getFavouriteResults();
   }
 
   getActorImage() {
@@ -70,7 +74,19 @@ export class DetailsActorComponent implements OnInit {
 
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
-      this.ratedList = resp.results});
+      this.pagesRatedList = resp.total_pages;
+      if (this.pagesRatedList <= 1) {
+        this.accountService.getRatedMovies().subscribe(resp => {
+          this.ratedList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesRatedList; i++) {
+          this.accountService.getRatedMoviesByPage(i).subscribe(resp => {
+            this.ratedList = this.ratedList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   getWatchList() {

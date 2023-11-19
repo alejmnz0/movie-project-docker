@@ -75,10 +75,18 @@ export class AccountService {
 
   getRatedMovies(): Observable<RatedMoviesListResponse> {
     return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
-}
+  }
+
+  getRatedMoviesByPage(page: number): Observable<RatedMoviesListResponse> {
+    return this.http.get<RatedMoviesListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/movies?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}&page=${page}`);
+  }
 
   getRatedPrograms(): Observable<RatedProgramListResponse> {
     return this.http.get<RatedProgramListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/tv?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}`);
+  }
+
+  getRatedProgramsByPage(page: number): Observable<RatedProgramListResponse> {
+    return this.http.get<RatedProgramListResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('ACCOUNT_ID')}/rated/tv?session_id=${localStorage.getItem('SESSION_ID')}&${environment.apiKey}&page=${page}`);
   }
 
 

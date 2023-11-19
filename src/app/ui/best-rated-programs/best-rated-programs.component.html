@@ -2,7 +2,7 @@
     Mejor valoradas
 </h1>
 <div class="form-outline">
-    <input [(ngModel)]="name" (keyup)="loadPageByName($event)" type="search" id="form1" class="form-control"
+    <input [(ngModel)]="name" (keyup)="loadPageByName($event)" type="search" id="form1" class="form-control bg-light"
         placeholder="Busca entre todos los programas" aria-label="Search" />
 </div>
 <app-filter-programs (genreClick)="showProgramsByGenre($event)"

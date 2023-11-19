@@ -22,6 +22,7 @@ export class AuthApprovedComponent implements OnInit {
         localStorage.setItem('AVATAR_PATH', ('https://www.themoviedb.org/t/p/w50_and_h50_face' + resp.avatar.tmdb.avatar_path));
         localStorage.setItem('USERNAME', resp.username);
         localStorage.setItem('ACCOUNT_ID', resp.id.toString());
+        window.location.href = '/home'
       });
     });
   }

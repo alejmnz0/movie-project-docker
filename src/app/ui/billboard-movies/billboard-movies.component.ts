@@ -20,6 +20,7 @@ export class BillboardMoviesComponent implements OnInit {
   selectedGenreId: number | null = null;
   pagesFavorites = 0;
   pagesWatchList = 0;
+  pagesRatedList = 0;
   name: string = '';
   search = false;
 
@@ -101,7 +102,19 @@ export class BillboardMoviesComponent implements OnInit {
 
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
-      this.ratedList = resp.results});
+      this.pagesRatedList = resp.total_pages;
+      if (this.pagesRatedList <= 1) {
+        this.accountService.getRatedMovies().subscribe(resp => {
+          this.ratedList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesRatedList; i++) {
+          this.accountService.getRatedMoviesByPage(i).subscribe(resp => {
+            this.ratedList = this.ratedList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   getWatchList() {

@@ -22,7 +22,9 @@ export class HomePageComponent implements OnInit {
   ratedList: RatedMovie[] = [];
   mostrarAlert: boolean = true;
   suspenseId = 53;
-  pagesFavorites = 0
+  pagesFavorites = 0;
+  pagesRatedList= 0;
+  pagesWatchList = 0;
 
   cerrarAlert(): void {
     this.mostrarAlert = false;
@@ -65,12 +67,36 @@ export class HomePageComponent implements OnInit {
 
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
-      this.ratedList = resp.results});
+      this.pagesRatedList = resp.total_pages;
+      if (this.pagesRatedList <= 1) {
+        this.accountService.getRatedMovies().subscribe(resp => {
+          this.ratedList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesRatedList; i++) {
+          this.accountService.getRatedMoviesByPage(i).subscribe(resp => {
+            this.ratedList = this.ratedList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   getWatchList() {
     this.accountService.getMovieWatchlist().subscribe(resp => {
-      this.watchList = resp.results});
+      this.pagesWatchList = resp.total_pages;
+      if (this.pagesWatchList <= 1) {
+        this.accountService.getMovieWatchlist().subscribe(resp => {
+          this.watchList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesWatchList; i++) {
+          this.accountService.getMovieWatchlistByPage(i).subscribe(resp => {
+            this.watchList = this.watchList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
 

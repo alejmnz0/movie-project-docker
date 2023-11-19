@@ -5,6 +5,17 @@
     background-color: rgba(0, 0, 0, .5);
 }
 
+.save {
+    color: rgb(255, 255, 255);
+}
+
+.rated{
+    color: yellow;
+}
+
+.saveMarcado{
+    color: yellow}
+
 ul {
     list-style-type: none;
 }

@@ -23,12 +23,14 @@ export class DetailsMovieComponent implements OnInit {
   genreList: Genre[] = []
   movieId = 0;
   ratedList: RatedMovie[] = [];
-  rate = this.getRate();
+  rate = 0;
   route: ActivatedRoute = inject(ActivatedRoute);
   videoList: Video[] = [];
   imageList: Backdrop[] = [];
   actorList: Cast[] = [];
   pages: number = 0;
+  pagesWatchList = 0;
+  pagesRated = 0;
   favouriteMovies: Movie[] = [];
   watchList: Movie[] = [];
   isOnWatchList = false;
@@ -42,7 +44,9 @@ export class DetailsMovieComponent implements OnInit {
     this.movieService.getMovieById(this.movieId).subscribe(resp => {
       this.selectedMovie = resp;
     })
-    this.getTotalPages();
+    this.getTotalPagesFavorite();
+    this.getTotalPagesRated();
+    this.getTotalPagesWatchList();
     this.movieService.getVideosByMovie(this.movieId).subscribe(resp => {
       this.videoList = resp.results;
     })
@@ -55,17 +59,41 @@ export class DetailsMovieComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  getRate(): number{
-    this.accountService.getRatedMovies().subscribe(resp => {
-      this.ratedList = resp.results});
-    let rate = this.ratedList.find(resp => resp.id === this.movieId)?.rating;
-    return rate ? rate / 2 : 0;
+  getRate(){
+    if (this.pagesRated <= 1) {
+      this.accountService.getRatedMovies().subscribe(resp => {
+        this.ratedList = resp.results;
+        let valor = this.ratedList.find(currentMovie => currentMovie.id === this.selectedMovie.id)?.rating ?? 0;
+        this.rate = valor/2;
+      });
+    } else {
+      for (let i = 1; i <= this.pagesRated; i++) {
+        this.accountService.getRatedMoviesByPage(i).subscribe(resp => {
+          this.ratedList = this.ratedList.concat(resp.results);
+          let valor = this.ratedList.find(currentMovie => currentMovie.id === this.selectedMovie.id)?.rating ?? 0;
+          this.rate = valor/2;
+        });
+      }
+    }
   }
 
-  getTotalPages() {
+  getTotalPagesFavorite() {
     this.accountService.getFavoriteMovies().subscribe(resp => {
       this.pages = resp.total_pages;
       this.isFavourite();
+    });
+  }
+
+  getTotalPagesRated() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.pagesRated = resp.total_pages;
+      this.getRate();
+    });
+  }
+
+  getTotalPagesWatchList() {
+    this.accountService.getMovieWatchlist().subscribe(resp => {
+      this.pagesWatchList = resp.total_pages;
       this.isWatchListed();
     });
   }
@@ -84,13 +112,11 @@ export class DetailsMovieComponent implements OnInit {
 
   toggleWatchlist(): void {
     if (this.isOnWatchList) {
-      debugger
       this.accountService.removeMovieFromWatchlist(this.selectedMovie.id).subscribe(resp => {
         this.isOnWatchList = false;
         this.openSnackBar1();
       });
     } else {
-      debugger
       this.accountService.addMovieToWatchlist(this.selectedMovie.id).subscribe(resp => {
         this.isOnWatchList = true;
         this.openSnackBar2();
@@ -125,15 +151,15 @@ export class DetailsMovieComponent implements OnInit {
   }
 
   isWatchListed() {
-    if (this.pages <= 1) {
+    if (this.pagesWatchList <= 1) {
       this.accountService.getMovieWatchlist().subscribe(resp => {
         this.watchList = resp.results;
         const foundMovie = this.watchList.find(currentMovie => currentMovie.id === this.selectedMovie.id);
         this.isOnWatchList = foundMovie !== undefined;
       });
     } else {
-      for (let i = 1; i <= this.pages; i++) {
-        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+      for (let i = 1; i <= this.pagesWatchList; i++) {
+        this.accountService.getMovieWatchlistByPage(i).subscribe(resp => {
           this.watchList = this.watchList.concat(resp.results);
           const foundMovie = this.watchList.find(currentMovie => currentMovie.id === this.selectedMovie.id);
           this.isOnWatchList = foundMovie !== undefined;
@@ -187,10 +213,8 @@ export class DetailsMovieComponent implements OnInit {
   }
 
   doRate() {
-    this.accountService.rateMovie(this.movieId, (this.rate && this.rate * 2)).subscribe(resp => {
-
+    this.accountService.rateMovie(this.movieId, (this.rate * 2)).subscribe(resp => {
     });
-
   }
 
 }

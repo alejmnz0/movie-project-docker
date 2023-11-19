@@ -41,18 +41,18 @@
                     [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'"
                     [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
 
-                    <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
-                        <mat-icon [class.rated]="rate>0">star</mat-icon>
-                      </button>
+                <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
+                    <mat-icon [class.rated]="rate>0">star</mat-icon>
+                </button>
                 <button (click)="toggleFavourite()" mat-icon-button>
                     <mat-icon [class.favorite]="favourite" [class.notFavorite]="!favourite">favorite</mat-icon>
                 </button>
 
                 <div id="saveList">
                     <button mat-icon-button (click)="toggleWatchlist()">
-                      <mat-icon [class.saveMarcado]="isOnWatchList" [class.save]="!isOnWatchList">bookmark</mat-icon>
+                        <mat-icon [class.saveMarcado]="isOnWatchList" [class.save]="!isOnWatchList">bookmark</mat-icon>
                     </button>
-                  </div>
+                </div>
             </div>
 
 
@@ -61,10 +61,10 @@
 
     <ng-template #popContent class="p-0 bg-dark">
         <h1 class="m-0 text-warning">
-          <ngb-rating [max]="5" [(rate)]="rate" (rateChange)="doRate()"></ngb-rating>
+            <ngb-rating [max]="5" [(rate)]="rate" (rateChange)="doRate()"></ngb-rating>
         </h1>
 
-      </ng-template>
+    </ng-template>
 
     <div class="container main px-5 pb-5">
         <div class="row">
@@ -102,7 +102,8 @@
                                 *ngFor="let actor of actorList">
                                 <div class="d-flex align-items-center">
                                     <img [src]="getActorImage(actor)" class="mx-2" alt="" height="50">
-                                    <span style="font-size: 1.2em;"><strong>{{actor.original_name}}</strong></span>
+                                    <span
+                                        style="font-size: 1.2em; color: white;"><strong>{{actor.original_name}}</strong></span>
                                 </div>
                             </button>
                         </ul>

@@ -32,12 +32,12 @@ export class DetailsProgramComponent {
   favourite = false;
   favouritePrograms: Program[] = [];
   pages: number = 0;
-  pagesRated= 0;
-  pagesWatchList= 0;
-  rate= 0;
+  pagesRated = 0;
+  pagesWatchList = 0;
+  rate = 0;
   isOnWatchList = false;
 
-  constructor(private programService: ProgramService, private accountService: AccountService, private sanitazer: DomSanitizer, private modalService: NgbModal ,private snackBar: MatSnackBar) {
+  constructor(private programService: ProgramService, private accountService: AccountService, private sanitazer: DomSanitizer, private modalService: NgbModal, private snackBar: MatSnackBar) {
     this.programId = Number(this.route.snapshot.params['id']);
   }
 
@@ -74,19 +74,19 @@ export class DetailsProgramComponent {
     }
   }
 
-  getRate(){
+  getRate() {
     if (this.pagesRated <= 1) {
       this.accountService.getRatedPrograms().subscribe(resp => {
         this.ratedList = resp.results;
         let valor = this.ratedList.find(currentProgram => currentProgram.id === this.selectedProgram.id)?.rating ?? 0;
-        this.rate = valor/2;
+        this.rate = valor / 2;
       });
     } else {
       for (let i = 1; i <= this.pagesRated; i++) {
         this.accountService.getRatedProgramsByPage(i).subscribe(resp => {
           this.ratedList = this.ratedList.concat(resp.results);
           let valor = this.ratedList.find(currentProgram => currentProgram.id === this.selectedProgram.id)?.rating ?? 0;
-          this.rate = valor/2;
+          this.rate = valor / 2;
         });
       }
     }
@@ -147,11 +147,11 @@ export class DetailsProgramComponent {
   }
 
   openSnackBar1() {
-    this.snackBar.open("Se ha eliminado de la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+    this.snackBar.open("Se ha añadido a la watchlist con éxito", "Cerrar", { duration: 5000, horizontalPosition: "left", verticalPosition: "bottom" });
   }
 
   openSnackBar2() {
-    this.snackBar.open("Se ha añadido a la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+    this.snackBar.open("Se ha añadido a la watchlist con éxito", "Cerrar", { duration: 5000, horizontalPosition: "left", verticalPosition: "bottom" });
   }
 
   doRate() {

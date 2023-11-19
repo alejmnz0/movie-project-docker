@@ -44,26 +44,26 @@
                     [backgroundOpacity]="0.5" [unitsColor]="'#FFFFFF'" [titleColor]="'#FFFFFF'"
                     [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
 
-                    <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
-                        <mat-icon [class.rated]="rate>0">star</mat-icon>
-                      </button>
+                <button mat-icon-button [animation]="true" [ngbPopover]="popContent" placement="bottom">
+                    <mat-icon [class.rated]="rate>0">star</mat-icon>
+                </button>
                 <button (click)="toggleFavourite()" mat-icon-button>
                     <mat-icon [class.favorite]="favourite" [class.notFavorite]="!favourite">favorite</mat-icon>
                 </button>
 
                 <div id="saveList">
                     <button mat-icon-button (click)="toggleWatchlist()">
-                      <mat-icon [class.saveMarcado]="isOnWatchList" [class.save]="!isOnWatchList">bookmark</mat-icon>
+                        <mat-icon [class.saveMarcado]="isOnWatchList" [class.save]="!isOnWatchList">bookmark</mat-icon>
                     </button>
-                  </div>
+                </div>
             </div>
 
             <ng-template #popContent class="p-0 bg-dark">
                 <h1 class="m-0 text-warning">
-                  <ngb-rating [max]="5" [(rate)]="rate" (rateChange)="doRate()"></ngb-rating>
+                    <ngb-rating [max]="5" [(rate)]="rate" (rateChange)="doRate()"></ngb-rating>
                 </h1>
-        
-              </ng-template>
+
+            </ng-template>
 
 
         </div>
@@ -78,7 +78,7 @@
                             todas</a></small>
                 </h2>
                 <a>
-                    <div class="card mb-3 shadow-lg" style="width: 100%;">
+                    <div class="card mb-3 text-white shadow-lg" style="width: 100%;">
                         <div class="row g-0">
                             <div class="col-xs-12 col-sm-2">
                                 <img [src]="getSeasonImage(lastSeason)" [alt]="lastSeason.name"
@@ -88,12 +88,13 @@
                             <div class="col-xs-12 col-sm-10">
                                 <div class="card-body">
                                     <h5 class="card-title">{{lastSeason.name}} - <small
-                                            class="text-muted">{{lastSeason.episode_count}} episodios</small></h5>
+                                            class="text-white">{{lastSeason.episode_count}} episodios</small>
+                                    </h5>
                                     <p class="card-text">
                                         {{lastSeason.overview}}
                                     </p>
                                     <p class="card-text">
-                                        <small class="text-muted">{{lastSeason.air_date}}</small>
+                                        <small class="text-white">{{lastSeason.air_date}}</small>
                                     </p>
                                 </div>
                             </div>
@@ -131,7 +132,8 @@
                                 *ngFor="let actor of actorList">
                                 <div class="d-flex align-items-center">
                                     <img [src]="getActorImage(actor)" class="mx-2" alt="" height="50">
-                                    <span style="font-size: 1.2em;"><strong>{{actor.original_name}}</strong></span>
+                                    <span style="font-size: 1.2em;"
+                                        class="text-white"><strong>{{actor.original_name}}</strong></span>
                                 </div>
                             </button>
                         </ul>

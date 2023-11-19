@@ -80,10 +80,10 @@ export class MovieItemComponent {
   }
 
   openSnackBar1() {
-    this.snackBar.open("Se ha eliminado de la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+    this.snackBar.open("Se ha eliminado de la watchlist con éxito", "Cerrar", { duration: 5000, horizontalPosition: "left", verticalPosition: "bottom" });
   }
 
   openSnackBar2() {
-    this.snackBar.open("Se ha añadido a la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+    this.snackBar.open("Se ha añadido a la watchlist con éxito", "Cerrar", { duration: 5000, horizontalPosition: "left", verticalPosition: "bottom" });
   }
 }

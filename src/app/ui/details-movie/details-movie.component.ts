@@ -59,19 +59,19 @@ export class DetailsMovieComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  getRate(){
+  getRate() {
     if (this.pagesRated <= 1) {
       this.accountService.getRatedMovies().subscribe(resp => {
         this.ratedList = resp.results;
         let valor = this.ratedList.find(currentMovie => currentMovie.id === this.selectedMovie.id)?.rating ?? 0;
-        this.rate = valor/2;
+        this.rate = valor / 2;
       });
     } else {
       for (let i = 1; i <= this.pagesRated; i++) {
         this.accountService.getRatedMoviesByPage(i).subscribe(resp => {
           this.ratedList = this.ratedList.concat(resp.results);
           let valor = this.ratedList.find(currentMovie => currentMovie.id === this.selectedMovie.id)?.rating ?? 0;
-          this.rate = valor/2;
+          this.rate = valor / 2;
         });
       }
     }
@@ -125,11 +125,11 @@ export class DetailsMovieComponent implements OnInit {
   }
 
   openSnackBar1() {
-    this.snackBar.open("Se ha eliminado de la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+    this.snackBar.open("Se ha eliminado de la watchlist con éxito", "Cerrar", { duration: 5000, horizontalPosition: "left", verticalPosition: "bottom" });
   }
 
   openSnackBar2() {
-    this.snackBar.open("Se ha añadido a la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+    this.snackBar.open("Se ha añadido a la watchlist con éxito", "Cerrar", { duration: 5000, horizontalPosition: "left", verticalPosition: "bottom" });
   }
 
   isFavourite() {
@@ -175,6 +175,7 @@ export class DetailsMovieComponent implements OnInit {
   getBannerUrl() {
     return "https://image.tmdb.org/t/p/original/" + this.selectedMovie.backdrop_path
   }
+
 
   getYear(): string {
     if (this.selectedMovie.release_date.length >= 4) {

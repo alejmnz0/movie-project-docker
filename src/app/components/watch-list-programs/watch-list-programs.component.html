@@ -1,10 +1,11 @@
-<div class="row">
+<div *ngIf="programList.length>0" class="row">
     <div class="col-10">
-        <h2 class="text-white">&nbsp;&nbsp;Tu Watch List Programas</h2>
+        <h2 class="text-white">&nbsp;&nbsp;Tu Watchlist de Programas</h2>
     </div>
     <div *ngIf="programList.length===20" class="col-2">
         <button class="btn btn-light" [routerLink]="['programs-watchlist']" style=" float: inline-end;">Ver más</button>
     </div>
 </div>
-<app-programs-horizontal-list [programList]="programList" [favList]="favouriteList" [ratedList]="ratedList" [watchList]="programList"></app-programs-horizontal-list>
+<app-programs-horizontal-list [programList]="programList" [favList]="favouriteList" [ratedList]="ratedList"
+    [watchList]="programList"></app-programs-horizontal-list>
 <!--[favList]="favList"-->

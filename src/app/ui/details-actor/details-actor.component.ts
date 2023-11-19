@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ActorResponse } from 'src/app/models/actor.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
+import { RatedMovie } from 'src/app/models/rated-movie-list.interface';
 import { AccountService } from 'src/app/service/account.service';
 import { ActorService } from 'src/app/service/actor-service';
 import { MovieService } from 'src/app/service/movie-service';
@@ -19,6 +20,9 @@ export class DetailsActorComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   movieList: Movie[] = [];
   favList: Movie[] = [];
+  pagesWatchList= 0;
+  ratedList: RatedMovie[] = [];
+  watchList: Movie[] = [];
   pagesFavorites = 0;
 
   constructor(private actorService: ActorService, private accountService: AccountService, private sanitazer: DomSanitizer, private movieService: MovieService) {
@@ -58,6 +62,28 @@ export class DetailsActorComponent implements OnInit {
         for (let i = 1; i <= this.pagesFavorites; i++) {
           this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
             this.favList = this.favList.concat(resp.results);
+          })
+        }
+      }
+    });
+  }
+
+  getRatedList() {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getMovieWatchlist().subscribe(resp => {
+      this.pagesWatchList = resp.total_pages;
+      if (this.pagesWatchList <= 1) {
+        this.accountService.getMovieWatchlist().subscribe(resp => {
+          this.watchList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesWatchList; i++) {
+          this.accountService.getMovieWatchlistByPage(i).subscribe(resp => {
+            this.watchList = this.watchList.concat(resp.results);
           })
         }
       }

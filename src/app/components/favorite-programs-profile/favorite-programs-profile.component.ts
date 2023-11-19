@@ -12,12 +12,14 @@ export class FavoriteProgramsProfileComponent implements OnInit {
 
 
   programFavoriteList: Program[] = [];
+  watchList: Program[] = [];
   @Input() ratedList!: RatedProgram[];
 
   constructor(private accountService: AccountService) { }
 
 
   ngOnInit(): void {
+    this.getWatchList();
     this.getRatedList();
     this.accountService.getFavoritePrograms().subscribe(resp => {
       this.programFavoriteList = resp.results;
@@ -27,5 +29,10 @@ export class FavoriteProgramsProfileComponent implements OnInit {
   getRatedList() {
     this.accountService.getRatedPrograms().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getTvWatchlist().subscribe(resp => {
+      this.watchList = resp.results});
   }
 }

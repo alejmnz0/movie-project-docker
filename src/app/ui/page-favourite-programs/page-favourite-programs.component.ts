@@ -13,6 +13,7 @@ export class PageFavouriteProgramsComponent {
   programList: Program[] = [];
   favList: Program[] = [];
   ratedList: RatedProgram[] = [];
+  watchList: Program[] = [];
   count = 0;
   page = 1;
 
@@ -23,6 +24,7 @@ export class PageFavouriteProgramsComponent {
   }
 
   loadNewPage() {
+    this.getWatchList();
     this.getRatedList();
     let requests = [
       this.accountService.getFavoriteProgramsByPage(this.page),
@@ -47,5 +49,10 @@ export class PageFavouriteProgramsComponent {
   getRatedList() {
     this.accountService.getRatedPrograms().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getTvWatchlist().subscribe(resp => {
+      this.watchList = resp.results});
   }
 }

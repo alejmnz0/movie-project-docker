@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Renderer2, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Cast, Department } from 'src/app/models/credits-movie.interface';
@@ -29,9 +30,11 @@ export class DetailsMovieComponent implements OnInit {
   actorList: Cast[] = [];
   pages: number = 0;
   favouriteMovies: Movie[] = [];
+  watchList: Movie[] = [];
+  isOnWatchList = false;
   favourite = false;
 
-  constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private accountService: AccountService) {
+  constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private accountService: AccountService, private snackBar: MatSnackBar) {
     this.movieId = Number(this.route.snapshot.params['id']);
   }
 
@@ -63,6 +66,7 @@ export class DetailsMovieComponent implements OnInit {
     this.accountService.getFavoriteMovies().subscribe(resp => {
       this.pages = resp.total_pages;
       this.isFavourite();
+      this.isWatchListed();
     });
   }
 
@@ -78,6 +82,30 @@ export class DetailsMovieComponent implements OnInit {
     }
   }
 
+  toggleWatchlist(): void {
+    if (this.isOnWatchList) {
+      debugger
+      this.accountService.removeMovieFromWatchlist(this.selectedMovie.id).subscribe(resp => {
+        this.isOnWatchList = false;
+        this.openSnackBar1();
+      });
+    } else {
+      debugger
+      this.accountService.addMovieToWatchlist(this.selectedMovie.id).subscribe(resp => {
+        this.isOnWatchList = true;
+        this.openSnackBar2();
+      });
+    }
+  }
+
+  openSnackBar1() {
+    this.snackBar.open("Se ha eliminado de la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+  }
+
+  openSnackBar2() {
+    this.snackBar.open("Se ha añadido a la watch list con exito", "close", {duration: 5000, horizontalPosition: "left", verticalPosition: "bottom"});
+  }
+
   isFavourite() {
     if (this.pages <= 1) {
       this.accountService.getFavoriteMovies().subscribe(resp => {
@@ -91,6 +119,24 @@ export class DetailsMovieComponent implements OnInit {
           this.favouriteMovies = this.favouriteMovies.concat(resp.results);
           const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.selectedMovie.id);
           this.favourite = foundMovie !== undefined;
+        });
+      }
+    }
+  }
+
+  isWatchListed() {
+    if (this.pages <= 1) {
+      this.accountService.getMovieWatchlist().subscribe(resp => {
+        this.watchList = resp.results;
+        const foundMovie = this.watchList.find(currentMovie => currentMovie.id === this.selectedMovie.id);
+        this.isOnWatchList = foundMovie !== undefined;
+      });
+    } else {
+      for (let i = 1; i <= this.pages; i++) {
+        this.accountService.getFavoriteMoviesByPage(i).subscribe(resp => {
+          this.watchList = this.watchList.concat(resp.results);
+          const foundMovie = this.watchList.find(currentMovie => currentMovie.id === this.selectedMovie.id);
+          this.isOnWatchList = foundMovie !== undefined;
         });
       }
     }

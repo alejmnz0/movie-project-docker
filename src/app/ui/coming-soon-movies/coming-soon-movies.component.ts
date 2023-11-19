@@ -14,7 +14,9 @@ export class ComingSoonMoviesComponent implements OnInit {
   movieList: Movie[] = [];
   favList: Movie[] = [];
   ratedList: RatedMovie[] = [];
+  watchList: Movie[] = [];
   count = 0;
+  pagesWatchList= 0;
   page = 1;
   selectedGenreId: number | null = null;
   pagesFavorites = 0;
@@ -51,6 +53,7 @@ export class ComingSoonMoviesComponent implements OnInit {
   }
 
   loadPageForComingMovies() {
+    this.getWatchList();
     this.getRatedList();
     this.getFavouriteResults()
     this.movieService.getComingMoviesByPage(this.page).subscribe((resp) => {
@@ -65,6 +68,7 @@ export class ComingSoonMoviesComponent implements OnInit {
   }
 
   loadPageForGenre() {
+    this.getWatchList();
     this.getRatedList();
     this.getFavouriteResults()
     this.movieService.getMoviesByGenreAndPage(this.selectedGenreId!, this.page).subscribe((resp) => {
@@ -98,6 +102,23 @@ export class ComingSoonMoviesComponent implements OnInit {
   getRatedList() {
     this.accountService.getRatedMovies().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getMovieWatchlist().subscribe(resp => {
+      this.pagesWatchList = resp.total_pages;
+      if (this.pagesWatchList <= 1) {
+        this.accountService.getMovieWatchlist().subscribe(resp => {
+          this.watchList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesWatchList; i++) {
+          this.accountService.getMovieWatchlistByPage(i).subscribe(resp => {
+            this.watchList = this.watchList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   showAllMovies(id: number) {

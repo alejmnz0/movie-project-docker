@@ -13,6 +13,7 @@ export class MoviesVerticalListComponent {
   @Input() objectList: any;
   @Input() favList!: Movie[];
   @Input() ratedList!: RatedMovie[];
+  @Input() watchList!: Movie[];
 
   getRate(movieId: number) {
     let rate = this.ratedList.find(resp => resp.id === movieId)?.rating;
@@ -21,5 +22,9 @@ export class MoviesVerticalListComponent {
 
   isFav(movieId: number) {
     return this.favList.some(resp => resp.id === movieId);
+  }
+
+  isOnWatchList(movieId: number) {
+    return this.watchList.some(resp => resp.id === movieId);
   }
 }

@@ -14,6 +14,8 @@ export class PopularProgramsComponent {
   programList: Program[] = [];
   favList: Program[] = [];
   ratedList: RatedProgram[] = [];
+  watchList: Program[] = [];
+  pagesWatchList= 0;
   count = 0;
   page = 1;
   selectedGenreId: number | null = null;
@@ -51,6 +53,7 @@ export class PopularProgramsComponent {
   }
 
   loadPageForPopularPrograms() {
+    this.getWatchList();
     this.getRatedList();
     this.getFavouriteResults()
     this.programService.getPopularProgramList(this.page).subscribe((resp) => {
@@ -65,6 +68,7 @@ export class PopularProgramsComponent {
   }
 
   loadPageForGenre() {
+    this.getWatchList();
     this.getRatedList();
     this.getFavouriteResults();
     this.programService.getProgramsByGenreAndPage(this.selectedGenreId!, this.page).subscribe((resp) => {
@@ -98,6 +102,23 @@ export class PopularProgramsComponent {
   getRatedList() {
     this.accountService.getRatedPrograms().subscribe(resp => {
       this.ratedList = resp.results});
+  }
+
+  getWatchList() {
+    this.accountService.getTvWatchlist().subscribe(resp => {
+      this.pagesWatchList = resp.total_pages;
+      if (this.pagesWatchList <= 1) {
+        this.accountService.getTvWatchlist().subscribe(resp => {
+          this.watchList = resp.results;
+        });
+      } else {
+        for (let i = 1; i <= this.pagesWatchList; i++) {
+          this.accountService.getTvWatchlistByPage(i).subscribe(resp => {
+            this.watchList = this.watchList.concat(resp.results);
+          })
+        }
+      }
+    });
   }
 
   showAllPrograms(id: number) {

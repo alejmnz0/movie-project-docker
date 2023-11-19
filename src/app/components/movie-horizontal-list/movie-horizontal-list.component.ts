@@ -13,6 +13,7 @@ export class MovieHorizontalListComponent {
   @Input() movieList!: Movie[];
   @Input() favList!: Movie[];
   @Input() ratedList!: RatedMovie[];
+  @Input() watchList!: Movie[];
 
   isFav(movieId: number) {
     return this.favList.some(resp => resp.id === movieId);
@@ -21,5 +22,9 @@ export class MovieHorizontalListComponent {
   getRate(movieId: number) {
     let rate = this.ratedList.find(resp => resp.id === movieId)?.rating;
     return rate ? rate / 2 : null;
+  }
+
+  isOnWatchList(movieId: number) {
+    return this.watchList.some(resp => resp.id === movieId);
   }
 }

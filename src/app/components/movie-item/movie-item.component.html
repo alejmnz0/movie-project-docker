@@ -6,8 +6,8 @@
       [titleColor]="'#FFFFFF'" [backgroundColor]="'#000000'" [backgroundPadding]="0"></circle-progress>
 
     <div id="saveList">
-      <button mat-icon-button>
-        <mat-icon class="save">bookmark</mat-icon>
+      <button mat-icon-button (click)="toggleWatchlist()">
+        <mat-icon [class.saveMarcado]="isOnWatchList" [class.save]="!isOnWatchList">bookmark</mat-icon>
       </button>
     </div>
 

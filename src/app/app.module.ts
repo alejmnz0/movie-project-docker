@@ -46,6 +46,10 @@ import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/pag
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ProgramItemSecondaryComponent } from './components/program-item-secondary/program-item-secondary.component';
 import { GenreProgramListComponent } from './ui/genre-program-list/genre-program-list.component';
+import { WatchListComponentComponent } from './components/watch-list-component/watch-list-component.component';
+import { WatchListProgramsComponent } from './components/watch-list-programs/watch-list-programs.component';
+import { PageWatchlistMoviesComponent } from './ui/page-watchlist-movies/page-watchlist-movies.component';
+import { PageWatchlistProgramsComponent } from './ui/page-watchlist-programs/page-watchlist-programs.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +90,11 @@ import { GenreProgramListComponent } from './ui/genre-program-list/genre-program
     PageFavouriteProgramsComponent,
     SearchBarComponent,
     GenreProgramListComponent,
-    ProgramItemSecondaryComponent
+    ProgramItemSecondaryComponent,
+    WatchListComponentComponent,
+    WatchListProgramsComponent,
+    PageWatchlistMoviesComponent,
+    PageWatchlistProgramsComponent
   ],
   imports: [
     BrowserModule,

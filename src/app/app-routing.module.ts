@@ -17,6 +17,8 @@ import { DetailsProgramComponent } from './ui/details-program/details-program.co
 import { PageFavouriteMoviesComponent } from './ui/page-favourite-movies/page-favourite-movies.component';
 import { PageFavouriteProgramsComponent } from './ui/page-favourite-programs/page-favourite-programs.component';
 import { GenreProgramListComponent } from './ui/genre-program-list/genre-program-list.component';
+import { PageWatchlistMoviesComponent } from './ui/page-watchlist-movies/page-watchlist-movies.component';
+import { PageWatchlistProgramsComponent } from './ui/page-watchlist-programs/page-watchlist-programs.component';
 
 const routes: Routes = [
     { path: 'home', component: HomePageComponent },
@@ -35,6 +37,8 @@ const routes: Routes = [
     { path: 'approved', component: AuthApprovedComponent },
     { path: 'perfil/movies-favourites', component: PageFavouriteMoviesComponent },
     { path: 'perfil/programs-favourites', component: PageFavouriteProgramsComponent },
+    { path: 'perfil/movies-watchlist', component: PageWatchlistMoviesComponent },
+    { path: 'perfil/programs-watchlist', component: PageWatchlistProgramsComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

@@ -2,7 +2,7 @@
     Películas populares
 </h1>
 <div class="form-outline">
-    <input [(ngModel)]="name" (keyup)="loadPageByName($event)" type="search" id="form1" class="form-control"
+    <input [(ngModel)]="name" (keyup)="loadPageByName($event)" type="search" id="form1" class="form-control bg-light"
         placeholder="Busca entre todas las películas" aria-label="Search" />
 </div>
 <app-filter-movies (genreClick)="showMoviesByGenre($event)" (allClick)="showAllMovies($event)"></app-filter-movies>

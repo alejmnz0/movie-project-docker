@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-10">
+        <h2 class="text-white">&nbsp;&nbsp;Tu Watch List Peliculas</h2>
+    </div>
+    <div *ngIf="movieList.length===20" class="col-2">
+        <button class="btn btn-light" [routerLink]="['movies-watchlist']" style=" float: inline-end;">Ver más</button>
+    </div>
+</div>
+<app-movie-horizontal-list [movieList]="movieList" [favList]="favouriteList" [ratedList]="ratedList" [watchList]="movieList"></app-movie-horizontal-list>
+<!--[favList]="favList"-->
